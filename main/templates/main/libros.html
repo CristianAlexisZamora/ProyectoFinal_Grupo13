@@ -1,9 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Document</title>
-</head>
-<body>
-    <h1>Libros de apoyo para el curso de Python</h1>
-</body>
-</html>
+{% extends "main/base.html" %}
+{% load static %}
+
+<!--Titulo de la pagina-->
+{% block title %}
+    Libros
+{% endblock %}
+
+<!--Contenido de la pagina-->
+{% block content %}
+<h2>Recursos de texto disponibles</h2>
+<div class="container rojo">
+    <div class="row">
+        <div class="col col-7">
+            <h5>Modulo #1</h5>
+
+        </div>
+        <div class="col col-5">
+            <h5>Aqui va una tarjeta</h5>
+        </div>
+</div>
+</div>
+{% endblock %}
