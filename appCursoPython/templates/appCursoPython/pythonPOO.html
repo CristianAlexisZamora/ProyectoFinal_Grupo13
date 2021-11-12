@@ -1,12 +1,97 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2>Programacion Orientada a Objetos</h2>
-</body>
-</html>
+{% extends "main/base.html" %}
+{% load static %}
+
+<!--Titulo de la pagina-->
+{% block title %}
+    POO con python
+{% endblock %}
+
+<!--Contenido de la pagina-->
+{% block content %}
+<div class="principal">
+    <div class="row">
+        <div class="col col-3">
+            <h5>Contenido</h5>
+            <ul>
+                <li><a href="#poo">Python es un lenguaje OO</a></li>
+                <li><a href="#clases-objetos">Clases y objetos en python</a></li>
+                <li><a href="#constructor">Constructor de una clase en python</a></li>
+                <li><a href="#atributos-de-datos">Atributos, atributos de datos y m&eacute;todos</a></li>
+                <li><a href="#atributos-de-clase">Atributos de clase y atributos de instancia</a></li>
+                <li><a href="#herencia">Herencia en Python</a></li>
+                <li><a href="#herencia-multiple">Herencia m&uacute;ltiple en python</a></li>
+                <li><a href="#encapsulacion">Encapsulaci&oacute;n: atributos privados</a></li>
+                <li><a href="#polimorfismo">Polimorfismo</a></li>
+            </ul>
+    
+        </div>
+        <div class="col col-9">
+            <h2>Programaci&oacute;n Orientada a Objetos con Python</h2>
+            <p>
+                De todos los tutoriales que hemos visto hasta ahora, diría que este es uno de los más importantes: Programación Orientada a Objetos en Python. Y es que, como te he mencionado en varias ocasiones, en Python todo es un objeto. Si dominas los conceptos que describo en este artículo, estarás un paso más cerca de ser un auténtico Pythonista.
+                Como sabrás, Python es un lenguaje multiparadigma: soporta la programación imperativa y funcional, pero también la programación orientada a objetos.
+                La verdad es que el tema da para mucho. Por eso, este tutorial es un resumen de los conceptos clave de la programación orientada a objetos desde el punto de vista de Python. ¡No te lo puedes perder!</p>
+            <h4 id="poo">Python es un lenguaje Orientado a Objetos</h4>
+            <p>
+                Sí, soy un pesado 😂 y por eso te lo vuelvo a decir: En Python todo es un objeto. Cuando creas una variable y le asignas un valor entero, ese valor es un objeto; una función es un objeto; las listas, tuplas, diccionarios, conjuntos, … son objetos; una cadena de caracteres es un objeto. Y así podría seguir indefinidamente.
+                Pero, ¿por qué es tan importante la programación orientada a objetos? Bien, este tipo de programación introduce un nuevo paradigma que nos permite encapsular y aislar datos y operaciones que se pueden realizar sobre dichos datos.
+                Sigue leyendo para que entiendas qué quiero decir.
+            <div><iframe width="560" height="315" src="https://www.youtube.com/embed/5Ohme4A2Weg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+            </p>
+            <h4 id="clases-objetos">Clases y objetos en python</h4>
+            <p>
+                Básicamente, una clase es una entidad que define una serie de elementos que determinan un estado (datos) y un comportamiento (operaciones sobre los datos que modifican su estado).
+                Por su parte, un objeto es una concreción o instancia de una clase.
+                Tranqui, que lo vas a entender con el siguiente ejemplo.
+                Seguro que si te digo que te imagines un coche, en tu mente comienzas a visualizar la carrocería, el color, las ruedas, el volante, si es diésel o gasolina, el color de la tapicería, si es manual o automático, si acelera o va marcha atrás, etc.
+                Pues todo lo que acabo de describir viene a ser una clase y cada uno de los de coches que has imaginado, serían objetos de dicha clase.
+                ¿Cómo pasamos lo anterior a Python? Veámoslo.
+                Como te decía, una clase engloba datos y funcionalidad. Cada vez que se define una clase en Python, se crea a su vez un tipo nuevo (¿recuerdas? tipo int, float, str, list, tuple, … todos ellos están definidos en una clase).
+            </p>
+            <h4 id="constructor">Constructor de una clase en python</h4>
+            <p>
+                En la sección anterior me he adelantado un poco… Para crear un objeto de una clase determinada, es decir, instanciar una clase, se usa el nombre de la clase y a continuación se añaden paréntesis (como si se llamara a una función).
+                El código anterior crea una nueva instancia de la clase MiClase y asigna dicho objeto a la variable obj. Esto crea un objeto vacío, sin estado.
+                Sin embargo, hay clases (como nuestra clase Coche) que deben o necesitan crear instancias de objetos con un estado inicial.
+                Esto se consigue implementando el método especial __init__(). Este método es conocido como el constructor de la clase y se invoca cada vez que se instancia un nuevo objeto.
+                El método __init__() establece un primer parámetro especial que se suele llamar self (veremos qué significa este nombre en la siguiente sección). Pero puede especificar otros parámetros siguiendo las mismas reglas que cualquier otra función.
+            </p>
+            <h4 id="atributos-de-datos">Atributos, atributos de datos y m&eacute;todos</h4>
+            <p>
+                Una vez que sabemos qué es un objeto, tengo que decirte que la única operación que pueden realizar los objetos es referenciar a sus atributos por medio del operador .
+                Como habrás podido apreciar, un objeto tiene dos tipos de atributos: atributos de datos y métodos.
+                Los atributos de datos definen el estado del objeto. En otros lenguajes son conocidos simplemente como atributos o miembros.
+                Los métodos son las funciones definidas dentro de la clase.
+            </p>
+            <h4 id="atributos-de-clase">Atributos de clase y atributos de instancia</h4>
+            <p>
+                Una clase puede definir dos tipos diferentes de atributos de datos: atributos de clase y atributos de instancia.
+                Los atributos de clase son atributos compartidos por todas las instancias de esa clase.
+                Los atributos de instancia, por el contrario, son únicos para cada uno de los objetos pertenecientes a dicha clase.
+                En el ejemplo de la clase Coche, ruedas se ha definido como un atributo de clase, mientras que color, aceleracion y velocidad son atributos de instancia.
+            </p>
+            <h4 id="herencia">Herencia en Python</h4>
+            <p>
+                En programación orientada a objetos, la herencia es la capacidad de reutilizar una clase extendiendo su funcionalidad. 
+                Una clase que hereda de otra puede añadir nuevos atributos, ocultarlos, añadir nuevos métodos o redefinirlos.
+            </p>
+            <h4 id="herencia-multiple">Herencia m&uacute;ltiple en python</h4>
+            <p>
+                Python es un lenguaje de programación que permite herencia múltiple. Esto quiere decir que una clase puede heredar de más de una clase a la vez.
+            </p>
+            <h4 id="encapsulacion">Encapsulaci&oacute;n: atributos privados</h4>
+            <p>
+                Encapsulación (o encapsulamiento), en programación orientada a objetos, hace referencia a la capacidad que tiene un objeto de ocultar su estado, de manera que sus datos solo se puedan modificar por medio de las operaciones (métodos) que ofrece.
+                Si vienes de otros lenguajes de programación, quizá te haya resultado raro que no haya mencionado nada sobre atributos públicos o privados.
+                Bien, por defecto, en Python, todos los atributos de una clase (atributos de datos y métodos) son públicos. Esto quiere decir que desde un código que use la clase, se puede acceder a todos los atributos y métodos de dicha clase.
+                No obstante, hay una forma de indicar en Python que un atributo, ya sea un dato o un método, es interno a una clase y no se debería utilizar fuera de ella. Algo así como los miembros privados de otros lenguajes. Esto es usando el carácter guión bajo _atributo antes del nombre del atributo que queramos ocultar.
+            </p>
+            <h4 id="polimorfismo">Polimorfismo</h4>
+            <p>
+                Y llegamos al último concepto que veremos en este tutorial sobre programación orientada a objetos en Python.
+                Polimorfismo es la capacidad de una entidad de referenciar en tiempo de ejecución a instancias de diferentes clases.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
