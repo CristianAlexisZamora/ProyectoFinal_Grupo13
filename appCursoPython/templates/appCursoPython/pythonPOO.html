@@ -10,34 +10,59 @@
 {% block content %}
 <div class="principal">
     <div class="row">
-        <div class="col col-3">
-            <h5>Contenido</h5>
-            <ul>
-                <li><a href="#poo">Python es un lenguaje OO</a></li>
-                <li><a href="#clases-objetos">Clases y objetos en python</a></li>
-                <li><a href="#constructor">Constructor de una clase en python</a></li>
-                <li><a href="#atributos-de-datos">Atributos, atributos de datos y m&eacute;todos</a></li>
-                <li><a href="#atributos-de-clase">Atributos de clase y atributos de instancia</a></li>
-                <li><a href="#herencia">Herencia en Python</a></li>
-                <li><a href="#herencia-multiple">Herencia m&uacute;ltiple en python</a></li>
-                <li><a href="#encapsulacion">Encapsulaci&oacute;n: atributos privados</a></li>
-                <li><a href="#polimorfismo">Polimorfismo</a></li>
-            </ul>
-    
+        <div class="col s3">
+            <div class="row">
+                <div class="col s12">
+                    <br/><br/><br><br>
+                  <h5><center>Contenido</center></h5>
+                  <div class="card-panel yellow lighten-2">
+                    <ul>
+                        <li><a href="#poo" class="text-black">Python es un lenguaje OO</a></li>
+                        <li><a href="#clases-objetos">Clases y objetos en python</a></li>
+                        <li><a href="#constructor">Constructor de una clase en python</a></li>
+                        <li><a href="#atributos-de-datos">Atributos, atributos de datos y m&eacute;todos</a></li>
+                        <li><a href="#atributos-de-clase">Atributos de clase y atributos de instancia</a></li>
+                        <li><a href="#herencia">Herencia en Python</a></li>
+                        <li><a href="#herencia-multiple">Herencia m&uacute;ltiple en python</a></li>
+                        <li><a href="#encapsulacion">Encapsulaci&oacute;n: atributos privados</a></li>
+                        <li><a href="#polimorfismo">Polimorfismo</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
         </div>
-        <div class="col col-9">
-            <h2>Programaci&oacute;n Orientada a Objetos con Python</h2>
+        <div class="col s9">
+            <h2><center>Programaci&oacute;n Orientada a Objetos con Python</center></h2>
             <p>
-                De todos los tutoriales que hemos visto hasta ahora, diría que este es uno de los más importantes: Programación Orientada a Objetos en Python. Y es que, como te he mencionado en varias ocasiones, en Python todo es un objeto. Si dominas los conceptos que describo en este artículo, estarás un paso más cerca de ser un auténtico Pythonista.
-                Como sabrás, Python es un lenguaje multiparadigma: soporta la programación imperativa y funcional, pero también la programación orientada a objetos.
-                La verdad es que el tema da para mucho. Por eso, este tutorial es un resumen de los conceptos clave de la programación orientada a objetos desde el punto de vista de Python. ¡No te lo puedes perder!</p>
-            <h4 id="poo">Python es un lenguaje Orientado a Objetos</h4>
-            <p>
-                Sí, soy un pesado 😂 y por eso te lo vuelvo a decir: En Python todo es un objeto. Cuando creas una variable y le asignas un valor entero, ese valor es un objeto; una función es un objeto; las listas, tuplas, diccionarios, conjuntos, … son objetos; una cadena de caracteres es un objeto. Y así podría seguir indefinidamente.
-                Pero, ¿por qué es tan importante la programación orientada a objetos? Bien, este tipo de programación introduce un nuevo paradigma que nos permite encapsular y aislar datos y operaciones que se pueden realizar sobre dichos datos.
-                Sigue leyendo para que entiendas qué quiero decir.
-            <div><iframe width="560" height="315" src="https://www.youtube.com/embed/5Ohme4A2Weg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+                La programación orientada a objetos (POO, u OOP según sus siglas en inglés) es un paradigma de programación que viene a innovar la forma de obtener resultados. Los objetos manipulan los datos de entrada para la obtención de datos de salida específicos, donde cada objeto ofrece una funcionalidad especial.
+                La POO tiene sus raíces en la década del 60 con el lenguaje de programación Simula que en 1967, el cual fue el primer lenguaje que posee las características principales de un lenguaje orientado a objetos.
+                Smalltalk (de 1972 a 1980) es posiblemente el ejemplo canónico, y con el que gran parte de la teoría de la POO se ha desarrollado. Más su uso se popularizó a principios de la década de 1990.
+                En la actualidad, existe una gran variedad de lenguajes de programación que soportan la orientación a objetos.
             </p>
+            <div class="col s8"> 
+                <h4 id="poo">Python es un lenguaje Orientado a Objetos</h4>
+                <p>
+                    El mecanismo de clases de Python agrega clases al lenguaje con un mínimo de nuevas sintaxis y semánticas.
+                    En Python las clases es una mezcla de los mecanismos de clase encontrados en C++ y Modula-3.
+                    Como es cierto para los módulos, las clases en Python no ponen una barrera absoluta entre la definición y el usuario, sino que más bien se apoya en la cortesía del usuario de no «forzar la definición».
+                    Sin embargo, se mantiene el poder completo de las características más importantes de las clases: el mecanismo de la herencia de clases permite múltiples clases base, una clase derivada puede sobrescribir cualquier método de su(s) clase(s) base, y un método puede llamar al método de la clase base con el mismo nombre.
+                </p>
+            </div>
+            <div class="col s4">
+                <div class="card horizontal">
+                    <div class="card-image">
+                        <img src="https://entrenamiento-python-basico.readthedocs.io/es/latest/_images/oop.jpg">
+                    </div>
+                    <div class="card-stacked">
+                        <div class="card-content">
+                          <p>"El mejor modo de predecir el futuro es invent&aacute;ndolo"</p>
+                        </div>
+                        <div class="card-action">
+                            <a href="https://es.wikipedia.org/wiki/Alan_Kay"><center>ALAN KAY</center></a>
+                        </div>
+                    </div>
+                </div>
+            </div> 
             <h4 id="clases-objetos">Clases y objetos en python</h4>
             <p>
                 Básicamente, una clase es una entidad que define una serie de elementos que determinan un estado (datos) y un comportamiento (operaciones sobre los datos que modifican su estado).
@@ -48,6 +73,14 @@
                 ¿Cómo pasamos lo anterior a Python? Veámoslo.
                 Como te decía, una clase engloba datos y funcionalidad. Cada vez que se define una clase en Python, se crea a su vez un tipo nuevo (¿recuerdas? tipo int, float, str, list, tuple, … todos ellos están definidos en una clase).
             </p>
+            <pre class="lime lighten-5">
+                            class Persona:
+                                """Clase que representa una Persona"""
+                                dui = "00010101-1"
+                                nombre = "Domingo"
+                                apellido = "Monterrosa"
+                                sexo = "M"
+            </pre>
             <h4 id="constructor">Constructor de una clase en python</h4>
             <p>
                 En la sección anterior me he adelantado un poco… Para crear un objeto de una clase determinada, es decir, instanciar una clase, se usa el nombre de la clase y a continuación se añaden paréntesis (como si se llamara a una función).
@@ -56,6 +89,14 @@
                 Esto se consigue implementando el método especial __init__(). Este método es conocido como el constructor de la clase y se invoca cada vez que se instancia un nuevo objeto.
                 El método __init__() establece un primer parámetro especial que se suele llamar self (veremos qué significa este nombre en la siguiente sección). Pero puede especificar otros parámetros siguiendo las mismas reglas que cualquier otra función.
             </p>
+            <pre class="lime lighten-5">
+                            class Persona:
+                                """Clase que representa una Persona"""
+                                dui = "00010101-1"
+                                nombre = "Domingo"
+                                apellido = "Monterrosa"
+                                sexo = "M"
+            </pre>
             <h4 id="atributos-de-datos">Atributos, atributos de datos y m&eacute;todos</h4>
             <p>
                 Una vez que sabemos qué es un objeto, tengo que decirte que la única operación que pueden realizar los objetos es referenciar a sus atributos por medio del operador .
