@@ -12,3 +12,7 @@ def listado_libros(request):
 
     return render(request, "main/libros.html")
     #return HttpResponse("Libros")
+
+#Vista de la pagina principal de videos complementarios
+def videosComplementarios(request):
+    return render(request, "main/videosComplementarios.html")

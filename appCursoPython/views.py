@@ -15,4 +15,3 @@ def frameworkDjango(request):
 def ejercicioDjango(request):
 
     return render(request, "appcursoPython/ejercicioPractico.html")
-
