@@ -1,0 +1,88 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+<!--Titulo de la pagina-->
+{% block title %}
+    Academia
+{% endblock %}
+
+<!--Contenido de la pagina-->
+{% block content %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <div class="center-align">
+                <h4>Bienvenido a Pythonico</h4>
+            </div>
+            <div class="justified-align">
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint, blanditiis vitae. Aspernatur impedit pariatur soluta incidunt? Dolorum perspiciatis libero sapiente dolor. Laudantium labore omnis laboriosam odit error repellendus voluptate aspernatur? Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi atque nobis vero, magnam dolorum nulla ex sunt doloremque corrupti nemo unde quibusdam beatae quod exercitationem, harum sapiente voluptatum praesentium debitis!</p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col l7 m7 s12">
+            <ul class="collection with-header">
+                <li class="collection-header"><h4>M&oacute;dulo 1</h4></li>
+                <li class="collection-item"><div>Introducci&oacute;n a Python<a href="{% url 'AcademiaCurso' %}" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a></div></li>
+                <li class="collection-item"><div>Variables<a href="{% url 'AcademiaCurso' %}" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a></div></li>
+                <li class="collection-item"><div>Tipos de datos b&aacute;sicos<a href="{% url 'AcademiaCurso' %}" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a></div></li>
+                <li class="collection-item"><div>Operadores<a href="{% url 'AcademiaCurso' %}" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a></div></li>
+            </ul>
+
+            <ul class="collection with-header">
+                <li class="collection-header"><h4>M&oacute;dulo 2</h4></li>
+                <li class="collection-item"><div>Sentencia if<a href="{% url 'AcademiaCurso' %}" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a></div></li>
+                <li class="collection-item"><div>Bucle While<a href="{% url 'AcademiaCurso' %}" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a></div></li>
+                <li class="collection-item"><div>For en Python<a href="{% url 'AcademiaCurso' %}" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a></div></li>
+            </ul>
+
+            <ul class="collection with-header">
+                <li class="collection-header"><h4>M&oacute;dulo 3</h4></li>
+                <li class="collection-item"><div>Tipo list<a href="{% url 'AcademiaCurso' %}" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a></div></li>
+                <li class="collection-item"><div>Tipo tuple<a href="{% url 'AcademiaCurso' %}" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a></div></li>
+                <li class="collection-item"><div>Tipo range<a href="{% url 'AcademiaCurso' %}" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a></div></li>
+                <li class="collection-item"><div>Tipo set<a href="{% url 'AcademiaCurso' %}" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a></div></li>
+                <li class="collection-item"><div>Tipo dict<a href="{% url 'AcademiaCurso' %}" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a></div></li>
+                <li class="collection-item"><div>Tipo dtr<a href="{% url 'AcademiaCurso' %}" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a></div></li>
+            </ul>
+
+            <ul class="collection with-header">
+                <li class="collection-header"><h4>M&oacute;dulo 4</h4></li>
+                <li class="collection-item"><div>Funciones<a href="#!" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a></div></li>
+                <li class="collection-item"><div>Espacios de nombres, m&oacute;dulos y paquetes<a href="{% url 'AcademiaCurso' %}" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a></div></li>
+                <li class="collection-item"><div>Programaci&oacute;n orientada a objetos en Python<a href="{% url 'AcademiaCurso' %}" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a></div></li>
+            </ul>
+
+            <ul class="collection with-header">
+                <li class="collection-header"><h4>Inicios en Django</h4></li>
+                <li class="collection-item"><div>Teor&iacute;a sin definir pero en una sola p&aacute;gina<a href="{% url 'AcademiaCurso' %}" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a></div></li>
+                <li class="collection-item"><div>Ejercicio pr&aacute;ctico<a href="{% url 'AcademiaCurso' %}" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a></div></li>
+            </ul>
+        </div>
+
+        <div class="col l1 m7 s12"></div>
+
+        <div class="col l4 m4 s12">
+            <ul class="collection with-header">
+                <li class="collection-header"><a class="black-text" href="{% url 'Libros' %}"><h4>Recursos</h4></a></li>
+                <li class="collection-item"><div>M&oacute;dulo 1<a href="{% url 'Libros' %}" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a></div></li>
+                <li class="collection-item"><div>M&oacute;dulo 2<a href="{% url 'Libros' %}" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a></div></li>
+                <li class="collection-item"><div>M&oacute;dulo 3<a href="{% url 'Libros' %}" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a></div></li>
+                <li class="collection-item"><div>M&oacute;dulo 4<a href="{% url 'Libros' %}" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a></div></li>
+            </ul>
+            <br>
+            <br>
+
+            <a class="black-text" href="{% url 'VideosComplementarios' %}"><h4>Videos complementarios</h4></a>
+            <iframe src="https://www.youtube.com/embed/chPhlsHoEPo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <br>
+    <br>
+</div>
+{% endblock %}

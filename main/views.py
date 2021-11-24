@@ -16,3 +16,7 @@ def listado_libros(request):
 #Vista de la pagina principal de videos complementarios
 def videosComplementarios(request):
     return render(request, "main/videosComplementarios.html")
+
+#Vista de la pagina principal de academia
+def academiaCurso(request):
+    return render(request, "main/academiaCurso.html")
