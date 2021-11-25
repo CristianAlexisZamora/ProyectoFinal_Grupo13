@@ -13,6 +13,17 @@ def frameworkDjango(request):
 def ejercicioDjango(request):
     return render(request, "appcursoPython/ejercicioPractico.html")
 
+
+# Vista creada para el listado de libros que se posee
+def listado_libros(request):
+    return render(request, "appCursoPython/libros.html")
+
+
+#Vista de la pagina principal de videos complementarios
+def videosComplementarios(request):
+    return render(request, "appCursoPython/videosComplementarios.html")
+
+
 # Vista creada para el tutorial de Operadores
 def operadores(request):
     return render(request, "appcursoPython/operadores.html")

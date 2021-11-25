@@ -116,10 +116,46 @@
                 En programación orientada a objetos, la herencia es la capacidad de reutilizar una clase extendiendo su funcionalidad. 
                 Una clase que hereda de otra puede añadir nuevos atributos, ocultarlos, añadir nuevos métodos o redefinirlos.
             </p>
+            <pre class="lime lighten-5">
+                class Persona(object):
+                    """Clase que representa una Persona"""
+                    
+                    def __init__(self, cedula, nombre, apellido, sexo):
+                        """Constructor de clase Persona"""
+                        self.cedula = cedula
+                        self.nombre = nombre
+                        self.apellido = apellido
+                        self.sexo = sexo
+
+                    def __str__(self):
+                        """Devuelve una cadena representativa de Persona"""
+                        return "%s: %s, %s %s, %s." % (
+                            self.__doc__[25:34], str(self.cedula), self.nombre, 
+                            self.apellido, self.getGenero(self.sexo))    
+
+                    def hablar(self, mensaje):
+                        """Mostrar mensaje de saludo de Persona"""
+                        return mensaje
+                    
+                    def getGenero(self, sexo):
+                        """Mostrar el genero de la Persona"""
+                        genero = ('Masculino','Femenino')
+                        if sexo == "M":
+                            return genero[0]
+                        elif sexo == "F":
+                            return genero[1]
+                        else:
+                            return "Desconocido"
+            </pre>
             <h4 id="herencia-multiple">Herencia m&uacute;ltiple en python</h4>
             <p>
+                La herencia nos permite usar las características de la clase principal en una clase secundaria y es una característica esencial de la programación orientada a objetos. Ayuda con la reutilización y la transitividad de los datos de la clase principal a la 
+                clase secundaria y compensa la pérdida de datos. La herencia múltiple es cuando la clase secundaria hereda los métodos y características de dos o más clases principales. Es beneficioso obtener todos los datos a la vez. Aún así, por otro lado, viene con complejidad y ambigüedad de uso. 
+                Es ambiguo decir qué característica es de qué padre si varios padres poseen la misma característica. 
+                Ocurre cuando la herencia múltiple no se usa o no se implementa correctamente. 
                 Python es un lenguaje de programación que permite herencia múltiple. Esto quiere decir que una clase puede heredar de más de una clase a la vez.
             </p>
+            <center><img src="http://3.bp.blogspot.com/_on8T2PWMfto/Scht9ybtosI/AAAAAAAABbs/GkqI08GKpI8/s320/herenciaMultiple.png" alt="Herencia multiple"/></center>
             <h4 id="encapsulacion">Encapsulaci&oacute;n: atributos privados</h4>
             <p>
                 Encapsulación (o encapsulamiento), en programación orientada a objetos, hace referencia a la capacidad que tiene un objeto de ocultar su estado, de manera que sus datos solo se puedan modificar por medio de las operaciones (métodos) que ofrece.
@@ -129,8 +165,9 @@
             </p>
             <h4 id="polimorfismo">Polimorfismo</h4>
             <p>
-                Y llegamos al último concepto que veremos en este tutorial sobre programación orientada a objetos en Python.
-                Polimorfismo es la capacidad de una entidad de referenciar en tiempo de ejecución a instancias de diferentes clases.
+                El polimorfismo es uno de los pilares básicos en la programación orientada a objetos, por lo que para entenderlo es importante tener las bases de la POO y la herencia bien asentadas.
+                El término polimorfismo tiene origen en las palabras poly (muchos) y morfo (formas), y aplicado a la programación hace referencia a que los objetos pueden tomar diferentes formas. ¿Pero qué significa esto?
+                Pues bien, significa que objetos de diferentes clases pueden ser accedidos utilizando el mismo interfaz, mostrando un comportamiento distinto (tomando diferentes formas) según cómo sean accedidos.
             </p>
         </div>
     </div>
