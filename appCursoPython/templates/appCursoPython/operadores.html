@@ -17,15 +17,15 @@
                   <h5><center>Contenido</center></h5>
                   <div class="card-panel yellow lighten-2">
                     <ul>
-                        <li><a href="#poo" class="grey-text text-darken-4">Python es un lenguaje OO</a></li>
-                        <li><a href="#clases-objetos" class="grey-text text-darken-4">Clases y objetos en python</a></li>
-                        <li><a href="#constructor" class="grey-text text-darken-4">Constructor de una clase en python</a></li>
-                        <li><a href="#atributos-de-datos" class="grey-text text-darken-4">Atributos, atributos de datos y m&eacute;todos</a></li>
-                        <li><a href="#atributos-de-clase" class="grey-text text-darken-4">Atributos de clase y atributos de instancia</a></li>
-                        <li><a href="#herencia" class="grey-text text-darken-4">Herencia en Python</a></li>
-                        <li><a href="#herencia-multiple" class="grey-text text-darken-4">Herencia m&uacute;ltiple en python</a></li>
-                        <li><a href="#encapsulacion" class="grey-text text-darken-4">Encapsulaci&oacute;n: atributos privados</a></li>
-                        <li><a href="#polimorfismo" class="grey-text text-darken-4">Polimorfismo</a></li>
+                        <li><a href="#opConcat" class="grey-text text-darken-4">Operador de concatenación de cadenas de caracteres</a></li>
+                        <li><a href="#opLog" class="grey-text text-darken-4">Operadores lógicos o booleanos</a></li>
+                        <li><a href="#opComp" class="grey-text text-darken-4">Operadores de comparación</a></li>
+                        <li><a href="#opArit" class="grey-text text-darken-4">Operadores aritméticos</a></li>
+                        <li><a href="#opBit" class="grey-text text-darken-4">Operadores a nivel de bits</a></li>
+                        <li><a href="#opAsig" class="grey-text text-darken-4">Operadores de asignación</a></li>
+                        <li><a href="#opPert" class="grey-text text-darken-4">Operadores de pertenencia</a></li>
+                        <li><a href="#opIden" class="grey-text text-darken-4">Operadores de identidad</a></li>
+                        <li><a href="#prioridad" class="grey-text text-darken-4">Prioridad de los operadores en Python</a></li>
                     </ul>
                   </div>
                 </div>
@@ -33,105 +33,443 @@
         </div>
         <div class="col s9">
             <h2><center>Operadores</center></h2>
-            <p>
-                La programación orientada a objetos (POO, u OOP según sus siglas en inglés) es un paradigma de programación que viene a innovar la forma de obtener resultados. Los objetos manipulan los datos de entrada para la obtención de datos de salida específicos, donde cada objeto ofrece una funcionalidad especial.
-                La POO tiene sus raíces en la década del 60 con el lenguaje de programación Simula que en 1967, el cual fue el primer lenguaje que posee las características principales de un lenguaje orientado a objetos.
-                Smalltalk (de 1972 a 1980) es posiblemente el ejemplo canónico, y con el que gran parte de la teoría de la POO se ha desarrollado. Más su uso se popularizó a principios de la década de 1990.
-                En la actualidad, existe una gran variedad de lenguajes de programación que soportan la orientación a objetos.
-            </p>
-            <div class="col s8"> 
-                <h4 id="poo">Python es un lenguaje Orientado a Objetos</h4>
-                <p>
-                    El mecanismo de clases de Python agrega clases al lenguaje con un mínimo de nuevas sintaxis y semánticas.
-                    En Python las clases es una mezcla de los mecanismos de clase encontrados en C++ y Modula-3.
-                    Como es cierto para los módulos, las clases en Python no ponen una barrera absoluta entre la definición y el usuario, sino que más bien se apoya en la cortesía del usuario de no «forzar la definición».
-                    Sin embargo, se mantiene el poder completo de las características más importantes de las clases: el mecanismo de la herencia de clases permite múltiples clases base, una clase derivada puede sobrescribir cualquier método de su(s) clase(s) base, y un método puede llamar al método de la clase base con el mismo nombre.
-                </p>
-            </div>
-            <div class="col s4">
-                <div class="card horizontal">
-                    <div class="card-image">
-                        <img src="https://entrenamiento-python-basico.readthedocs.io/es/latest/_images/oop.jpg">
-                    </div>
-                    <div class="card-stacked">
-                        <div class="card-content">
-                          <p>"El mejor modo de predecir el futuro es invent&aacute;ndolo"</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="https://es.wikipedia.org/wiki/Alan_Kay"><center>ALAN KAY</center></a>
-                        </div>
-                    </div>
-                </div>
-            </div> 
-            <h4 id="clases-objetos">Clases y objetos en python</h4>
-            <p>
-                Básicamente, una clase es una entidad que define una serie de elementos que determinan un estado (datos) y un comportamiento (operaciones sobre los datos que modifican su estado).
-                Por su parte, un objeto es una concreción o instancia de una clase.
-                Tranqui, que lo vas a entender con el siguiente ejemplo.
-                Seguro que si te digo que te imagines un coche, en tu mente comienzas a visualizar la carrocería, el color, las ruedas, el volante, si es diésel o gasolina, el color de la tapicería, si es manual o automático, si acelera o va marcha atrás, etc.
-                Pues todo lo que acabo de describir viene a ser una clase y cada uno de los de coches que has imaginado, serían objetos de dicha clase.
-                ¿Cómo pasamos lo anterior a Python? Veámoslo.
-                Como te decía, una clase engloba datos y funcionalidad. Cada vez que se define una clase en Python, se crea a su vez un tipo nuevo (¿recuerdas? tipo int, float, str, list, tuple, … todos ellos están definidos en una clase).
-            </p>
-            <pre class="lime lighten-5">
-                            class Persona:
-                                """Clase que representa una Persona"""
-                                dui = "00010101-1"
-                                nombre = "Domingo"
-                                apellido = "Monterrosa"
-                                sexo = "M"
-            </pre>
-            <h4 id="constructor">Constructor de una clase en python</h4>
-            <p>
-                En la sección anterior me he adelantado un poco… Para crear un objeto de una clase determinada, es decir, instanciar una clase, se usa el nombre de la clase y a continuación se añaden paréntesis (como si se llamara a una función).
-                El código anterior crea una nueva instancia de la clase MiClase y asigna dicho objeto a la variable obj. Esto crea un objeto vacío, sin estado.
-                Sin embargo, hay clases (como nuestra clase Coche) que deben o necesitan crear instancias de objetos con un estado inicial.
-                Esto se consigue implementando el método especial __init__(). Este método es conocido como el constructor de la clase y se invoca cada vez que se instancia un nuevo objeto.
-                El método __init__() establece un primer parámetro especial que se suele llamar self (veremos qué significa este nombre en la siguiente sección). Pero puede especificar otros parámetros siguiendo las mismas reglas que cualquier otra función.
-            </p>
-            <pre class="lime lighten-5">
-                            class Persona:
-                                """Clase que representa una Persona"""
-                                dui = "00010101-1"
-                                nombre = "Domingo"
-                                apellido = "Monterrosa"
-                                sexo = "M"
-            </pre>
-            <h4 id="atributos-de-datos">Atributos, atributos de datos y m&eacute;todos</h4>
-            <p>
-                Una vez que sabemos qué es un objeto, tengo que decirte que la única operación que pueden realizar los objetos es referenciar a sus atributos por medio del operador .
-                Como habrás podido apreciar, un objeto tiene dos tipos de atributos: atributos de datos y métodos.
-                Los atributos de datos definen el estado del objeto. En otros lenguajes son conocidos simplemente como atributos o miembros.
-                Los métodos son las funciones definidas dentro de la clase.
-            </p>
-            <h4 id="atributos-de-clase">Atributos de clase y atributos de instancia</h4>
-            <p>
-                Una clase puede definir dos tipos diferentes de atributos de datos: atributos de clase y atributos de instancia.
-                Los atributos de clase son atributos compartidos por todas las instancias de esa clase.
-                Los atributos de instancia, por el contrario, son únicos para cada uno de los objetos pertenecientes a dicha clase.
-                En el ejemplo de la clase Coche, ruedas se ha definido como un atributo de clase, mientras que color, aceleracion y velocidad son atributos de instancia.
-            </p>
-            <h4 id="herencia">Herencia en Python</h4>
-            <p>
-                En programación orientada a objetos, la herencia es la capacidad de reutilizar una clase extendiendo su funcionalidad. 
-                Una clase que hereda de otra puede añadir nuevos atributos, ocultarlos, añadir nuevos métodos o redefinirlos.
-            </p>
-            <h4 id="herencia-multiple">Herencia m&uacute;ltiple en python</h4>
-            <p>
-                Python es un lenguaje de programación que permite herencia múltiple. Esto quiere decir que una clase puede heredar de más de una clase a la vez.
-            </p>
-            <h4 id="encapsulacion">Encapsulaci&oacute;n: atributos privados</h4>
-            <p>
-                Encapsulación (o encapsulamiento), en programación orientada a objetos, hace referencia a la capacidad que tiene un objeto de ocultar su estado, de manera que sus datos solo se puedan modificar por medio de las operaciones (métodos) que ofrece.
-                Si vienes de otros lenguajes de programación, quizá te haya resultado raro que no haya mencionado nada sobre atributos públicos o privados.
-                Bien, por defecto, en Python, todos los atributos de una clase (atributos de datos y métodos) son públicos. Esto quiere decir que desde un código que use la clase, se puede acceder a todos los atributos y métodos de dicha clase.
-                No obstante, hay una forma de indicar en Python que un atributo, ya sea un dato o un método, es interno a una clase y no se debería utilizar fuera de ella. Algo así como los miembros privados de otros lenguajes. Esto es usando el carácter guión bajo _atributo antes del nombre del atributo que queramos ocultar.
-            </p>
-            <h4 id="polimorfismo">Polimorfismo</h4>
-            <p>
-                Y llegamos al último concepto que veremos en este tutorial sobre programación orientada a objetos en Python.
-                Polimorfismo es la capacidad de una entidad de referenciar en tiempo de ejecución a instancias de diferentes clases.
-            </p>
+            <p>Los operadores son símbolos reservados por el propio lenguaje que se utilizan para llevar a cabo operaciones sobre uno, dos o más elementos llamados operandos. Los operandos pueden ser variables, literales, el valor devuelto por una expresión o el valor devuelto por una función.</p>
+            <p>El ejemplo más típico que siempre viene a la mente es el operador suma, +, que se utiliza para obtener la suma aritmética de dos valores:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    >>> 9 + 1  # 9 y 1 son los operandos
+                    10  # 10 es el resultado</pre>
+            </code>
+            <p>En este tutorial entraremos más en detalle sobre los distintos tipos de operadores disponibles en Python</p>
+            
+
+            <h4 id="opConcat">Operador de concatenación de cadenas de caracteres</h4>
+            <p>Una de las operaciones más básicas cuando se trabaja con cadenas de caracteres es la concatenación. Esto consiste en unir dos cadenas en una sola, siendo el resultado un nuevo string.</p>
+            <p>La forma más simple de concatenar dos cadenas en Python es utilizando el operador de concatenación <kbd>+</kbd>:</p>  
+            <code>
+                <pre class="lime lighten-5">
+                    >>> hola = 'Hola'
+                    >>> python = 'Pythonista'
+                    >>> hola_python = hola + ' ' + python  # concatenamos 3 strings
+                    >>> print(hola_python)
+                    Hola Pythonista</pre>
+            </code>
+
+
+            <h4 id="opLog">Operadores lógicos o booleanos</h4>
+            <p>A la hora de operar con valores booleanos, tenemos a nuestra disposición los operadores <kbd>and</kbd>, <kbd>or</kbd> y <kbd>not</kbd>.</p>
+            <p>¡IMPORTANTE!: Las operaciones <kbd>and</kbd>, <kbd>or</kbd> y <kbd>not</kbd> realmente no devuelven <kbd>True</kbd> o <kbd>False</kbd>, sino que devuelven uno de los operandos como veremos en el cuadro de abajo.</p>
+            <p>A continuación te muestro cómo funcionan los operadores booleanos (en orden de preferencia ascendente):</p>
+            <table class="bordered highlight responsive-table">
+                <thead class="blue darken-4 white-text">
+                    <tr>
+                        <th>Operaci&oacute;n</th>
+                        <th>Resultado</th>
+                        <th>Descripci&oacute;n</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><kbd>a or b</kbd></td>
+                        <td>Si <kbd>a</kbd> evalua a falso, entonces devuelve <kbd>b</kbd>, si no devuelve <kbd>a</kbd></td>
+                        <td>Solo se evalúa el segundo operando si el primero es falso</td>
+                    </tr>
+                    <tr>
+                        <td><kbd>a and b</kbd></td>
+                        <td>Si <kbd>a</kbd> evalua a falso, entonces devuelve <kbd>a</kbd>, si no devuelve <kbd>b</kbd></td>
+                        <td>Solo se evalúa el segundo operando si el primero es verdadero</td>
+                    </tr>
+                    <tr>
+                        <td><kbd>not a</kbd></td>
+                        <td>Si <kbd>a</kbd> evalua a falso, entonces devuelve <kbd>True</kbd>, si no devuelve <kbd>False</kbd></td>
+                        <td>Tiene menos prioridad que otros operadores no booleanos</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p>Ejemplos:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    >>> x = True
+                    >>> y = False
+                    >>> x or y
+                    True
+                    >>> x and y
+                    False
+                    >>> not x
+                    False
+                    >>> x = 0
+                    >>> y = 10
+                    >>> x or y
+                    10
+                    >>> x and y
+                    0
+                    >>> not x
+                    True</pre>
+            </code>
+
+
+
+            <h4 id="opComp">Operadores de comparación</h4>
+            <p>Los operadores de comparación se utilizan, como su nombre indica, para comparar dos o más valores. El resultado de estos operadores siempre es <kbd>True</kbd> o <kbd>False</kbd>.</p>
+            <table class="bordered highlight responsive-table">
+                <thead class="blue darken-4 white-text">
+                    <tr>
+                        <th>Operaci&oacute;n</th>
+                        <th>Descripci&oacute;n</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>></td>
+                        <td>Mayor que. <kbd>True</kbd> si el operando de la izquierda es estrictamente mayor que el de la derecha; <kbd>False</kbd> en caso contrario.</td>
+                    </tr>
+                    <tr>
+                        <td>>=</td>
+                        <td>Mayor o igual que. <kbd>True</kbd> si el operando de la izquierda es mayor o igual que el de la derecha; <kbd>False</kbd> en caso contrario.</td>
+                    </tr>
+                    <tr>
+                        <td><</td>
+                        <td>Menor que. <kbd>True</kbd> si el operando de la izquierda es estrictamente menor que el de la derecha; <kbd>False</kbd> en caso contrario.</td>
+                    </tr>
+                    <tr>
+                        <td><=</td>
+                        <td>Menor o igual que. <kbd>True</kbd> si el operando de la izquierda es menor que el de la derecha; <kbd>False</kbd> en caso contrario.</td>
+                    </tr>
+                    <tr>
+                        <td>==</td>
+                        <td>Igual. <kbd>True</kbd> si el operando de la izquierda es igual que el de la derecha; <kbd>False</kbd> en caso contrario.</td>
+                    </tr>
+                    <tr>
+                        <td>!=</td>
+                        <td>Distinto. <kbd>True</kbd> si los operandos son distintos; <kbd>False</kbd> en caso contrario.</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p>Ejemplos:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    >>> x = 9
+                    >>> y = 1
+                    >>> x < y
+                    False
+                    >>> x > y
+                    True
+                    >>> x == y
+                    False</pre>
+            </code>
+            
+            <h5>Consideraciones sobre los operadores de comparación</h5>
+            <p>Los objetos de diferentes tipos, excepto los tipos numéricos, nunca se comparan igual. El operador <kbd>==</kbd> siempre está definido, pero para algunos tipos de objetos (por ejemplo, objetos de clase) es equivalente a is.</p>
+            <p>Las instancias no idénticas de una clase normalmente se comparan como no iguales a menos que la clase defina el método <kbd>__eq__()</kbd>.</p>
+            <p>Las instancias de una clase no se pueden ordenar con respecto a otras instancias de la misma clase u otros tipos de objeto, a menos que la clase defina los métodos <kbd>__lt__()</kbd>, <kbd>__gt__()</kbd>.</p>
+            <p>Los operadores de comparación se pueden concatenar. Ejemplo:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    # Las comparaciones siguientes son idénticas
+                    >>> x = 9
+                    >>> 1 < x and x < 20
+                    True
+                    >>> 1 < x < 20
+                    True</pre>
+            </code>
+
+            
+            
+            <h4 id="opArit">Operadores aritméticos</h4>
+            <p>En cuanto a los operadores aritméticos, estos permiten realizar las diferentes operaciones aritméticas del álgebra: suma, resta, producto, división, … Estos operadores Python son de los más utilizados. El listado completo es el siguiente:</p>
+            <table class="bordered highlight responsive-table">
+                <thead class="blue darken-4 white-text">
+                    <tr>
+                        <th>Operaci&oacute;n</th>
+                        <th>Descripci&oacute;n</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>+</td>
+                        <td>Suma dos operandos.</td>
+                    </tr>
+                    <tr>
+                        <td>>-</td>
+                        <td>Resta al operando de la izquierda el valor del operando de la derecha. Utilizado sobre un único operando, le cambia el signo.</td>
+                    </tr>
+                    <tr>
+                        <td>*</td>
+                        <td>Producto/Multiplicación de dos operandos.</td>
+                    </tr>
+                    <tr>
+                        <td>/</td>
+                        <td>Divide el operando de la izquierda por el de la derecha (el resultado siempre es un <kbd>float</kbd>).</td>
+                    </tr>
+                    <tr>
+                        <td>%</td>
+                        <td>Operador módulo. Obtiene el resto de dividir el operando de la izquierda por el de la derecha.</td>
+                    </tr>
+                    <tr>
+                        <td>//</td>
+                        <td>Obtiene el cociente entero de dividir el operando de la izquierda por el de la derecha.</td>
+                    </tr>
+                    <tr>
+                        <td>**</td>
+                        <td>Potencia. El resultado es el operando de la izquierda elevado a la potencia del operando de la derecha.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <code>
+                <pre class="lime lighten-5">
+                    >>> x = 7
+                    >>> y = 2
+                    >>> x + y  # Suma
+                    9
+                    >>> x - y  # Resta
+                    5
+                    >>> x * y  # Producto
+                    14
+                    >>> x / y  # División
+                    3.5
+                    >>> x % y  # Resto
+                    1
+                    >>> x // y  # Cociente
+                    3
+                    >>> x ** y  # Potencia
+                    49</pre>
+            </code>
+
+
+
+            <h4 id="opBit">Operadores a nivel de bits</h4>
+            <p>Los operadores a nivel de bits actúan sobre los operandos como si fueran una cadena de dígitos binarios. Como su nombre indica, actúan sobre los operandos bit a bit. Son los siguientes:</p>
+            <table class="bordered highlight responsive-table">
+                <thead class="blue darken-4 white-text">
+                    <tr>
+                        <th>Operaci&oacute;n</th>
+                        <th>Descripci&oacute;n</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>x | y</td>
+                        <td>or bit a bit de x e y.</td>
+                    </tr>
+                    <tr>
+                        <td>>x ^ y</td>
+                        <td>or exclusivo bit a bit de x e y.</td>
+                    </tr>
+                    <tr>
+                        <td>x & y</td>
+                        <td>and bit a bit de x e y.</td>
+                    </tr>
+                    <tr>
+                        <td>x << n</td>
+                        <td>Desplaza x n bits a la izquierda.</td>
+                    </tr>
+                    <tr>
+                        <td>x >> n</td>
+                        <td>Desplaza x n bits a la derecha.</td>
+                    </tr>
+                    <tr>
+                        <td>~x</td>
+                        <td>not x. Obtiene los bits de x invertidos.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Supongamos que tenemos el entero 2 (en bits es 00010) y el entero 7 (00111). El resultado de aplicar las operaciones anteriores es:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    >>> x = 2
+                    >>> y = 7
+                    >>> x | y
+                    7
+                    >>> x ^ y
+                    5
+                    >>> x & y
+                    2
+                    >>> x << 1
+                    4
+                    >>> x >> 1
+                    1
+                    >>> ~x
+                    -3</pre>
+            </code>
+
+
+
+            <h4 id="opAsig">Operadores de asignación</h4>
+            <p>El operador de asignación se utiliza para asignar un valor a una variable. Como te he mencionado en otras secciones, este operador es el signo <kbd>=</kbd>.</p>
+            <p>Además del operador de asignación, existen otros operadores de asignación compuestos que realizan una operación básica sobre la variable a la que se le asigna el valor.</p>
+            <p>Por ejemplo, <kbd>x += 1</kbd> es lo mismo que <kbd>x = x + 1</kbd>. Los operadores compuestos realizan la operación que hay antes del signo igual, tomando como operandos la propia variable y el valor a la derecha del signo igual.</p>
+            <p>A continuación, aparece la lista de todos los operadores de asignación compuestos:</p>
+            <table class="bordered highlight responsive-table">
+                <thead class="blue darken-4 white-text">
+                    <tr>
+                        <th>Operador</th>
+                        <th>Ejemplo</th>
+                        <th>Equivalencia</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>+=</td>
+                        <td>x += 2</td>
+                        <td>x = x + 2</td>
+                    </tr>
+                    <tr>
+                        <td>>-=</td>
+                        <td>x -= 2</td>
+                        <td>x = x – 2</td>
+                    </tr>
+                    <tr>
+                        <td>*=</td>
+                        <td>x *= 2</td>
+                        <td>x = x * 2</td>
+                    </tr>
+                    <tr>
+                        <td>/=</td>
+                        <td>x /= 2</td>
+                        <td>x = x / 2</td>
+                    </tr>
+                    <tr>
+                        <td>%=</td>
+                        <td>x %= 2</td>
+                        <td>x = x % 2</td>
+                    </tr>
+                    <tr>
+                        <td>//=</td>
+                        <td>x //= 2</td>
+                        <td>x = x // 2</td>
+                    </tr>
+                    <tr>
+                        <td>**=</td>
+                        <td>x **= 2</td>
+                        <td>x = x ** 2</td>
+                    </tr>
+                    <tr>
+                        <td>&=</td>
+                        <td>x &= 2</td>
+                        <td>x = x & 2</td>
+                    </tr>
+                    <tr>
+                        <td>|=</td>
+                        <td>x |= 2</td>
+                        <td>x = x | 2</td>
+                    </tr>
+                    <tr>
+                        <td>^=</td>
+                        <td>x ^= 2</td>
+                        <td>x = x ^ 2</td>
+                    </tr>
+                    <tr>
+                        <td>>>=</td>
+                        <td>x >>= 2</td>
+                        <td>x = x >> 2</td>
+                    </tr>
+                    <tr>
+                        <td><<=</td>
+                        <td>x <<= 2</td>
+                        <td>x = x << 2</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+            <h4 id="opPert">Operadores de pertenencia</h4>
+            <p>Los operadores de pertenencia se utilizan para comprobar si un valor o variable se encuentran en una secuencia (<kbd>list</kbd>, <kbd>tuple</kbd>, <kbd>dict</kbd>, <kbd>set</kbd> o <kbd>str</kbd>).</p>
+            <p>Todavía no hemos visto estos tipos, pero son operadores muy utilizados.</p>
+            <table class="bordered highlight responsive-table">
+                <thead class="blue darken-4 white-text">
+                    <tr>
+                        <th>Operador</th>
+                        <th>Descripci&oacute;n</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>in</td>
+                        <td>Devuelve True si el valor se encuentra en una secuencia; False en caso contrario.</td>
+                    </tr>
+                    <tr>
+                        <td>not in</td>
+                        <td>Devuelve True si el valor no se encuentra en una secuencia; False en caso contrario.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>A continuación vemos unos ejemplos que son muy intuitivos:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    >>> lista = [1, 3, 2, 7, 9, 8, 6]
+                    >>> 4 in lista
+                    False
+                    >>> 3 in lista
+                    True
+                    >>> 4 not in lista
+                    True</pre>
+            </code>
+
+
+
+            <h4 id="opIden">Operadores de identidad</h4>
+            <p>Por último, los operadores de identidad se utilizan para comprobar si dos variables son, o no, el mismo objeto.</p>
+            <table class="bordered highlight responsive-table">
+                <thead class="blue darken-4 white-text">
+                    <tr>
+                        <th>Operador</th>
+                        <th>Descripci&oacute;n</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>is</td>
+                        <td>Devuelve True si ambos operandos hacen referencia al mismo objeto; False en caso contrario.</td>
+                    </tr>
+                    <tr>
+                        <td>is not</td>
+                        <td>Devuelve True si ambos operandos no hacen referencia al mismo objeto; False en caso contrario.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>¡Recuerda!: Para conocer la identidad de un objeto se usa la función <kbd>id()</kbd>.</p>
+            <code>
+                <pre class="lime lighten-5">
+                    >>> x = 4
+                    >>> y = 2
+                    >>> lista = [1, 5]
+                    >>> x is lista
+                    False
+                    >>> x is y
+                    False
+                    >>> x is 4
+                    True</pre>
+            </code>
+
+
+            <h4 id="prioridad">Prioridad de los operadores en Python</h4>
+            <p>Al igual que ocurre en las matemáticas, los operadores en Python tienen un orden de prioridad. Este orden es el siguiente, de menos prioritario a más prioritario: asignación; operadores booleanos; operadores de comparación, identidad y pertenencia; a nivel de bits y finalmente los aritméticos (con el mismo orden de prioridad que en las matemáticas).</p>
+            <p>Este orden de prioridad se puede alterar con el uso de los paréntesis <kbd>()</kbd>:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    >>> x = 5
+                    >>> y = 2
+                    >>> z = x + 3 * y  # El producto tiene prioridad sobre la suma
+                    >>> z
+                    11
+                    >>> z = (x + 3) * y  # Los paréntesis tienen prioridad
+                    >>> z
+                    16</pre>
+            </code>
         </div>
     </div>
 </div>
