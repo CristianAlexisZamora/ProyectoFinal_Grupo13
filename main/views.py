@@ -4,7 +4,6 @@ from django.shortcuts import render, HttpResponse
 
 # Vista creada para la pagina de inicio (modificar al que le corresponsa solo se ha creado para que no lance error de link)
 def home(request):
-
     return HttpResponse("Inicio")
 
 #Vista de la pagina principal de academia
