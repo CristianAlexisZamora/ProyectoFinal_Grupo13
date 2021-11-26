@@ -7,11 +7,11 @@ def pythonPOO(request):
 
 # Vista creada para el curso del framework Django
 def cursoDjango01(request):
-    return render(request, "appCursoPython/cursoDjango01.html")
+    return render(request, "django/cursoDjango01.html")
 
 # Vista creada para el ejercicio practico de Django
 def cursoDjango02(request):
-    return render(request, "appcursoPython/cursoDjango02.html")
+    return render(request, "django/cursoDjango02.html")
 
 
 # Vista creada para el listado de libros que se posee

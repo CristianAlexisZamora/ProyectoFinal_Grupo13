@@ -5,8 +5,8 @@ from appCursoPython import views
 
 urlpatterns = [
     path('POO/', views.pythonPOO, name="POO"),
-    path('cursoDjango/', views.cursoDjango01, name="FrameworkDjango"),
-    path('ejercicioDjango/', views.cursoDjango02, name="EjercicioDjango"),
+    path('tutorial01/', views.cursoDjango01, name="FrameworkDjango01"),
+    path('tutorial02/', views.cursoDjango02, name="FrameworkDjango02"),
     path('libros/', views.listado_libros, name="Libros"),
     path('videosComplementarios/', views.videosComplementarios, name="VideosComplementarios"),
     path('operadores/', views.operadores, name="Operadores"),
