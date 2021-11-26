@@ -1,0 +1,191 @@
+{% extends "main/base.html" %}
+{% load static %}
+<!--Titulo de la pagina-->
+{% block title %}
+    Django
+{% endblock %}
+
+<!--Contenido de la pagina-->
+{% block content %}
+<div class="principal">
+    <div class="row">
+        <div class="col s3">
+            <div class="row">
+                <div class="col s12">
+                    <br/><br/><br><br>
+                    <h5><center>Contenido</center></h5>
+                    <div class="card-panel yellow lighten-2">
+                        <ul>
+                            <li><a href="#obtener-django" class="grey-text text-darken-4">C&oacute;mo obtener Django?</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s9">
+            <h2><center>Curso de Django</center></h2>
+            <p>
+                Django es un framework web de alto nivel que permite el desarrollo rápido de sitios web seguros y mantenibles. 
+                Desarrollado por programadores experimentados, Django se encarga 
+                de gran parte de las complicaciones del desarrollo web, por lo que puedes concentrarte en escribir tu aplicación sin necesidad de reinventar la rueda. Es gratuito y de código abierto, tiene una comunidad próspera y activa, una gran documentación y muchas opciones de soporte gratuito y de pago.
+            </p>
+            <p>Django te ayuda a escribir software que es:</p>
+            <h5><b>Completo</b></h5>
+            <p> Django sigue la filosofía "Baterías incluidas" y provee casi todo lo que los desarrolladores quisieran 
+                que tenga "de fábrica". Porque todo lo que necesitas es parte de un único "producto", todo funciona a la perfección, 
+                sigue principios de diseño consistentes y tiene una amplia y actualizada documentación
+            </p>
+            <h5><b>Vers&aacute;til</b></h5>
+            <p>Django puede ser (y ha sido) usado para construir casi cualquier tipo de sitio web — desde sistemas manejadores 
+                de contenidos y wikis, hasta redes sociales y sitios de noticias. Puede funcionar con cualquier framework en el lado del cliente, y puede devolver contenido en casi cualquier formato (incluyendo HTML, RSS feeds, JSON, XML, etc). 
+                ¡El sitio que estás leyendo actualmente está basado en Django!
+                Internamente, mientras ofrece opciones para casi cualquier funcionalidad que desees (distintos motores de base de datos , motores de plantillas, etc.), 
+                también puede ser extendido para usar otros componentes si es necesario.</p>
+            <h5><b>Seguro</b></h5>    
+            <p>Django ayuda a los desarrolladores evitar varios errores comunes de seguridad al proveer un framework que ha sido diseñado para "hacer lo correcto" para proteger el sitio web automáticamente. 
+                Por ejemplo, Django, proporciona una manera segura de administrar cuentas de usuario y contraseñas, evitando así errores comunes como 
+                colocar informaciones de sesión en cookies donde es vulnerable 
+                (en lugar de eso las cookies solo contienen una clave y los datos se almacenan en la base de datos) o se almacenan directamente las contraseñas en un hash de contraseñas.</p>
+            <p>Django permite protección contra algunas vulnerabilidades de forma predeterminada, 
+                incluida la inyección SQL, scripts entre sitios, falsificación de solicitudes entre sitios y clickjacking (consulte Seguridad de sitios web para obtener más detalles sobre dichos ataques).
+            </p>
+            <h5><b>Escalable</b></h5>
+            <p>Django usa un componente basado en la arquitectura <a target="blank" href="https://en.wikipedia.org/wiki/Shared-nothing_architecture">“shared-nothing”</a> 
+                (cada parte de la arquitectura es independiente de las otras, y por lo 
+                tanto puede ser reemplazado o cambiado si es necesario). Teniendo en cuenta una clara separación entre las diferentes partes significa que puede escalar para aumentar el tráfico al agregar hardware en cualquier nivel: servidores de cache, servidores de bases de datos o servidores de aplicación. Algunos de los sitios más concurridos han escalado a Django para satisfacer sus demandas 
+                (por ejemplo, Instagram y Disqus, por nombrar solo dos).</p>
+            <h4 id="obtener-django"><center>Obtener django</center></h4>
+            <p>
+                Django está disponible en código abierto bajo la licencia BSD . Recomendamos utilizar la última versión de Python 3. 
+                La última versión compatible con Python 2.7 es Django 1.11 LTS. Para poder descargar django nos dirigiremos a la pagina de descarga de <a href="https://www.djangoproject.com/download/" target="blank">django</a>. 
+            </p>
+            <h4 id="escribiendo-primera-app"><center>Creando un proyecto</center></h4>
+            <p>Si es la primera vez que usa Django, tendrá que encargarse de la configuración inicial. 
+                Es decir, necesitará generar automáticamente algún código que establezca un proyecto de Django : una colección de configuraciones para una instancia de Django, incluida la configuración de la base de datos, 
+                las opciones específicas de Django y las configuraciones específicas de la aplicación.
+            </p>
+            <p>Desde la línea de comando, cd a un directorio donde le gustaria almacenar su código, luego ejecute el siguiente comando:</p>
+            <pre class="lime lighten-5">
+                django-admin startproject mysite
+            </pre>
+            <p>Esto creará mysite en su directorio actual. Si no funcionó, consulte <a href="https://docs.djangoproject.com/en/3.2/faq/troubleshooting/#troubleshooting-django-admin" target="blank">Problemas al ejecutar django-admin</a>.</p>
+            <p>Veamos lo que <a href="https://docs.djangoproject.com/en/3.2/ref/django-admin/#django-admin-startproject" target="blank">startproject</a> creó:</p>
+            <pre class="lime lighten-5">
+                mysite/
+                    manage.py
+                    mysite/
+                        __init__.py
+                        settings.py 
+                        urls.py 
+                        asgi.py 
+                        wsgi.py 
+            </pre>
+            <p>Estos archivos son:</p>
+            <ul>
+                <li>El <b>mysite/</b> directorio raíz externo es un contenedor para su proyecto. Su nombre no le importa a Django; puedes cambiarle el nombre a lo que quieras. 
+                </li>
+                <li><b>manage.py:</b> Una utilidad de línea de comandos que le permite interactuar con este proyecto de Django de varias formas. Puede leer todos los detalles sobre manage.py en <a href="https://docs.djangoproject.com/en/3.2/ref/django-admin/" target="_blank" rel="noopener noreferrer">django-admin</a>.</li>
+                <li>El <b>mysite/</b> directorio interno es el paquete de Python real para su proyecto. Su nombre es el nombre del paquete de Python que necesitará usar para importar cualquier cosa dentro de él (por ejemplo <b>mysite.urls</b>).</li>
+                <li><b>mysite/__init__.py:</b>Un archivo vacío que le dice a Python que este directorio debe considerarse un paquete de Python.</li>
+                <li><b>mysite/settings.py:</b> Ajustes / configuración para este proyecto de Django. La <a href="https://docs.djangoproject.com/en/3.2/topics/settings/" target="_blank" rel="noopener noreferrer"></a> configuración de Django le dirá todo sobre cómo funciona la configuración.</li>
+                <li><b>mysite/urls.py:</b> Las declaraciones de URL para este proyecto de Django; una "tabla de contenido" de su sitio impulsado por Django.</li>
+                <li><b>mysite/asgi.py:</b> Un punto de entrada para servidores web compatibles con ASGI para servir su proyecto.</li>
+                <li><b>mysite/wsgi.oy:</b> Un punto de entrada para servidores web compatibles con WSGI para servir su proyecto.</li>
+            </ul>
+            <h4 id="servidor">El servidor de desarrollo</h4>
+            <p>Verifiquemos que su proyecto Django funciona. Cambie al mysitedirectorio externo , si aún no lo ha hecho, y ejecute los siguientes comandos:</p>
+            <pre class="lime lighten-5">python manage.py runserver</pre>
+            <p>Verá el siguiente resultado en la línea de comando:</p>
+            <pre class="lime lighten-5">
+                Realización de comprobaciones del sistema ...
+                La verificación del sistema no identificó problemas (0 silenciados).
+                Tiene migraciones sin aplicar; es posible que su aplicación no funcione correctamente hasta que se apliquen.
+                Ejecute 'python manage.py migrate' para aplicarlos.
+                23 de noviembre de 2021-15: 50:53
+                Django versión 3.2, usando la configuración 'mysite.settings'
+                Iniciando el servidor de desarrollo en http://127.0.0.1:8000/
+                Salga del servidor con CONTROL-C.
+            </pre>
+            <p>Ha iniciado el servidor de desarrollo Django, un servidor web ligero escrito exclusivamente en Python. Hemos incluido esto con Django para que pueda desarrollar cosas rápidamente, sin tener que lidiar con la configuración de un servidor de producción, como Apache, hasta que esté listo para la producción.</p>
+            <p>Ahora que el servidor está funcionando, visite http://127.0.0.1:8000/ con su navegador web. Verás un "¡Felicitaciones!" página, con un cohete despegando. ¡Funcionó!</p>
+            <h4><center>Creando la aplicación Polls</center></h4>
+            <p>Ahora que su entorno, un "proyecto", está configurado, está listo para comenzar a trabajar.</p>
+            <p>Cada aplicación que escribe en Django consta de un paquete de Python que sigue una determinada convención. Django viene con una utilidad que genera automáticamente la estructura de directorios básica de una aplicación, por lo que puede concentrarse en escribir código en lugar de crear directorios.</p>
+            <div class="row">
+                <div class="col s12 m6">
+                  <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                      <span class="card-title">Proyecto frente a aplicaciones</span>
+                      <p>¿Cuál es la diferencia entre un proyecto y una aplicación? Una aplicación es una aplicación web que hace algo, por ejemplo, un sistema de registro web, una base de datos de registros públicos o una pequeña aplicación de encuesta. Un proyecto es una colección de configuraciones y aplicaciones para un sitio web en particular. Un proyecto puede contener varias aplicaciones. Una aplicación puede estar en varios proyectos.</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <p>Sus aplicaciones pueden vivir en cualquier lugar de su ruta de Python. En este tutorial, crearemos nuestra aplicación de encuesta en el mismo directorio que su archivo <b>manage.py</b> para que se pueda importar como su propio módulo de nivel superior, en lugar de un submódulo de mysite.</p>
+            <p>Para crear su aplicación, asegúrese de estar en el mismo directorio <b>manage.py</b> y escriba este comando:</p>
+            <pre>python manage.py startapp polls</pre>
+            <p>Eso creará un directorio <b>polls</b>, que se presenta así:</p>
+            <pre>
+                polls/
+                    __init__.py
+                    admin.py
+                    apps.py
+                    migrations/
+                        __init__.py
+                    models.py
+                    tests.py
+                    views.py
+            </pre>
+            <p>Esta estructura de directorio albergará la aplicación de encuesta.</p>
+            <h4><center>Escribe tu primera vista</center></h4>
+            <p>Escribamos la primera vista. Abra el archivo <b>polls/views.py y coloque el siguiente código Python en él:</b></p>
+            <pre>
+                from django.http import HttpResponse
+
+                def index(request):
+                    return HttpResponse("Hola mundo")        
+            </pre>
+            <p>Esta es la vista más simple posible en Django. Para llamar a la vista, necesitamos mapearla a una URL, y para esto necesitamos una URLconf.</p>
+            <p>Para crear una URLconf en el directorio de encuestas, cree un archivo llamado <b>urls.py</b>. El directorio de su aplicación ahora deberia verse así:</p>
+            <pre>
+                polls/
+                    __init__.py 
+                    admin.py 
+                    apps.py 
+                    migrations/ 
+                        __init__.py 
+                    models.py 
+                    tests.py 
+                    urls.py 
+                    views.py 
+            </pre>
+            <p>En el archivo <b>polls/urls.py</b> incluya el siguiente código:</p>
+            <pre>
+                from django.urls import path
+
+                from . import views
+                
+                urlpatterns = [
+                    path('', views.index, name='index'),
+                ]
+            </pre>
+            <p>El siguiente paso es apuntar la URLconf raíz al polls.urls módulo. En <b>mysite/urls.py</b> agregue una importación para <b>django.urls.include</b> e inserte una <b>include()</b> en la <b>urlpatterns</b> lista, para que tenga:</p>
+            <pre>
+                from django.contrib import admin
+                from django.urls import include, path
+
+                urlpatterns = [
+                    path('polls/', include('polls.urls')),
+                    path('admin/', admin.site.urls),
+                ]
+            </pre>
+            <p>La función <b>include()</b> permite hacer referencia a otras UTLconfs. Siempre que se encuentra Django <b>include()</b>, corta cualquier parte de la URL que coincida hasta ese punto y envía la cadena restante a la URLconf incluida para su posterior procesamiento.</p>
+            <p>Ahora ha conectado una vista index a la URLconf. Verifique que esté funcionando con el siguiente comando:</p>
+            <pre>
+                python manage.py runserver
+            </pre>
+            <p>A la función <b>path()</b> se le pasan cuatro argumentos, dos obligatorios: <b>route</b> y <b>view</b>, y dos opcionales: <b>kwargs</b> y <b>name</b>. En este punto, vale la pena revisar para qué sirven estos argumentos.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
