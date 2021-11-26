@@ -27,3 +27,11 @@ def videosComplementarios(request):
 # Vista creada para el tutorial de Operadores
 def operadores(request):
     return render(request, "appcursoPython/operadores.html")
+
+# Vista creada para el tutorial de sentencia if
+def sentenciaIf(request):
+    return render(request, "appcursoPython/sentenciaIf.html")
+
+# Vista creada para el tutorial de sentencia if
+def bucleWhile(request):
+    return render(request, "appcursoPython/bucleWhile.html")
