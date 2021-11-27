@@ -1,12 +1,136 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h2>Ejercicio practico</h2>
-</body>
-</html>
+{% extends "main/base.html" %}
+{% load static %}
+<!--Titulo de la pagina-->
+{% block title %}
+    Curso django parte 2
+{% endblock %}
+
+<!--Contenido de la pagina-->
+{% block content %}
+<div class="principal">
+    <div class="row">
+        <div class="col s3">
+            <div class="row">
+                <div class="col s12">
+                    <br/><br/><br><br>
+                    <h5><center>Contenido</center></h5>
+                    <div class="card-panel yellow lighten-2">
+                        <ul>
+                            <li><a href="#jugando-api" class="grey-text text-darken-4"></a></li>
+                            <li><a href="#administrador-django">Presentando el administrador de Django</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s9">
+            <h2><center>Continuación del curso de django</center></h2>
+            <p>En está segunda parte de Django seguiremos con el ejemplo práctico de una aplicación de encuestas.</p>
+            <h4 id="jugando-api"><center>Jugando con la API</center></h4>
+            <p>Ahora, vayamos al shell interactivo de Python y juguemos con la API gratuita que te ofrece Django. Para invocar el shell de Python, use este comando:</p>
+            <pre>python manage.py shell</pre>
+            <p>Estamos usando esto en lugar de simplemente escribir "python", porque <b>manage.py</b> establece la variable de entorno <b><a href="https://docs.djangoproject.com/en/3.2/topics/settings/#envvar-DJANGO_SETTINGS_MODULE" target="_blank" rel="noopener noreferrer">DJANGO_SETTINGS_MODULE</a></b>, que le da a Django la ruta de importación de Python a su archivo <b>mysite/settings.py</b>.</p>
+            <p>Una vez que esté en el shell, explore la <b><u><a href="https://docs.djangoproject.com/en/3.2/topics/db/queries/" target="blank">API</a></u></b> de la base de datos.</p>
+            <p>Estamos usando esto en lugar de simplemente escribir "python", porque <b>manage.py</b> establece la variable de entorno <b>DJANGO_SETTINGS_MODULE</b>, que le da a Django la ruta de importación de Python a su archivo <b>mysite/settings.py</b>.</p>
+            <pre>
+                >>> from polls.models import Choice, Question # Import the model classes we just wrote.
+                # No questions are in the system yet.
+                >>> Question.objects.all()
+                <QuerySet []>
+
+                # Create a new Question.
+                # Support for time zones is enabled in the default settings file, so
+                # Django expects a datetime with tzinfo for pub_date. Use timezone.now()
+                # instead of datetime.datetime.now() and it will do the right thing.
+                >>> from django.utils import timezone
+                >>> q = Question(question_text="What's new?", pub_date=timezone.now())
+
+                # Save the object into the database. You have to call save() explicitly.
+                >>> q.save()
+
+                # Now it has an ID.
+                >>> q.id
+                1
+
+                # Access model field values via Python attributes.
+                >>> q.question_text
+                "What's new?"
+                >>> q.pub_date
+                datetime.datetime(2012, 2, 26, 13, 0, 0, 775217, tzinfo=<UTC>)
+
+                # Change values by changing the attributes, then calling save().
+                >>> q.question_text = "What's up?"
+                >>> q.save()
+
+                # objects.all() displays all the questions in the database.
+                >>> Question.objects.all()
+                <QuerySet [<Question: Question object (1)>]>
+            </pre>
+            <p>Espera un minuto, no es una representación útil de este objeto. Arreglemos eso editando el modelo (en el archivo) y agregando un método a ambos y: <b><Question: Question object (1)>Questionpolls/models.py__str__()QuestionChoice</b></p>
+            <pre>
+                from django.db import models
+
+                class Question(models.Model):
+                    # ...
+                    def __str__(self):
+                        return self.question_text
+
+                class Choice(models.Model):
+                    # ...
+                    def __str__(self):
+                        return self.choice_text
+            </pre>
+            <p>Es importante agregar el método __str__() a sus modelos, no solo para su propia conveniencia al tratar con el indicador interactivo, sino también porque las representaciones de los objetos se utilizan en todo el administrador generado automáticamente por Django.</p>
+            <p>Agreguemos también un método personalizado a este modelo:</p>
+            <pre>
+                import datetime
+
+                from django.db import models
+                from django.utils import timezone
+
+
+                class Question(models.Model):
+                    # ...
+                    def was_published_recently(self):
+                        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+            </pre>
+            <p>Tengan en cuenta agregar <b>import datetime</b> y <b>from django.utils import timezone</b>, para hacer referencia al modulo estandar de Python y las utilidaddes relacionadas con la zona horaria de Django. </p>
+            <h4 id="administrador-django">Presentando el administrador de Django</h4>
+            <div class="row">
+                <div class="col s12 m6">
+                  <div class="card blue-grey darken-1">
+                    <div class="card-content white-text">
+                      <span class="card-title">Filosofía</span>
+                      <p>Generar sitios de administración para que su personal o clientes agreguen, cambien y eliminen contenido es un trabajo tedioso que no requiere mucha creatividad. Por esa razón, Django automatiza completamente la creación de interfaces de administración para modelos.</p>
+                      <p>Django se escribió en un entorno de redacción, con una separación muy clara entre los "editores de contenido" y el sitio "público". Los administradores del sitio usan el sistema para agregar noticias, eventos, resultados deportivos, etc., y ese contenido se muestra en el sitio público. Django resuelve el problema de crear una interfaz unificada para que los administradores del sitio editen contenido.</p>
+                      <p>El administrador no está destinado a los visitantes del sitio. Es para administradores de sitios.</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <h5>Creando un usuario administrador</h5>
+            <p>Primero, necesitaremos crear un usuario que pueda iniciar sesión en el sitio de administración. Ejecute el siguiente comando: </p>
+            <pre>python manage.py createsuperuser</pre>
+            <p>Ingrese su nombre de usuario y presiones enter:</p>
+            <pre>Username: admin</pre>
+            <p>A continuación, se le pedirá la dirección de correo electrónico que desee:</p>
+            <pre>Email address: admin@example.com</pre>
+            <p>El último paso ingresar su contraseña. Se le pedirá que ingrese su contraseña dos veces, la segunda vez como confirmación de la primera.</p>
+            <pre>
+                Password: **********
+                Password (again): **********
+                Superuser created successfully.
+            </pre>
+            <h5>Inicie el servidor de desarrollo</h5>
+            <p>El sitio de administración de Django está activado de forma predeterminada. Iniciemos el servidor de desarrollo y explorémoslo.</p>
+            <p>Ahora, abra un navegador web y vaya a "/admin/" en su dominio local, por ejemplo <a href="http://127.0.0.1:8000/admin/">http://127.0.0.1:8000/admin/</a>. Deberia ver la pantalla de inicio de sesión del administrador:</p>
+            <center><img src="https://docs.hektorprofe.net/cdn/django/28.png" alt="inicio de sesión de django"></center>
+            <p>Dada que la traduccion está activada de forma predeterminada, si lo configura <b><a href="https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-LANGUAGE_CODE">LANGUAGE_CODE</a></b>, la pantalla de inicio de sesión se mostrará en el idioma dado(si Django tiene las traducciones adecuadas).</p>
+            <h5>Ingrese al sitio de administración</h5>
+            <p>Ahora, intente iniciar sesión con la cuenta de superusuario que creó en el paso anterior. Debería ver la página de índice de administración de Django:</p>
+            <center><img src="https://tutorial.djangogirls.org/es/django_admin/images/django_admin3.png" alt="administracion"></center>
+            <p>Deberia ver algunos tipos de contenido editable: grupos y usuarios. Son proporcionados por el marco de autenticación enviado por Django <b><a href="https://docs.djangoproject.com/en/3.2/topics/auth/#module-django.contrib.auth" target="_blank" rel="noopener noreferrer">django.contrib.auth</a></b></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

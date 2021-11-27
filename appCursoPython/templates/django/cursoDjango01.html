@@ -2,7 +2,7 @@
 {% load static %}
 <!--Titulo de la pagina-->
 {% block title %}
-    Django
+    Curso django parte 1
 {% endblock %}
 
 <!--Contenido de la pagina-->
@@ -23,6 +23,7 @@
                             <li><a href="#primera-vista" class="grey-text text-darken-4">Primera vista</a></li>
                             <li><a href="#base-de-datos" class="grey-text text-darken-4">Configuración de la base de datos</a></li>
                             <li><a href="#creando-modelos" class="grey-text text-darken-4">Creando modelos</a></li>
+                            <li><a href="#modelos" class="grey-text text-darken-4">Activando modelos</a></li>
                         </ul>
                     </div>
                 </div>
@@ -191,7 +192,7 @@
                 python manage.py runserver
             </pre>
             <p>A la función <b>path()</b> se le pasan cuatro argumentos, dos obligatorios: <b>route</b> y <b>view</b>, y dos opcionales: <b>kwargs</b> y <b>name</b>. En este punto, vale la pena revisar para qué sirven estos argumentos.</p>
-            <h4 id="base-de-datos">Configuración de la base de datos</h4>
+            <h4 id="base-de-datos"><center>Configuración de la base de datos</center></h4>
             <p>Ahora, abre <b>mysite/settings.py</b>. Es un módulo Python normal con variables de nivel de módulo que representan la configuración de Django.</p>
             <p>De forma predeterminada, la configuración usa SQLite. Si es nuevo en las bases de datos o simplemente está interesado en probar Django, esta es la opción más sencilla. SQLite está incluido en Python, por lo que no necesitará instalar nada más para respaldar su base de datos. Sin embargo, al comenzar su primer proyecto real, es posible que desee utilizar una base de datos más escalable como PostgreSQL, para evitar dolores de cabeza por cambiar de base de datos en el futuro.</p>
             <p>Si desea utilizar otra base de datos, instale los <a href="https://docs.djangoproject.com/en/3.2/topics/install/#database-installation" target="_blank" rel="noopener noreferrer">enlaces de base de datos</a> adecuados y cambie las siguientes claves en el elemento para que coincidan con la configuración de conexión de su base de datos: <b>DATABASES 'default'</b>.</p>
@@ -261,6 +262,89 @@
             <p>Algunas Fieldclases tienen argumentos obligatorios. CharField, por ejemplo, requiere que le des un max_length. Eso se usa no solo en el esquema de la base de datos, sino también en la validación, como veremos pronto.
                 A Fieldtambién puede tener varios argumentos opcionales; en este caso, hemos establecido el defaultvalor de votesen 0.</p>
             <p>Finalmente, tenga en cuenta que se define una relación, utilizando <a href="https://docs.djangoproject.com/en/3.2/ref/models/fields/#django.db.models.ForeignKey" target="_blank" rel="noopener noreferrer">ForeignKey</a>. Eso le dice a Django que cada uno Choice está relacionado con uno solo Question. Django admite todas las relaciones de bases de datos comunes: muchos a uno, muchos a muchos y uno a uno.</p>
+            <h4 id="modelos"><center>Activando modelos</center></h4>
+            <p>Ese pequeño código de modelo le da a Django mucha información. Con él, Django puede:</p>
+            <ul>
+                <li>Cree un esquema de base de datos (declaraciones) para esta aplicación. <b>CREATE TABLE</b></li>
+                <li>Cree una API de acceso a la base de datos de Python para acceder a los objetos <b>Question</b> y <b>Choice</b></li>
+            </ul>
+            <p>Pero primero debemos decirle a nuestro proyecto que la aplicación <b>polls</b> está instalada.</p>
+            <p>Para incluir la aplicación en nuestro proyecto, necesitamos agregar una referencia a su clase de configuración en <b>INSTALLED_APPS</b>. La clase<b>PollsConfig</b> está en el archivo<b>polls/apps.py</b>, por lo que su ruta de puntos es <b>'polls.apps.PollsConfig'</b>. Edite el archivo <b>mysite/settings.py</b> y agregue esa ruta de puntos a la configuración <b>INSTALLED_APPS</b>. Se verá asi:</p>
+            <pre>
+                <b>INSTALLED_APPS</b> = [
+                    'polls.apps.PollsConfig',
+                    'django.contrib.admin',
+                    'django.contrib.auth',
+                    'django.contrib.contenttypes',
+                    'django.contrib.sessions',
+                    'django.contrib.messages',
+                    'django.contrib.staticfiles',
+                ]
+            </pre>
+            <p>Ahora Django sabe incluir la aplicación <b>polls</b>. Ejecutemos otro comando:</p>
+            <pre>
+                python manage.py makemigrations polls
+            </pre>
+            <p>Debería ver algo similar a lo siguiente:</p>
+            <pre>
+                Migrations for 'polls':
+                    polls/migrations/001_initial.py
+                        - Create model Question
+                        - Create model Choice
+            </pre>
+            <p>Al ejecutar <b>makemigrations</b>, le está diciendo a Django que ha realizado algunos cambios en sus modelos (en este caso, ha realizado otros nuevos) y que le gustaria que los cambios se almacenen como una migración.</p>
+            <p>Las migraciones son la forma en que Django almacena los cambios en sus modelos (y, por lo tanto, en el esquema de su base de datos): son archivos en el disco. Puede leer la migración de su nuevo modelo si lo desea; es el archivo polls/migrations/0001_initial.py. No se preocupe, no se espera que los lea cada vez que Django crea uno, pero están diseñados para ser editables por humanos en caso de que desee modificar manualmente cómo Django cambia las cosas.</p>
+            <p>Hay un comando que ejecutará las migraciones por usted y administrará el esquema de su base de datos automáticamente, que se llama <b><a href="https://docs.djangoproject.com/en/3.2/ref/django-admin/#django-admin-migrate" target="_blank" rel="noopener noreferrer">migrate</a></b> y lo veremos en un momento, pero primero, veamos qué SQL ejecutaría esa migración. El comando <b><a href="https://docs.djangoproject.com/en/3.2/ref/django-admin/#django-admin-sqlmigrate" target="_blank" rel="noopener noreferrer">sqlmigrate</a></b> toma los nombres de las migraciones y devuelve su SQL:</p>
+            <pre>python manage.py sqlmigrate polls 001</pre>
+            <p>Debería ver algo similar a lo siguiente (lo hemos reformateado para facilitar la lectura):</p>
+            <pre>
+                <b>BEGIN</b>
+                --
+                -- Create model Question
+                -- 
+                <b>CREATE TABLE</b> "polls_question" (
+                    "id" serial <b>NOT NULL PRIMARY KEY</b>,
+                    "question_text" <b>varchar(200) NOT NULL</b>,
+                    "pub_date" <b>timestamp with time zone NOT NULL</b>
+                );
+                --
+                -- Create model Choice
+                --
+                <b>CREATE TABLE</b> "polls_choice" (
+                    "id" <b>serial NOT NULL PRIMARY KEY</b>,
+                    "choice_text" <b>varchar(200) NOT NULL</b>,
+                    "votes" <b>integer NOT NULL</b>,
+                    "question_id" <b>integer NOT NULL</b>
+                );
+                <b>ALTER TABLE </b>"polls_choice"
+                    <b>ADD CONSTRAINT </b>"polls_choice_question_id_c5b4b260_fk_polls_question_id"
+                        <b>FOREIGN KEY </b>("question_id")
+                        <b>REFERENCES </b>"polls_question" ("id")
+                        <b>DEFERRABLE INITIALLY DEFERRED;</b>
+                <b>CREATE INDEX </b>"polls_choice_question_id_c5b4b260" <b>ON</b> "polls_choice" ("question_id");
+
+                <b>COMMIT;</b>
+            </pre>
+            <p>Tenga en cuenta lo siguiente:</p>
+            <ul>
+                <li>El resultado exacto variará según la base de datos que esté utilizando. El ejemplo anterior se genera para PostgreSQL.</li>
+                <li>Los nombres de las tablas se generan automáticamente combinando el nombre de la aplicación (<b>polls</b>) y el nombre en minúsculas del modelo, <b>question</b> y <b>choice</b>. (Puede anular este comportamiento).</li>
+                <li>Las claves primarias (ID) se agregan automáticamente. (También puede anular esto).</li>
+                <li>Por convención, Django agrega "_id" el nombre del campo de clave externa. (Sí, también puede anular esto).</li>
+                <li>La relación de clave externa se hace explícita mediante una restricción. No se preocupe por las piezas; le está diciendo a PostgreSQL que no aplique la clave externa hasta el final de la transacción. <b>FOREIGN KEY DEFERRABLE</b></li>
+                <li>Se adapta a la base de datos que está utilizando, por lo que los tipos de campos específicos de la base de datos como <b>auto_increment</b>(MySQL), <b>serial</b>(PostgreSQL) o (SQLite) se manejan automáticamente. Lo mismo ocurre con las citas de nombres de campo, por ejemplo, utilizando comillas dobles o simples. <b>integer primary key autoincrement</b></li>
+                <li>En realidad <b><a href="https://docs.djangoproject.com/en/3.2/ref/django-admin/#django-admin-sqlmigrate" target="blank">sqlmigrate</a></b>, el comando no ejecuta la migración en su base de datos, sino que lo imprime en la pantalla para que pueda ver lo que SQL Django cree que es necesario. Es útil para verificar qué va a hacer Django o si tiene administradores de bases de datos que requieren scripts SQL para cambios.</li>
+            </ul>
+            <p>Si está interesado, también puede ejecutar ; esto busca cualquier problema en su proyecto sin realizar migraciones o tocar la base de datos. <b><a href="https://docs.djangoproject.com/en/3.2/ref/django-admin/#django-admin-check" target="_blank" rel="noopener noreferrer">python manage.py check</a></b></p>
+            <p>El comando <b><a href="https://docs.djangoproject.com/en/3.2/ref/django-admin/#django-admin-migrate" target="_blank" rel="noopener noreferrer">migrate</a></b> toma todas las migraciones que no se han aplicado (Django rastrea cuáles se aplican usando una tabla especial en su base de datos llamada django_migrations) y las ejecuta en su base de datos, esencialmente, sincronizando los cambios que realizó en sus modelos con el esquema en el base de datos.</p>
+            <p>Las migraciones son muy poderosas y le permiten cambiar sus modelos con el tiempo, a medida que desarrolla su proyecto, sin la necesidad de eliminar su base de datos o tablas y crear nuevas; se especializa en actualizar su base de datos en vivo, sin perder datos. Los cubriremos con más profundidad en una parte posterior del tutorial, pero por ahora, recuerde la guía de tres pasos para realizar cambios en el modelo:</p>
+            <ul>
+                <li>Cambia tus modelos (en models.py</li>
+                <li>Ejecutar para crear migraciones para esos cambios <b><a href="https://docs.djangoproject.com/en/3.2/ref/django-admin/#django-admin-makemigrations">python manage.py makemigrations</a></b></li>
+                <li>Ejecutar para aplicar esos cambios a la base de datos. <b><a href="https://docs.djangoproject.com/en/3.2/ref/django-admin/#django-admin-migrate" target="_blank" rel="noopener noreferrer">python manage.py migrate</a></b></li>
+            </ul>
+            <p>La razón por la que existen comandos separados para realizar y aplicar migraciones es porque enviará las migraciones a su sistema de control de versiones y las enviará con su aplicación; no solo facilitan su desarrollo, sino que también pueden ser utilizados por otros desarrolladores y en producción.</p>
+            <p class="right"><b><a href="/tutorial02"><u>Curso de django parte 2</u></a></b></p>
         </div>
     </div>
 </div>
