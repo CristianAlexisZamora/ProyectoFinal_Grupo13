@@ -1,0 +1,148 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+<!--Titulo de la pagina-->
+{% block title %}
+    Sentencia if
+{% endblock %}
+
+<!--Contenido de la pagina-->
+{% block content %}
+<div class="principal">
+    <div class="row">
+        <div class="col s3">
+            <div class="row">
+                <div class="col s12">
+                    <br/><br/><br><br>
+                  <h5><center>Contenido</center></h5>
+                  <div class="card-panel yellow lighten-2">
+                    <ul class="browser-default">
+                        <li><a href="#if" class="grey-text text-darken-4">If sentencia básica</a></li>
+                        <li><a href="#ifElse" class="grey-text text-darken-4">Sentencia if ... else</a></li>
+                        <li><a href="#ifElif" class="grey-text text-darken-4">If ... elif ... else</a></li>
+                        <li><a href="#ifAnid" class="grey-text text-darken-4">Sentencias if anidadas</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col s9">
+            <h2><center>Sentencia if de control de flujo</center></h2>
+            <p>En Python if es una de las principales sentencias de control de flujo, junto a while y for.</p>
+            <p>En este tutorial veremos en detalle la sentencia if de control de flujo en Python, desde la estructura más básica hasta las diferentes alternativas.</p>           
+
+            <h4 id="if">If sentencia básica</h4>
+            <p>En Python, la sentencia if se utiliza para ejecutar un bloque de código si, y solo si, se cumple una determinada condición. Por tanto, if es usado para la toma de decisiones.</p>
+            <p>La estructura básica de esta sentencia if es la siguiente:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    if condición:
+                    bloque de código</pre>
+            </code>
+            <p>Es decir, solo si <kbd>condición</kbd> se evalúa a <kbd>True</kbd>, se ejecutarán las sentencias que forman parte de <kbd>bloque de código</kbd>. En caso de que se evalúe a False no se ejecutará ninguna sentencia perteneciente a <kbd>bloque de código</kbd>.</p>
+            <p>Aquí, <kbd>condición</kbd> puede ser un literal, el valor de una variable, el resultado de una expresión o el valor devuelto por una función.</p>
+            <p>En las expresiones es muy común usar los operadores booleanos y de comparación.</p>
+            <p>¡IMPORTANTE!: El cuerpo del bloque está indicado con un sangrado mayor. Dicho bloque termina cuando se encuentre la primera línea con un sangrado menor.</p>
+            <p>Veamos un ejemplo:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    x = 17
+                    if x < 20:
+                        print('x es menor que 20')</pre>
+            </code>
+            <p>En el código anterior la variable <kbd>x</kbd> toma el valor <kbd>17</kbd>. En la línea 2, la condición de la sentencia <kbd>if</kbd> evalúa si <kbd>x es menor que 20</kbd>. Como el valor devuelto por la expresión es <kbd>True</kbd>, se ejecuta el bloque del <kbd>if</kbd>, mostrando por pantalla la cadena <kbd>x es menor que 20</kbd>.</p>
+            <p>Veamos otro ejemplo:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    valores = [1, 3, 4, 8]
+                    if 5 in valores:
+                        print('está en valores')
+                    print('fin')</pre>
+            </code>
+            <p>En este caso tenemos una lista de <kbd>valores</kbd>. El if comprueba si el número <kbd>5</kbd> se encuentra entre estos <kbd>valores</kbd>. Como la expresión devuelve como resultado <kbd>False</kbd>, porque <kbd>5</kbd> no está entre los <kbd>valores</kbd>, el código anterior simplemente mostrará por pantalla la cadena <kbd>fin</kbd>.</p>
+            <p>Si repetimos el ejemplo anterior, modificando la condición a esta otra 3 in valores, el resultado del programa sería:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    está en valores
+                    fin</pre>
+            </code>
+            <p>¡RECUERDA!: En principio, en Python todos los objetos/instancias se evalúan a <kbd>True</kbd> a excepción de <kbd>None</kbd>, <kbd>False</kbd>, <kbd>0</kbd> de todos los tipos numéricos y secuencias/colecciones vacías, que se evalúan a <kbd>False</kbd>.</p>
+
+
+            <h4 id="ifElse">Sentencia if ... else</h4>
+            <p>Hay ocasiones en que la sentencia <kbd>if</kbd> básica no es suficiente y es necesario ejecutar un conjunto de instrucciones o sentencias cuando la condición se evalúa a <kbd>False</kbd>.</p>
+            <p>Para ello se utiliza la estructura <kbd>if ... else...</kbd> Esta es estructura es como sigue:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    if condición:
+                        bloque de código (cuando condición se evalúa a True)
+                    else:
+                        bloque de código 2 (cuando condición se evalúa a False)</pre>
+            </code>
+            <p>Imagina que estás implementado un programa en el que necesitas realizar la división de dos números. Si divides un número entre 0, el programa lanzará un error y terminará. Para evitar esto, podemos añadir una sentencia <kbd>if ... else...</kbd> como en el ejemplo siguiente:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    resultado = None
+                    x = 10
+                    y = 2
+                    if y != 0:
+                        resultado = x / y
+                    else:
+                        resultado = f'No se puede dividir {x} entre {y}'
+                    print(resultado)</pre>
+            </code>
+            <p>El resultado del script anterior es <kbd>5.0</kbd>. Si ahora actualizamos el valor de <kbd>y</kbd> a <kbd>0</kbd>, el resultado sería este otro:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    No se puede dividir 10 entre 0</pre>
+            </code>
+
+
+            <h4 id="ifElif">If ... elif ... else</h4>
+            <p>También es posible que te encuentres situaciones en que una decisión dependa de más de una condición.</p>
+            <p>En estos casos se usa una sentencia if compuesta, cuya estructura es como se indica a continuación:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    if cond1:
+                        bloque cond1 (sentencias si se evalúa la cond1 a True)
+                    elif cond2:
+                        bloque cond2 (sentencias si cond1 es False pero cond2 es True)
+                    ...
+                    else:
+                        bloque else (sentencias si todas las condiciones se evalúan a False)</pre>
+            </code>
+            <p>Es decir, en esta ocasión, se comprueba la condición <kbd>cond1</kbd>. Si se evalúa a <kbd>True</kbd>, se ejecuta el bloque <kbd>bloque cond1</kbd> y después el flujo continúa después del bloque if.</p>
+            <p>Sin embargo, si <kbd>cond1</kbd> se evalúa a <kbd>False</kbd>, se comprueba la condición <kbd>cond2</kbd>. Si esta se evalúa a <kbd>True</kbd>, se ejecuta el bloque de sentencias <kbd>bloque cond2</kbd>. En caso contrario, pasaría a comprobar la condición del siguiente <kbd>elif</kbd> y así sucesivamente hasta que llegue al <kbd>else</kbd>, que se ejecuta si ninguna de las condiciones anteriores se evaluaron a <kbd>True</kbd>.</p>
+            <p>Veamos un ejemplo. Imagina que queremos comprobar si un número es menor que 0, igual a 0 o mayor que 0 y en cada situación debemos ejecutar un código diferente. Podemos hacer uso de la estructura if … elif … else anterior:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    x = 28
+                    if x < 0:
+                        print(f'{x} es menor que 0')
+                    elif x > 0:
+                        print(f'{x} es mayor que 0')
+                    else:
+                        print('x es 0')</pre>
+            </code>
+            <p>En el ejemplo anterior <kbd>x</kbd> toma el valor <kbd>28</kbd>. La primera condición de la sentencia <kbd>if</kbd> se evalúa a <kbd>False</kbd> y pasa a la siguiente (a la del bloque <kbd>elif</kbd>). En esta ocasión, la expresión se evalúa a <kbd>True</kbd>, mostrándose por pantalla la cadena <kbd>28 es mayor que 0</kbd>.</p>
+
+            
+            
+            <h4 id="ifAnid">Sentencias if anidadas</h4>
+            <p>Para terminar este tutorial, simplemente me gustaría añadir que en cualquiera de los bloques de sentencias anteriores se puede volver a incluir una sentencia if, o if … else … o if … elif … else …</p>
+            <p>Por ejemplo, podemos simular el caso de la última sección de la siguiente manera:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    x = 28
+                    if x < 0:
+                        print(f'{x} es menor que 0')
+                    else:
+                        if x > 0:
+                            print(f'{x} es mayor que 0')
+                        else:
+                            print('x es 0')</pre>
+            </code>
+        </div>
+    </div>
+</div>
+{% endblock %}

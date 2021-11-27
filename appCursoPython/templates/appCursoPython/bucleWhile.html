@@ -1,0 +1,162 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+<!--Titulo de la pagina-->
+{% block title %}
+    Bucle while
+{% endblock %}
+
+<!--Contenido de la pagina-->
+{% block content %}
+<div class="principal">
+    <div class="row">
+        <div class="col s3">
+            <div class="row">
+                <div class="col s12">
+                    <br/><br/><br><br>
+                  <h5><center>Contenido</center></h5>
+                  <div class="card-panel yellow lighten-2">
+                    <ul class="browser-default">
+                        <li><a href="#while" class="grey-text text-darken-4">La sentencia while en Python</a></li>
+                        <li><a href="#whiEjem" class="grey-text text-darken-4">Bucle while en Python – Ejemplo típico</a></li>
+                        <li><a href="#whiEls" class="grey-text text-darken-4">Bucle while … else …</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col s9">
+            <h2><center>Bucle while</center></h2>
+            <p>La sentencia o bucle while en Python es una sentencia de control de flujo que se utiliza para ejecutar un bloque de instrucciones de forma continuada mientras se cumpla una condición determinada.</p>
+            <p>En este tutorial veremeos en detalle la sentencia while en Python y te mostraré ejemplos de uso común.</p>            
+
+            <h4 id="while">La sentencia while en Python</h4>
+            <p>Como te decía, el uso principal de la sentencia while es ejecutar repetidamente un bloque de código mientras se cumpla una condición.</p>
+            <p>La estructura de esta sentencia while es la siguiente:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    while condición:
+                        bloque de código</pre>
+            </code>
+            <p>Es decir, mientras <kbd>condición</kbd> se evalúe a <kbd>True</kbd>, se ejecutarán las instrucciones y sentencias de <kbd>bloque de código</kbd>.</p>
+            <p>Aquí, <kbd>condición</kbd> puede ser un literal, el valor de una variable, el resultado de una expresión o el valor devuelto por una función.</p>
+            <p>¡IMPORTANTE!: El cuerpo del bloque while está indicado con un sangrado mayor. Dicho bloque termina cuando se encuentre la primera línea con un sangrado menor.</p>
+            <p>Veamos un ejemplo:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    numero = 0
+                    print('Tabla del 3')
+                    while numero <= 10:
+                        print(f'{numero * 3}')
+                        numero += 1
+                    print('Fin')</pre>
+            </code>
+            <p>En el script anterior se inicializa una variable <kbd>numero</kbd> con el valor <kbd>0</kbd>.</p>
+            <p>Seguidamente se muestra un mensaje y en la línea 3 aparece una sentencia while. En esta sentencia se comprueba si el valor de la variable <kbd>numero</kbd> es menor o igual a <kbd>10</kbd>.</p>
+            <p>Como se evalúa a <kbd>True</kbd>, se muestra por pantalla el resultado de multiplicar <kbd>numero</kbd> por <kbd>3</kbd> y después se incrementa el valor de <kbd>numero</kbd> en <kbd>1</kbd>.</p>
+            <p>A continuación, se debería ejecutar el código de la línea 6. Sin embargo, como hemos definido un bucle while, el flujo de ejecución del programa no continúa por la línea 6, sino que vuelve a la línea 3 y de nuevo se evalúa si la expresión <kbd>numero <= 10</kbd> sigue siendo <kbd>True</kbd>. En esta ocasión el valor de numero es 1, por lo que la expresión da como resultado True y vuelven a ejecutarse las líneas de la sentencia while.</p>
+            <p>Esto será así hasta que <kbd>numero</kbd> sea igual a <kbd>11</kbd>. En esa ocasión la expresión de comparación se evaluará a <kbd>False</kbd> y el flujo continuará, ahora sí, por la línea 6.</p>
+            <p>El resultado del script anterior es el siguiente (la tabla de multiplicar del número 3):</p>
+            <code>
+                <pre class="lime lighten-5">
+                    Tabla del 3
+                    0
+                    3
+                    6
+                    9
+                    12
+                    15
+                    18
+                    21
+                    24
+                    27
+                    30
+                    Fin</pre>
+            </code>
+
+
+
+            <h4 id="whiEjem">Bucle while en Python – Ejemplo típico</h4>
+            <p>La sentencia while la puedes usar en multitud de ocasiones. A continuación te mostraré un escenario típico de uso de bucle while: Comprobar si existe un elemento en una secuencia.</p>
+            <p>Imagina que tienes la siguiente lista de valores [5, 1, 9, 2, 7, 4] y quieres saber si el número 2 está contenido en dicha lista. La estructura típica de bucle while para ello es como sigue:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    valores = [5, 1, 9, 2, 7, 4]
+
+                    encontrado = False
+                    indice = 0
+                    longitud = len(valores)
+                    while not encontrado and indice < longitud:
+                        valor = valores[indice]
+                        if valor == 2:
+                            encontrado = True
+                        else:
+                            indice += 1
+                    if encontrado:
+                        print(f'El número 2 ha sido encontrado en el índice {indice}')
+                    else:
+                        print('El número 2 no se encuentra en la lista de valores')</pre>
+            </code>
+            <p>Como puedes observar, en el ejemplo, se utilizan 3 variables de control:</p>
+            <ul class="browser-default">
+                <li><kbd>encontrado</kbd>: Indica si el número 2 ha sido encontrado en la lista.</li>
+                <li><kbd>indice</kbd>: Contiene el índice del elemento de la lista <kbd>valores</kbd> que va a ser evaluado.</li>
+                <li><kbd>longitud</kbd>: Indica el número de elementos de la lista <kbd>valores</kbd>.</li>
+            </ul>
+            <p>En esta ocasión, la condición de continuación del bucle while es que no se haya encontrado el número 2 y que el índice del elemento a evaluar sea menor que la longitud de la lista (es posible acceder a un elemento de una lista a partir del índice de su posición, comenzando por 0).</p>
+            <p>Por tanto, el bucle finaliza bien cuando se haya encontrado el elemento, bien cuando se haya evaluado el último elemento de la lista. Si se ha encontrado el número 2, se muestra un mensaje indicando el índice en el que está. En caso contrario, se muestra un mensaje indicando que el número 2 no se encuentra en la lista.</p>
+            <p>NOTA: El anterior es solo un ejemplo para que veas cómo funciona la sentencia while. En realidad, en Python se puede usar el operador <kbd>in</kbd> para comprobar de forma más eficiente si un elemento está contenido en una secuencia.</p>
+
+
+
+            <h4 id="whiEls">Bucle while … else …</h4>
+            <p>Al igual que sucede con el bucle for, podemos alterar el flujo de ejecución del bucle while con las sentencias <kbd>break</kbd> y <kbd>continue</kbd>:</p>
+            <ul class="browser-default">
+                <li><kbd>break</kbd> se utiliza para finalizar y salir el bucle, por ejemplo, si se cumple alguna condición.</li>
+                <li>Por su parte, <kbd>continue</kbd> salta al siguiente paso de la iteración, ignorando todas las sentencias que le siguen y que forman parte del bucle.</li>
+            </ul>
+            <p>Veamos el ejemplo de la sección anterior modificado, añadiendo la sentencia <kbd>break</kbd>:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    valores = [5, 1, 9, 2, 7, 4]
+
+                    encontrado = False
+                    indice = 0
+                    longitud = len(valores)
+                    while indice < longitud:
+                        valor = valores[indice]
+                        if valor == 2:
+                            encontrado = True
+                            break
+                        else:
+                            indice += 1
+                    if encontrado:
+                        print(f'El elemento 2 ha sido encontrado en el índice {indice}')
+                    else:
+                        print('El elemento 2 no se encuentra en la lista de valores')</pre>
+            </code>
+            <p>Lo que he hecho ha sido eliminar de la condición de continuación del bucle la comprobación de la variable <kbd>encontrado</kbd>. Además, he añadido la sentencia <kbd>break</kbd> si el número 2 se encuentra en la lista.</p>
+            <p>Por otro lado, al bucle while le podemos añadir la sentencia opcional <kbd>else</kbd>. El bloque de código del <kbd>else</kbd> se ejecutará siempre y cuando la condición de la sentencia while se evalúe a <kbd>False</kbd> y no se haya ejecutado una sentencia <kbd>break</kbd>.</p>
+            <p>Continuando con el ejemplo anterior, lo podemos modificar del siguiente modo:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    valores = [5, 1, 9, 2, 7, 4]
+
+                    indice = 0
+                    longitud = len(valores)
+                    while indice < longitud:
+                        valor = valores[indice]
+                        if valor == 2:
+                            print(f'El elemento 2 ha sido encontrado en el índice {indice}')
+                            break
+                        else:
+                            indice += 1
+                    else:
+                        print('El elemento 2 no se encuentra en la lista de valores')</pre>
+            </code>
+            <p>En esta ocasión se ha eliminado completamente el uso de la variable de control <kbd>encontrado</kbd>.</p>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
