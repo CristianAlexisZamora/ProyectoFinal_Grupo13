@@ -15,8 +15,8 @@
                     <br/><br/><br><br>
                     <h5><center>Contenido</center></h5>
                     <div class="card-panel yellow lighten-2">
-                        <ul>
-                            <li><a href="#jugando-api" class="grey-text text-darken-4"></a></li>
+                        <ul class="browser-default">
+                            <li><a href="#jugando-api">Jugando con la API</a></li>
                             <li><a href="#administrador-django">Presentando el administrador de Django</a></li>
                         </ul>
                     </div>
@@ -130,6 +130,45 @@
             <p>Ahora, intente iniciar sesión con la cuenta de superusuario que creó en el paso anterior. Debería ver la página de índice de administración de Django:</p>
             <center><img src="https://tutorial.djangogirls.org/es/django_admin/images/django_admin3.png" alt="administracion"></center>
             <p>Deberia ver algunos tipos de contenido editable: grupos y usuarios. Son proporcionados por el marco de autenticación enviado por Django <b><a href="https://docs.djangoproject.com/en/3.2/topics/auth/#module-django.contrib.auth" target="_blank" rel="noopener noreferrer">django.contrib.auth</a></b></p>
+            <h5>Haga que la aplicación de encuesta sea modificable en el administrador</h5>
+            <p>Para hacer visible nuestra aplicación en el índice de administración necesitamos decirle al administrador que los objetos <b>Question</b> tienen una interfaz de administrador. Para hacer esto, abra el archivo <b>polls/admin/py</b> y editelo para que se vea así:</p>
+            <pre>
+                from django.contrib import admin
+                
+                from .models import Question 
+
+                admin.site.register(Question)
+            </pre>
+            <h5>Explore la funcionalidad de administración gratuita</h5>
+            <p>Ahora que hemos registrado <b>Question</b>, django sabe que debería mostrarse en la página de índice de administración:</p>
+            <center><img src="https://miro.medium.com/max/1400/1*EcvX3ihLVQS80ceehaBA1A.png" alt="Aplicación Polls" style="width: 900px;"></center>
+            <p>Haga click en "Questions". Ahora está en la página de 'lista de cambios" para preguntas. Esta página muestra todas las preguntas de la base e datos y le permite elegir una para cambiarla. Ahí está el "¿Qué pasa?" pregunta que creamos anteriormente:</p>
+            <center><img src="https://docs.djangoproject.com/en/3.2/_images/admin04t.png" alt="Primera pregunta" style="width: 900px;"></center>
+            <p>Haga click en la pregunta para editarla:</p>
+            <center><img src="https://lh3.googleusercontent.com/proxy/LUWTsNs8UYqTEiiGQ4AFHvod2aASseM1QfqxCJAsBPl52pc1I7c3RVaPtfQhkhpbc1Z4gRw6RPQP1OMB2ZCE_bZhT2HWMJfdIdrHv_zVm7pDNAf-eZ0NZLoDi5V-5G4x3HZIHx3kAg" alt="Editar pregunta"></center>
+            <p>Cosas a tener en cuenta aquí:</p>
+            <ul class="browser-default">
+                <li>El formulario se genera automáticamente a partir del modelo <b>Question.</b></li>
+                <li>Los diferentes tipos de campo del modelo (<b><a href="https://docs.djangoproject.com/en/3.2/ref/models/fields/#django.db.models.DateTimeField" target="_blank" rel="noopener noreferrer">DateTimeField</a>, <a href="https://docs.djangoproject.com/en/3.2/ref/models/fields/#django.db.models.CharField" target="_blank" rel="noopener noreferrer">CharField</a></b>) corresponden al widget de entrada HTML apropiado. Cada tipo de campo sabe cómo mostrarse en el administrador de Django.</li>
+                <li>Cada <b><a href="https://docs.djangoproject.com/en/3.2/ref/models/fields/#django.db.models.DateTimeField" target="_blank" rel="noopener noreferrer">DateTimeField</a></b> tiene atajos de JavaScript gratuitos. Las fechas tienen un acceso directo "Hoy" y una ventana emergente de calendario, y las horas tienen un acceso directo "Ahora" y una venta emergente conveniente que enumera las horas ingresadas comúnmente.</li>
+            </ul>
+            <p>La parte inferior de la página le ofrece un par de opciones:</p>
+            <ul class="browser-default">
+                <li>Guardar: Guarda los cambios y regresa a la p;agina de la lista de cambios para este tipo de objeto.</li>
+                <li>Guardar y continuar editando: guarda los cambios y vuelve a cargar la página de administración de este objeto.</li>
+                <li>Guardar y agregar otro: guarda los cambios y carga un nuevo formulario en blanco para este tipo de objeto.</li>
+                <li>Eliminar: muestra una página de confirmación de eliminación.</li>
+            </ul>
+            <p>
+                Si el valor de "Fecha de publicación" no coincide con la hora en que creó la pregunta en el Tutorial 1, probablemente significa que olvidó establecer el valor correcto para la configuración<b><a href="https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-TIME_ZONE" target="blank"> TIME_ZONE</a></b>
+                Cámbielo, recargue la página y compruebe que aparece el valor correcto.</p>
+            <p>Cambie la "Fecha de publicación" haciendo clic en los accesos directos "Hoy" y "Ahora". Luego haga clic en "Guardar y continuar editando". Luego haga clic en "Historial" en la esquina superior derecha. Verá una página que enumera todos los cambios realizadoss en este objeto a través del administrador de Django, con la marca de tiempo y el nombre de ususario de la persona que realizó el cambio:</p>
+            <center><img src="https://docs.djangoproject.com/en/3.2/_images/admin06t.png" alt="Historial de cambios"></center>
+            <hr/>
+                <p>
+                    <b><a class="left" href="/tutorial01">Tutorial 01: Inicios django</a></b>
+                    <b><a class="right" href="/tutorial03">Tutorial 03: Creación de la interfaz pública.</a></b>
+                </p>
         </div>
     </div>
 </div>

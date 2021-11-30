@@ -5,13 +5,18 @@ from django.shortcuts import render
 def pythonPOO(request):
     return render(request, "appCursoPython/pythonPOO.html")
 
-# Vista creada para el curso del framework Django
+# Vistas creadas para el curso del framework Django
 def cursoDjango01(request):
     return render(request, "django/cursoDjango01.html")
 
-# Vista creada para el ejercicio practico de Django
 def cursoDjango02(request):
     return render(request, "django/cursoDjango02.html")
+
+def cursoDjango03(request):
+    return render(request, "django/cursoDjango03.html")
+
+def cursoDjango04(request):
+    return render(request, "django/cursoDjango04.html")
 
 
 # Vista creada para el listado de libros que se posee
