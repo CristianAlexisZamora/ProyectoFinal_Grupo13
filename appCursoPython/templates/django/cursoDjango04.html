@@ -1,0 +1,53 @@
+{% extends "main/base.html" %}
+{% load static %}
+<!--Titulo de la pagina-->
+{% block title %}
+    Curso django parte 4
+{% endblock %}
+
+<!--Contenido de la pagina-->
+{% block content %}
+<div class="principal">
+    <div class="row">
+        <div class="col s3">
+            <div class="row">
+                <div class="col s12">
+                    <br/><br/><br><br>
+                    <h5><center>Contenido</center></h5>
+                    <div class="card-panel yellow lighten-2">
+                        <ul class="browser-default">
+                            <li><a href="#jugando-api">Jugando con la API</a></li>
+                            <li><a href="#administrador-django">Presentando el administrador de Django</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s9">
+            <h2><center>Continuación del curso de django</center></h2>
+            <p>Continuamos con la aplicación de encuestas web y nos centraremos en el procesamiento de formularios y en la reduccion de nuestro código.</p>
+            <h4>Escribe una forma mínima</h4>
+            <p>Actualicemos nuestra plantilla de detalles de la encuesta ("polls/detail.html") del último tutorial, para que la plantilla contenga un elemento HTML < form>:</p>
+            <pre>
+                &lt;form action="{&#37; url 'polls:vote' question.id &#37;}" method="post">
+                {&#37; csrf_token &#37;}
+                &lt;fieldset>
+                    &lt;legend>&lt;h1>&#123;&#123; question.question_text &#125;&#125;&lt;/h1>&lt;/legend>
+                    &#123;% if error_message %&#125&lt;p>&lt;strong>&#123;&#123; error_message &#125;&#125;&lt;/strong>&lt;/p>&#123;% endif %&#125;
+                    &#123;% for choice in question.choice_set.all %&#125
+                        &lt;input type="radio" name="choice" id="choice&#123;&#123; forloop.counter &#125;&#125;" value="&#123;&#123; choice.id &#125;&#125;">
+                        &lt;label for="choice&#123;&#123; forloop.counter &#125;&#125;">&#123;&#123; choice.choice_text &#125;&#125;&lt;/label>&lt;br>
+                    &#123;% endfor %&#125;
+                &lt;/fieldset>
+                &lt;input type="submit" value="Vote">
+                &lt;/form>
+            </pre>
+            <p>Un resumen rápido:</p>
+            <ul class="browser-default">
+                <li>La plantilla muestra un botón de opción para cada opción de pregunta. El value de cada botón es el ID de la opción de pregunta asociada. El <b>name</b> de cada botón de opción es "choice". Eso significa que cuando alguien selecciona uno de los botones de choice y envia un formulario, enviará los datos POST donde # es el ID de la opción seleccionada. Este es el concepto básico de los formularios HTML.</b></li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
