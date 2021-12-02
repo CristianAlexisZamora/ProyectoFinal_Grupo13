@@ -21,4 +21,5 @@ urlpatterns = [
     path('tipoRange/', views.tipoRange, name="TipoRange"),
     path('tipoSet/', views.tipoSet, name="TipoSet"),
     path('tipoDict/', views.tipoDict, name="TipoDict"),
+    path('tiposDatos/', views.tiposDatos, name="TiposDatos"),
 ]
