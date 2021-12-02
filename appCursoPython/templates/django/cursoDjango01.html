@@ -61,23 +61,23 @@
                 (cada parte de la arquitectura es independiente de las otras, y por lo 
                 tanto puede ser reemplazado o cambiado si es necesario). Teniendo en cuenta una clara separación entre las diferentes partes significa que puede escalar para aumentar el tráfico al agregar hardware en cualquier nivel: servidores de cache, servidores de bases de datos o servidores de aplicación. Algunos de los sitios más concurridos han escalado a Django para satisfacer sus demandas 
                 (por ejemplo, Instagram y Disqus, por nombrar solo dos).</p>
-            <h4 id="obtener-django"><center>Obtener django</center></h4>
+            <h4 id="obtener-django">Obtener django</h4>
             <p>
                 Django está disponible en código abierto bajo la licencia BSD . Recomendamos utilizar la última versión de Python 3. 
                 La última versión compatible con Python 2.7 es Django 1.11 LTS. Para poder descargar django nos dirigiremos a la pagina de descarga de <a href="https://www.djangoproject.com/download/" target="blank">django</a>. 
             </p>
-            <h4 id="crear-proyecto"><center>Creando un proyecto</center></h4>
+            <h4 id="crear-proyecto">Creando un proyecto</h4>
             <p>Si es la primera vez que usa Django, tendrá que encargarse de la configuración inicial. 
                 Es decir, necesitará generar automáticamente algún código que establezca un proyecto de Django : una colección de configuraciones para una instancia de Django, incluida la configuración de la base de datos, 
                 las opciones específicas de Django y las configuraciones específicas de la aplicación.
             </p>
             <p>Desde la línea de comando, cd a un directorio donde le gustaria almacenar su código, luego ejecute el siguiente comando:</p>
-            <pre class="lime lighten-5">
+            <pre>
                 django-admin startproject mysite
             </pre>
             <p>Esto creará mysite en su directorio actual. Si no funcionó, consulte <a href="https://docs.djangoproject.com/en/3.2/faq/troubleshooting/#troubleshooting-django-admin" target="blank">Problemas al ejecutar django-admin</a>.</p>
             <p>Veamos lo que <a href="https://docs.djangoproject.com/en/3.2/ref/django-admin/#django-admin-startproject" target="blank">startproject</a> creó:</p>
-            <pre class="lime lighten-5">
+            <pre>
                 mysite/
                     manage.py
                     mysite/
@@ -99,11 +99,11 @@
                 <li><b>mysite/asgi.py:</b> Un punto de entrada para servidores web compatibles con ASGI para servir su proyecto.</li>
                 <li><b>mysite/wsgi.oy:</b> Un punto de entrada para servidores web compatibles con WSGI para servir su proyecto.</li>
             </ul>
-            <h4 id="servidor"><center>El servidor de desarrollo</center></h4>
+            <h4 id="servidor">El servidor de desarrollo</h4>
             <p>Verifiquemos que su proyecto Django funciona. Cambie al mysitedirectorio externo , si aún no lo ha hecho, y ejecute los siguientes comandos:</p>
-            <pre class="lime lighten-5">python manage.py runserver</pre>
+            <pre>python manage.py runserver</pre>
             <p>Verá el siguiente resultado en la línea de comando:</p>
-            <pre class="lime lighten-5">
+            <pre>
                 Realización de comprobaciones del sistema ...
                 La verificación del sistema no identificó problemas (0 silenciados).
                 Tiene migraciones sin aplicar; es posible que su aplicación no funcione correctamente hasta que se apliquen.
@@ -115,12 +115,12 @@
             </pre>
             <p>Ha iniciado el servidor de desarrollo Django, un servidor web ligero escrito exclusivamente en Python. Hemos incluido esto con Django para que pueda desarrollar cosas rápidamente, sin tener que lidiar con la configuración de un servidor de producción, como Apache, hasta que esté listo para la producción.</p>
             <p>Ahora que el servidor está funcionando, visite http://127.0.0.1:8000/ con su navegador web. Verás un "¡Felicitaciones!" página, con un cohete despegando. ¡Funcionó!</p>
-            <h4 id="app-polls"><center>Creando la aplicación Polls</center></h4>
+            <h4 id="app-polls">Creando la aplicación Polls</h4>
             <p>Ahora que su entorno, un "proyecto", está configurado, está listo para comenzar a trabajar.</p>
             <p>Cada aplicación que escribe en Django consta de un paquete de Python que sigue una determinada convención. Django viene con una utilidad que genera automáticamente la estructura de directorios básica de una aplicación, por lo que puede concentrarse en escribir código en lugar de crear directorios.</p>
             <div class="row">
                 <div class="col s12 m6">
-                  <div class="card blue-grey darken-1">
+                  <div class="card indigo darken-4">
                     <div class="card-content white-text">
                       <span class="card-title">Proyecto frente a aplicaciones</span>
                       <p>¿Cuál es la diferencia entre un proyecto y una aplicación? Una aplicación es una aplicación web que hace algo, por ejemplo, un sistema de registro web, una base de datos de registros públicos o una pequeña aplicación de encuesta. Un proyecto es una colección de configuraciones y aplicaciones para un sitio web en particular. Un proyecto puede contener varias aplicaciones. Una aplicación puede estar en varios proyectos.</p>
@@ -144,7 +144,7 @@
                     views.py
             </pre>
             <p>Esta estructura de directorio albergará la aplicación de encuesta.</p>
-            <h4 id="primera-vista"><center>Escribe tu primera vista</center></h4>
+            <h4 id="primera-vista">Escribe tu primera vista</h4>
             <p>Escribamos la primera vista. Abra el archivo <b>polls/views.py</b> y coloque el siguiente código Python en él:</p>
             <pre>
                 from django.http import HttpResponse
@@ -192,7 +192,7 @@
                 python manage.py runserver
             </pre>
             <p>A la función <b>path()</b> se le pasan cuatro argumentos, dos obligatorios: <b>route</b> y <b>view</b>, y dos opcionales: <b>kwargs</b> y <b>name</b>. En este punto, vale la pena revisar para qué sirven estos argumentos.</p>
-            <h4 id="base-de-datos"><center>Configuración de la base de datos</center></h4>
+            <h4 id="base-de-datos">Configuración de la base de datos</h4>
             <p>Ahora, abre <b>mysite/settings.py</b>. Es un módulo Python normal con variables de nivel de módulo que representan la configuración de Django.</p>
             <p>De forma predeterminada, la configuración usa SQLite. Si es nuevo en las bases de datos o simplemente está interesado en probar Django, esta es la opción más sencilla. SQLite está incluido en Python, por lo que no necesitará instalar nada más para respaldar su base de datos. Sin embargo, al comenzar su primer proyecto real, es posible que desee utilizar una base de datos más escalable como PostgreSQL, para evitar dolores de cabeza por cambiar de base de datos en el futuro.</p>
             <p>Si desea utilizar otra base de datos, instale los <a href="https://docs.djangoproject.com/en/3.2/topics/install/#database-installation" target="_blank" rel="noopener noreferrer">enlaces de base de datos</a> adecuados y cambie las siguientes claves en el elemento para que coincidan con la configuración de conexión de su base de datos: <b>DATABASES 'default'</b>.</p>
@@ -202,7 +202,7 @@
             </ul>
             <div class="row">
                 <div class="col s12 m6">
-                  <div class="card blue-grey darken-1">
+                  <div class="card indigo darken-4">
                     <div class="card-content white-text">
                       <span class="card-title">Para bases de datos distintas de SQLite</span>
                       <p>Si está utilizando una base de datos además de SQLite, asegúrese de haber creado una base de datos en este punto. Hágalo con " " dentro del indicador interactivo de su base de datos.CREATE DATABASE database_name;
@@ -228,11 +228,11 @@
                 python manage.py migrar
             </pre>
             <p>El <a href="https://docs.djangoproject.com/en/3.2/ref/django-admin/#django-admin-migrate" target="_blank" rel="noopener noreferrer">migrate</a> comando observa la <a href="https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-INSTALLED_APPS" target="_blank" rel="noopener noreferrer">INSTALLED_APPS</a> configuración y crea las tablas de base de datos necesarias de acuerdo con la configuración de la base de datos en su mysite/settings.pyarchivo y las migraciones de la base de datos enviadas con la aplicación (las cubriremos más adelante). Verá un mensaje para cada migración que aplique. Si está interesado, ejecute el cliente de línea de comandos para su base de datos y escriba \dt(PostgreSQL), (MariaDB, MySQL), (SQLite) u (Oracle) para mostrar las tablas que creó Django.SHOW TABLES;.schemaSELECT TABLE_NAME FROM USER_TABLES;</p>
-            <center><h4 id="creando-modelos">Creando modelos</h4></center>
+            <h4 id="creando-modelos">Creando modelos</h4>
             <p>Ahora definiremos sus modelos, esencialmente, el diseño de su base de datos, con metadatos adicionales.</p>
             <div class="row">
                 <div class="col s12 m6">
-                  <div class="card blue-grey darken-1">
+                  <div class="card indigo darken-4">
                     <div class="card-content white-text">
                       <span class="card-title">Filosofía</span>
                       <p>Un modelo es la fuente única y definitiva de información sobre sus datos. Contiene los campos y comportamientos esenciales de los datos que está almacenando. Django sigue el principio DRY . El objetivo es definir su modelo de datos en un solo lugar y derivar automáticamente cosas de él.
@@ -262,7 +262,7 @@
             <p>Algunas Fieldclases tienen argumentos obligatorios. CharField, por ejemplo, requiere que le des un max_length. Eso se usa no solo en el esquema de la base de datos, sino también en la validación, como veremos pronto.
                 A Fieldtambién puede tener varios argumentos opcionales; en este caso, hemos establecido el defaultvalor de votesen 0.</p>
             <p>Finalmente, tenga en cuenta que se define una relación, utilizando <a href="https://docs.djangoproject.com/en/3.2/ref/models/fields/#django.db.models.ForeignKey" target="_blank" rel="noopener noreferrer">ForeignKey</a>. Eso le dice a Django que cada uno Choice está relacionado con uno solo Question. Django admite todas las relaciones de bases de datos comunes: muchos a uno, muchos a muchos y uno a uno.</p>
-            <h4 id="modelos"><center>Activando modelos</center></h4>
+            <h4 id="modelos">Activando modelos</h4>
             <p>Ese pequeño código de modelo le da a Django mucha información. Con él, Django puede:</p>
             <ul>
                 <li>Cree un esquema de base de datos (declaraciones) para esta aplicación. <b>CREATE TABLE</b></li>
@@ -345,7 +345,9 @@
             </ul>
             <p>La razón por la que existen comandos separados para realizar y aplicar migraciones es porque enviará las migraciones a su sistema de control de versiones y las enviará con su aplicación; no solo facilitan su desarrollo, sino que también pueden ser utilizados por otros desarrolladores y en producción.</p>
             <hr/>
-            <p class="right"><b><a href="/tutorial02"><u>Curso de django parte 2</u></a></b></p>
+            <p>
+                <b><a class="right" href="/tutorial02/"><u>Tutorial 2: Configurar base de datos ></u></a></b>
+            </p>
         </div>
     </div>
 </div>

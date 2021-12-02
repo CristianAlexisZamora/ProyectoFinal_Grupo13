@@ -16,8 +16,13 @@
                     <h5><center>Contenido</center></h5>
                     <div class="card-panel yellow lighten-2">
                         <ul class="browser-default">
-                            <li><a href="#jugando-api">Jugando con la API</a></li>
-                            <li><a href="#administrador-django">Presentando el administrador de Django</a></li>
+                            <li><a href="#jugando-api" class="grey-text text-darken-4">Jugando con la API</a></li>
+                            <li><a href="#administrador-django" class="grey-text text-darken-4">Presentando el administrador de Django</a></li>
+                            <li><a href="#creando-usuario-administrador" class="grey-text text-darken-4">Creando un usuario administrador</a></li>
+                            <li><a href="#iniciar-servidor" class="grey-text text-darken-4">Iniciar servidor de desarrollo</a></li>
+                            <li><a href="#ingresar-sitio-administracion" class="grey-text text-darken-4">Ingresar al sitio de administración</a></li>
+                            <li><a href="#hacer-visible-app" class="grey-text text-darken-4">Hacer visible la aplicación de encuestas</a></li>
+                            <li><a href="#funcionalidad-gratuita" class="grey-text text-darken-4">Funcionalidad de administración gratuita</a></li>
                         </ul>
                     </div>
                 </div>
@@ -64,7 +69,7 @@
 
                 # objects.all() displays all the questions in the database.
                 >>> Question.objects.all()
-                <QuerySet [<Question: Question object (1)>]>
+                &lt;QuerySet [&lt;Question: Question object (1)>]>
             </pre>
             <p>Espera un minuto, no es una representación útil de este objeto. Arreglemos eso editando el modelo (en el archivo) y agregando un método a ambos y: <b><Question: Question object (1)>Questionpolls/models.py__str__()QuestionChoice</b></p>
             <pre>
@@ -98,7 +103,7 @@
             <h4 id="administrador-django">Presentando el administrador de Django</h4>
             <div class="row">
                 <div class="col s12 m6">
-                  <div class="card blue-grey darken-1">
+                  <div class="card indigo darken-4">
                     <div class="card-content white-text">
                       <span class="card-title">Filosofía</span>
                       <p>Generar sitios de administración para que su personal o clientes agreguen, cambien y eliminen contenido es un trabajo tedioso que no requiere mucha creatividad. Por esa razón, Django automatiza completamente la creación de interfaces de administración para modelos.</p>
@@ -108,29 +113,35 @@
                   </div>
                 </div>
             </div>
-            <h5>Creando un usuario administrador</h5>
+            <h5 id="creando-usuario-administrador">Creando un usuario administrador</h5>
             <p>Primero, necesitaremos crear un usuario que pueda iniciar sesión en el sitio de administración. Ejecute el siguiente comando: </p>
-            <pre>python manage.py createsuperuser</pre>
+            <pre>
+                python manage.py createsuperuser
+            </pre>
             <p>Ingrese su nombre de usuario y presiones enter:</p>
-            <pre>Username: admin</pre>
+            <pre>
+                Username: admin
+            </pre>
             <p>A continuación, se le pedirá la dirección de correo electrónico que desee:</p>
-            <pre>Email address: admin@example.com</pre>
+            <pre>
+                Email address: admin@example.com
+            </pre>
             <p>El último paso ingresar su contraseña. Se le pedirá que ingrese su contraseña dos veces, la segunda vez como confirmación de la primera.</p>
             <pre>
                 Password: **********
                 Password (again): **********
                 Superuser created successfully.
             </pre>
-            <h5>Inicie el servidor de desarrollo</h5>
+            <h5 id="iniciar-servidor">Inicie el servidor de desarrollo</h5>
             <p>El sitio de administración de Django está activado de forma predeterminada. Iniciemos el servidor de desarrollo y explorémoslo.</p>
             <p>Ahora, abra un navegador web y vaya a "/admin/" en su dominio local, por ejemplo <a href="http://127.0.0.1:8000/admin/">http://127.0.0.1:8000/admin/</a>. Deberia ver la pantalla de inicio de sesión del administrador:</p>
             <center><img src="https://docs.hektorprofe.net/cdn/django/28.png" alt="inicio de sesión de django"></center>
             <p>Dada que la traduccion está activada de forma predeterminada, si lo configura <b><a href="https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-LANGUAGE_CODE">LANGUAGE_CODE</a></b>, la pantalla de inicio de sesión se mostrará en el idioma dado(si Django tiene las traducciones adecuadas).</p>
-            <h5>Ingrese al sitio de administración</h5>
+            <h5 id="ingresar-sitio-administracion">Ingrese al sitio de administración</h5>
             <p>Ahora, intente iniciar sesión con la cuenta de superusuario que creó en el paso anterior. Debería ver la página de índice de administración de Django:</p>
             <center><img src="https://tutorial.djangogirls.org/es/django_admin/images/django_admin3.png" alt="administracion"></center>
             <p>Deberia ver algunos tipos de contenido editable: grupos y usuarios. Son proporcionados por el marco de autenticación enviado por Django <b><a href="https://docs.djangoproject.com/en/3.2/topics/auth/#module-django.contrib.auth" target="_blank" rel="noopener noreferrer">django.contrib.auth</a></b></p>
-            <h5>Haga que la aplicación de encuesta sea modificable en el administrador</h5>
+            <h5 id="hacer-visible-app">Haga que la aplicación de encuesta sea modificable en el administrador</h5>
             <p>Para hacer visible nuestra aplicación en el índice de administración necesitamos decirle al administrador que los objetos <b>Question</b> tienen una interfaz de administrador. Para hacer esto, abra el archivo <b>polls/admin/py</b> y editelo para que se vea así:</p>
             <pre>
                 from django.contrib import admin
@@ -139,7 +150,7 @@
 
                 admin.site.register(Question)
             </pre>
-            <h5>Explore la funcionalidad de administración gratuita</h5>
+            <h5 id="funcionalidad-gratuita">Explore la funcionalidad de administración gratuita</h5>
             <p>Ahora que hemos registrado <b>Question</b>, django sabe que debería mostrarse en la página de índice de administración:</p>
             <center><img src="https://miro.medium.com/max/1400/1*EcvX3ihLVQS80ceehaBA1A.png" alt="Aplicación Polls" style="width: 900px;"></center>
             <p>Haga click en "Questions". Ahora está en la página de 'lista de cambios" para preguntas. Esta página muestra todas las preguntas de la base e datos y le permite elegir una para cambiarla. Ahí está el "¿Qué pasa?" pregunta que creamos anteriormente:</p>
