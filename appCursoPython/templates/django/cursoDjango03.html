@@ -1,0 +1,249 @@
+{% extends "main/base.html" %}
+{% load static %}
+<!--Titulo de la pagina-->
+{% block title %}
+    Curso django parte 3
+{% endblock %}
+
+<!--Contenido de la pagina-->
+{% block content %}
+<div class="principal">
+    <div class="row">
+        <div class="col s3">
+            <div class="row">
+                <div class="col s12">
+                    <br/><br/><br><br>
+                    <h5><center>Contenido</center></h5>
+                    <div class="card-panel yellow lighten-2">
+                        <ul class="browser-default">
+                            <li><a href="#jugando-api">Jugando con la API</a></li>
+                            <li><a href="#administrador-django">Presentando el administrador de Django</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s9">
+            <h2><center>Continuación del curso de django</center></h2>
+            <p>En está tercera parte del curso de Django continuamos con la aplicación de encuestas web y nos centraremos en crear la interfaz pública: "vistas".</p>
+            <h4>Descripción general</h4>
+            <p>Una vista es un "tipo" de página web en su aplicación Django que generalmente tiene una función específica y tiene una plantilla específica. Por ejemplo, en una aplicación de blog, puede tener las siguientes vistas:</p>
+            <ul class="browser-default">
+                <li>Página de inicio del blog: muestra las últimas entradas.</li>
+                <li>Página de "detalles" de la entrada: página de enlace permanente para una sola entrada.</li>
+                <li>Página de archivo basada en el año: muestra todos los meses con entradas en el año dado.</li>
+                <li>Página de archivo basada en meses: muestra todos los días con entradas en el mes dado.</li>
+                <li>Página de archivo basada en el día: muestra todas las entradas del día determinado.</li>
+                <li>Acción de comentario: gestiona la publicación de comentarios en una entrada determinada.</li>
+            </ul>
+            <p>En nuestra aplicación de encuesta, tendremos las siguientes cuatro vistas:</p>
+            <ul class="browser-default">
+                <li>Página de "índice" de preguntas: muestra las últimas preguntas.</li>
+                <li>Página de "detalles" de la pregunta: muestra un texto de pregunta, sin resultados, pero con un formulario para votar.</li>
+                <li>Página de “resultados” de preguntas: muestra los resultados de una pregunta en particular.</li>
+                <li>Votar acción: gestiona la votación de una opción en particular en una pregunta en particular.</li>
+            </ul>
+            <p>En django, las páginas web y otro contenido se entregan mediante vistas. Cada vista está representada por una función de Python (o método, en el caso de las vistas basadas en clases). Django elegirá una vista examinando la URL que se solicita (para ser precisos, la parte de la URL después del nombre de dominio).</p>
+            <p>Un patrón de URL es la forma general de una URL - por ejemplo: <b>/newsarchive/< year >/< month >/.</b></p>
+            <p>Para pasar de una URL a una vista, Django usa lo que se conoce como 'URLconfs'. Una URLcong asigna patrones de URL a vistas.</p>
+            <h4>Escribiendo más vistas</h4>
+            <p>Ahora agregaremos algunas vistas más a <b>polls/views.py</b>. Estos puntos de vista son ligeramente diferentes, porque toman un argumento:</p>
+            <pre>""
+                def detail(request, question_id):
+                    return HttpResponse("You're looking at question %s." % question_id)
+
+                def results(request, question_id):
+                    response = "You're looking at the results of question %s."
+                    return HttpResponse(response % question_id)
+                
+                def vote(request, question_id):
+                    return HttpResponse("You're voting on question %s." % question_id)
+            </pre>
+            <p>Conecte estas nuevas vistas al módulo <b>polls.urls</b> agregando las siguientes llamadas <b>path()</b>:</p>
+            <pre>
+                from django.urls import path
+
+                from . import views
+
+                urlpatterns = [
+                    # ex: /polls/
+                    path('', views.index, name='index'),
+                    # ex: /polls/5/
+                    path('<int:question_id>/', views.detail, name='detail'),
+                    # ex: /polls/5/results/
+                    path('<int:question_id>/results/', views.results, name='results'),
+                    # ex: /polls/5/vote/
+                    path('<int:question_id>/vote/', views.vote, name='vote'),
+                ]
+            </pre>
+            <p>Eche un vistazo en su navegador, en “/ polls / 34 /”. Ejecutará el detail() método y mostrará cualquier ID que proporcione en la URL. Pruebe también con “/ polls / 34 / results /” y “/ polls / 34 / vote /”; estos mostrarán los resultados del marcador de posición y las páginas de votación.</p>
+            <p>Cuando alguien solicita una página de su sitio web, digamos, "/polls/34/", Django cargará el módulo <b>mysite.urls</b> de Python porque está indicado por la configuración <b><a href="http://" target="_blank" rel="noopener noreferrer">ROOT_URLCONF</a></b>. Encuentra la variable nombrada <b>urlpatterns</b> y recorre los patrones en orden. Despues de encontrar la coincidencia en <b>'polls'</b>, quita el texto coincidente \
+            <b>("polls/")</b> y envía el texto restante - <b>"34/"</b> - a la URLconf 'polls.urls' para su posterior procesamiento. Allí coincide '< int:question_id >/', lo que resulta en una llamada a la vista detail() así:            </p>
+            <pre>
+                detail(request=< HttpRequest object>, question_id=34)
+            </pre>
+            <p>La parte question_id=34 viene de < int:question_id >. El uso de corchetes angulares "captura" parte de la URL y la envía como un argumento de palabra clave a la función de visualización. La parte question_id de la cadena define el nombre que se utilizará para identificar el patrón coincidente, y la parte int es un convertidor que determina qué patrones deben coincidir con esta parte de la ruta URL. Los dos puntos ( :) separan el convertidor y el nombre del patrón.</p>
+            <h4>Escribir vistas que realmente hagan algo</h4>
+            <p>Cada vista es responsable de hacer una de dos cosas: devolver un objeto <a href="https://docs.djangoproject.com/en/3.2/ref/request-response/#django.http.HttpResponse" target="_blank" rel="noopener noreferrer">HttpResponse</a> que contiene el contenido de la pagina solicitada o generar una excepción como <a href="https://docs.djangoproject.com/en/3.2/topics/http/views/#django.http.Http404" target="_blank" rel="noopener noreferrer">Http404</a>. El resto depende de usted.</p>
+            <p>Su vista puede leer registros de una base de datos, o no. puede usar un sistema de plantillas como el de Django, o un sistema de plantillas de Python de terceros, o no. Puede generar un archivo PDF, generar XML, crear un archivo ZIP sobre la marcha, cualquier cosa que desee, utilizando las bibliotecas de Python que desee.</p>
+            <p>Todo lo que Django quiere es eso HttpRespinse o una excepción.</p>
+            <p>Por que es conveniente, usemos la propia API de base de datos de Django, que cubrimos en el <a href="/tutorial02/">tutorial 2</a>. Aquí hay una puñalada en una nueva vista <b>index()</b>, que muestra las últimas 5 preguntas de la encuesta en el sistema, separadas por comas, según la fecha de publicación.</p>
+            <pre>
+                from django.http import HttpResponse
+
+                from .models import Question
+
+
+                def index(request):
+                    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+                    output = ', '.join([q.question_text for q in latest_question_list])
+                    return HttpResponse(output)
+            </pre>
+            <p>Sin embargo, hay un problema aquí: el diseño de la página está codificado en la vista. Si desea cambiar la apariencia de la página, deberá editar este código Python. Entonces, usemos el sistema de plantillas de Django para separar el diseño de Python creando una plantilla que la vista pueda usar.</p>
+            <p>Primero. cree un directorio en su directorio polls llamado <b>templates</b>. Django buscará plantillas allí.</p>
+            <p>La configuración <a href="https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-TEMPLATES" target="_blank" rel="noopener noreferrer">TEMPLATES</a> de su proyecto describe como Django cargará y renderizará las plantillas. El archivo de configuración predeterminada configura un <b>DjangoTemplates</b> backend cuya opción <b><a href="https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-TEMPLATES-APP_DIRS" target="_blank" rel="noopener noreferrer">APP_DIRS</a></b> está establecida en <b>True.</b> Por convención, <b>DjangoTemplates</b>
+                busca un subdirectorio de "plantillas" en cada uno de los archivos <b>INSTALLED_APPS.</b>
+            </p>
+            <p>
+                Dentro del directorio <b>templates</b> que acaba de crear, cree otro directorio llamadado <b>polls</b>, y dentro de ese cree un archivo llamado <b>index.html</b>. En otras palabras, su plantilla deberia estar en <b>polls/templates/polls/index.html</b>. Debido a cómo funciona el cargador de plantillas <b>app_directories</b> como se describe anteriormente, puede hacer referencia a esta plantilla dentro de Django como <b>polls/index.html.</b>
+            </p>
+            <p>Pon el siguiente código en esa plantilla:</p>
+            <pre>
+                { % if latest_question_list % }
+                    < ul >
+                    { % for question in latest_question_list % }
+                        < li >< a href="/polls/{{ question.id }}/">{{ question.question_text }}< /a >< /li >
+                    { % endfor % }
+                    < /ul >
+                { % else % }
+                    < p >No polls are available.< /p >
+                { % endif % }
+            </pre>
+            <p>Ahora actualice <b>index</b> para usar la plantilla <b>polls/views.py</b>:</p>
+            <pre>
+                from django.http import HttpResponse
+                from django.template import loader
+
+                from .models import Question
+
+
+                def index(request):
+                    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+                    template = loader.get_template('polls/index.html')
+                    context = {
+                        'latest_question_list': latest_question_list,
+                    }
+                    return HttpResponse(template.render(context, request))
+            </pre>
+            <p>Ese código carga la plantilla llamada <b>polls/index.html</b> y le pasa un contexto. el contexto es un diccionario de mapeo de nombres de variables de plantilla a objetos de Python.</p>
+            <p>Cargue la página apuntando su navegador a "/polls/", y deberia ver una lista con viñetas que contiene la pregunta "¿Qué pasa?" Del tutorial 2. El enlace apunta a la página de detalles de la pregunta.</p>
+            <h4>Un atajo: render()</h4>
+            <p>Es un modismo muy común cargar una plantilla, llenar un contexto y devolver un objeto <b>HttpResponse</b> con el resultado de la plantilla renderizada. Django proporciona un atajo. Aquí está la vista completa <b>index()</b>, reescrita:</p>
+            <pre>
+                from django.shortcuts import render
+
+                from .models import Question
+
+
+                def index(request):
+                    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+                    context = {'latest_question_list': latest_question_list}
+                    return render(request, 'polls/index.html', context)
+            </pre>
+            <p>Tenga en cuenta que una vez que hemos hecho esto en todos estos puntos de vista, ya que no hay necesidad de importar <b><a href="https://docs.djangoproject.com/en/3.2/topics/templates/#module-django.template.loader">loader</a></b> y <b>HttpResponse</b>(si usted desea mantener HttpResponse tiene los metodos de derivacion para <b>detail, results</b> y <b>vote</b>).</p>
+            <p>La función <a href="https://docs.djangoproject.com/en/3.2/topics/http/shortcuts/#django.shortcuts.render" target="_blank" rel="noopener noreferrer">render()</a> toma el objeto de solicitud como primer argumento, un nombre de plantilla como segundo argumento y un diccionario como tercer argumento opcional. Devuelve un 
+            objeto HttpResponse de la plantilla renderizado con el contexto dado.</p>
+            <h4>Generando un error 404</h4>
+            <p>Ahora, abordaremos la vista de detalles de la pregunta: la página que muestra el texto de la pregunta para una encuesta determinada. Aquí está la vista:</p>
+            <pre>
+                from django.http import Http404
+                from django.shortcuts import render
+
+                from .models import Question
+                # ...
+                def detail(request, question_id):
+                    try:
+                        question = Question.objects.get(pk=question_id)
+                    except Question.DoesNotExist:
+                        raise Http404("Question does not exist")
+                    return render(request, 'polls/detail.html', {'question': question})
+            </pre>
+            <p>El nuevo concepto aqué: la vista genera la excepción <b><a href="https://docs.djangoproject.com/en/3.2/topics/http/views/#django.http.Http404" target="_blank" rel="noopener noreferrer">Http404</a></b> si no existe una pregunta con el ID solicitado.</p>
+            <h4>Un atajo: get_object_or_404()</h4>
+            <p>Es un modismo muy común de usar <b><a href="https://docs.djangoproject.com/en/3.2/ref/models/querysets/#django.db.models.query.QuerySet.get">get()</a></b> y aumentar <b>Http404</b> si el objeto no existe. Django proporciona un atajo. Aquí está la vista <b>detail()</b>, reescrita:</p>
+            <pre>
+                from django.shortcuts import get_object_or_404, render
+
+                from .models import Question
+                # ...
+                def detail(request, question_id):
+                    question = get_object_or_404(Question, pk=question_id)
+                    return render(request, 'polls/detail.html', {'question': question})
+            </pre>
+            <p>La función <b><a href="https://docs.djangoproject.com/en/3.2/topics/http/shortcuts/#django.shortcuts.get_object_or_404" target="_blank" rel="noopener noreferrer">get_object_or_404()</a></b> toma un modelo de Django como primer argumento y un número arbitrario de argumentos de palabras clave, que pasa a la función <b>get()</b> del administrador del modelo. Aumenta <b>Http404</b> si el objeto no existe.</p>
+            <h4>Utilice el sistema de plantillas</h4>
+            <p>Volver a la vista <b>detail()</b> de nuestra aplicación de encuesta. Dada la variable de contexto <b>question</b>, así es <b>polls/detail.html</b> como se vería la plantilla:</p>
+            <pre>
+                < h1>{ { question.question_text } }< /h1>
+                < ul>
+                { % for choice in question.choice_set.all %}
+                    < li>{ { choice.choice_text } }< /li>
+                { % endfor %}
+                < /ul>
+            </pre>
+            <p>El sistema de plantillas utiliza la sintaxis de búsqueda de puntos para acceder a los atributos de las variables. En el ejemplo de <b>{ { question.question_text } }</b>, primero Django realiza una búsqueda de diccionario en el objeto <b>question</b>. Si no lo hace, intenta una búsqueda de atributos, que funciona, en este caso. Si la búsqueda de atributos hubiera fallado, habría intentado una búsqueda de índice de lista.</p>
+            <p>La llamada  al método ocurre en el bucle { % for % }: question.choice_set.all se interpreta como el código python, que devuelve un iterable de objetos y es adecuado para su usu en la etiqueta. </p>
+            <p>Consulte la <a href="https://docs.djangoproject.com/en/3.2/topics/templates/" target="_blank" rel="noopener noreferrer">Guía de plantillas</a> para obtener más información sobre las plantillas.</p>
+
+            <h4>Eliminar URL codificadas en plantillas</h4>
+            <p>Recuerde, cuando escribimos el enlace a una pregunta en la plantilla <b>polls/index.html</b>, el enlace estaba parcialmente codificado de esta manera:</p>
+            <pre>
+                < li>< a href="/polls/{ { questio.id } }/"> { { question.question_text } }< /a> < /li>
+            </pre>
+            <p>La forma en que esto funciona es buscando la definicion de URL como se especifica en el módulo polls.urls. Puede ver exactamente dónde se define el nombre de la URL de 'detalle' a continuación:</p>
+            <pre>
+                ...
+                # the 'name' value as called by the { % url % } template tag
+                path('< int:question_id >/', views.detail, name='detail'),
+                ...
+            </pre>
+            <p>Si desea cambiar la URL de la vista de detalles de las encuestas a otra cosa, tal vez a algo como en <b>polls/specifics/12/</b> en lugar de hacerlo en la plantilla, lo cambiaría en <b>polls/urls.py:</b></p>
+            <pre>
+                ...
+                # added the word 'specifics'
+                path('specifics/< int:question_id >/', views.detail, name='detail'),
+                ...
+            </pre>
+            <h4>Nombres de URL de espacio de nombres</h4>
+            <p>El proyecto tutorial tiene una sola aplicación polls. En proyectos reales de Django, puede haber cindo, diez, veinte aplicaciones o más. ¿Cómo diferencia Django los nombres de URL entre ellos? Por ejemplo, la aplicación polls tiene una vista detail, al igual que una aplicación en el mismo proyecto que es para un blog. ¿Cómko se hace para que Django sepa qué vista de aplicación crear para una URL cuando se usa la etiqueta de plantilla? { % url % }</p>
+            <p>La respuesta es agregar espacios de nombres a su URLconf. En el archivo <b>polls/urls.py</b>, continúe y agregue un <b>app_name</b> para configurar el espacio de nombres de la aplicación:</p>
+            <pre>
+                from django.urls import path
+
+                from . import views
+
+                app_name = 'polls'
+                urlpatterns = [
+                    path('', views.index, name='index'),
+                    path('< int:question_id>/', views.detail, name='detail'),
+                    path('< int:question_id>/results/', views.results, name='results'),
+                    path('< int:question_id>/vote/', views.vote, name='vote'),
+                ]
+            </pre>
+            <p>Ahora cambie su plantilla <b>polls/index.html</b> de:</p>
+            <pre>
+                < li>< a href="{ % url 'detail' question.id %}">{ { question.question_text }}</a></li>
+            </pre>
+            <p>Para apuntar a la vista detallada del espacio de nombres:</p>
+            <pre>
+                < li>< a href="{ % url 'polls:detail' question.id %}">{ { question.question_text }}</a></li>
+            </pre>
+            <hr/>
+            <p>
+                <b><a class="left" href="/tutorial02/"><u>< Tutorial 2: Configurar base de datos</u></a></b>
+                <b><a class="right" href="/tutorial04/"><u>Tutorial 4: Procesamiento de formularios ></u></a></b>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

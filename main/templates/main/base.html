@@ -8,8 +8,9 @@
     <!--Cargar un estilo css ejemplo: <link href="{% static 'css/stilos.css' %}"-->
     <!--Materialize-->
     <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="{% static 'css/materialize.min.css' %}" rel="stylesheet"/>
     <link  href="{% static 'css/style.css' %}" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--El block title es utilizado para informar a django que se espera que el titulo se diferente en cada pagina-->
     <title>{% block title %}   {% endblock %}</title>
 </head>
@@ -17,11 +18,11 @@
     <!--Barra de navegacion-->
     <nav class=" blue darken-4">
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo">Logo</a>
+            <a href="#" class="brand-logo"><img  width="62" src="{% static 'media/PYTHONICO.png' %}"></a>   
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="#">Tutorial</a></li>
                 <li><a href="#">Premium</a></li>
-                <li><a href="#">Comunidad</a></li>
+                <li><a href="/comunidad">Comunidad</a></li>
                 <li><a href="#">Acerca de</a></li>
                 <li><a href="#">Iniciar sesi&oacute;n</a></li>
             </ul>
@@ -60,6 +61,6 @@
       </footer>   
       
     <!-- Compiled and minified JavaScript for Materialize-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
 </body>
 </html>
