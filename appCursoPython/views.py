@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from appCursoPython.models import practica
 # Create your views here.
 # Vista creada para la pagina de POO en python
 def pythonPOO(request):
@@ -40,3 +40,8 @@ def sentenciaIf(request):
 # Vista creada para el tutorial de sentencia if
 def bucleWhile(request):
     return render(request, "appcursoPython/bucleWhile.html")
+
+#Vista creada para la práctica
+def practicapage(request, modulo):
+    resultado = practica.objects.get(idpractica=modulo)
+    return render(request, "appcursoPython/practica.html", {"tema":resultado.tema, "pregunta1":resultado.pregunta1, "pregunta2":resultado.pregunta2, "pregunta3":resultado.pregunta3})

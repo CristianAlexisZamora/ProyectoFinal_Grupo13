@@ -14,4 +14,5 @@ urlpatterns = [
     path('operadores/', views.operadores, name="Operadores"),
     path('sentenciaIf/', views.sentenciaIf, name="SentenciaIf"),
     path('bucleWhile/', views.bucleWhile, name="BucleWhile"),
+    path('practica/<int:modulo>', views.practicapage),
 ]
