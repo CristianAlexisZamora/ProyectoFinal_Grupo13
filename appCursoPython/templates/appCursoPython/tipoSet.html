@@ -1,0 +1,386 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+<!--Titulo de la pagina-->
+{% block title %}
+    Tipo Set
+{% endblock %}
+
+<!--Contenido de la pagina-->
+{% block content %}
+<div class="principal">
+    <div class="row">
+        <div class="col s3">
+            <div class="row">
+                <div class="col s12">
+                    <br/><br/><br><br>
+                  <h5><center>Contenido</center></h5>
+                  <div class="card-panel yellow lighten-2">
+                    <ul class="browser-default">
+                        <li><a href="#set-clase" class="grey-text text-darken-4">¿Qué es el tipo set en Python?</a></li>
+                        <li><a href="#set-elemento" class="grey-text text-darken-4">¿Cómo acceder a los elementos de un conjunto en Python?</a></li>
+                        <li><a href="#set-add" class="grey-text text-darken-4">Añadir elementos a un conjunto (set) en Python</a></li>
+                        <li><a href="#set-del" class="grey-text text-darken-4">Eliminar un elemento de un conjunto en Python</a></li>
+                        <li><a href="#set-len" class="grey-text text-darken-4">Número de elementos (len) de un conjunto</a></li>
+                        <li><a href="#set-in" class="grey-text text-darken-4">¿Cómo saber si un elemento está en un conjunto?</a></li>
+                        <li><a href="#set-op" class="grey-text text-darken-4">Operaciones sobre conjuntos en Python (set operations)</a></li>
+                        <li><a href="#set-methods" class="grey-text text-darken-4">Métodos de la clase set en Python</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col s9">
+            <h2><center>set python – Conjuntos en Python: El tipo set y operaciones más comunes</center></h2>
+            <p>El tipo set en Python es la clase utilizada por el lenguaje para representar los conjuntos.
+                Un conjunto es una colección desordenada de elementos únicos, es decir, que no se repiten.</p>
+
+            <h4 id="set-clase">¿Qué es el tipo set en Python?</h4>
+
+            <p>Al comienzo del tutorial adelantaba que el tipo set en Python es utilizado para trabajar con conjuntos de elementos.
+                La principal característica de este tipo de datos es que es una
+                colección cuyos elementos no guardan ningún orden y que además son únicos.</p>
+            <p>Estas características hacen que los principales usos de esta clase sean conocer si un elemento pertenece o no a una colección
+                y eliminar duplicados de un tipo secuencial</p>
+            <p>Además, esta clase también implementa las típicas operaciones matemáticas sobre conjuntos:
+                <em>unión</em>, <em>intersección</em>, <em>diferencia</em>, …</p>
+            <p>Para crear un conjunto, basta con encerrar una serie de elementos entre llaves <kbd>{}</kbd>, o bien usar el constructor de la clase
+                <kbd>set()</kbd> y pasarle como argumento un objeto <em>iterable</em> (como una <em>lista</em>, una <em>tupla</em>, una <em>cadena</em> …).</p>
+
+            <code>
+                <pre class="lime lighten-5">
+    # Crea un conjunto con una serie de elementos entre llaves
+    # Los elementos repetidos se eliminan
+    >>> c = {1, 3, 2, 9, 3, 1}
+    >>> c
+    {1, 2, 3, 9}
+
+    # Crea un conjunto a partir de un string
+    # Los caracteres repetidos se eliminan
+    >>> a = set('Hola Pythonista')
+    >>> a
+    {'a', 'H', 'h', 'y', 'n', 's', 'P', 't', ' ', 'i', 'l', 'o'}
+
+    # Crea un conjunto a partir de una lista
+    # Los elementos repetidos de la lista se eliminan
+    >>> unicos = set([3, 5, 6, 1, 5])
+    >>> unicos
+    {1, 3, 5, 6}
+                </pre>
+            </code>
+            <p>Para crear un conjunto vacío, simplemente llama al constructor <code>set()</code> sin parámetros.</p>
+
+            <p class="card-panel indigo accent-4">
+            <span class="black-text text-darken-2"><strong>IMPORTANTE: </strong><kbd>{}</kbd>
+                NO crea un conjunto vacío, sino un <em>diccionario</em> vacío. Usa <kbd>set()</kbd> si quieres crear un conjunto sin elementos.
+            </span>
+            </p>
+
+            <p class="card-panel yellow lighten-2">
+            <span class="orange-text accent-4-text text-darken-2">
+                <strong>NOTA:</strong> Los elementos que se pueden añadir a un conjunto deben ser de tipo <em>hashable</em>.
+                Un objeto es <em>hashable</em> si tiene un valor de <em>hash</em> que no cambia durante todo su ciclo de vida.
+                En principio, los objetos que son instancias de clases definidas por el usuario son <em>hashables</em>.
+                También lo son la mayoría de tipos inmutables definidos por Python.
+            </span>
+            </p>
+
+            <h5>set vs frozenset</h5>
+            <p>En realidad, en Python existen dos clases para representar conjuntos: <kbd>set</kbd> y <kbd>frozenset</kbd>.
+                La principal diferencia es que <em>set</em> es mutable, por lo que después de ser creado,
+                se pueden añadir y/o eliminar elementos del conjunto, como veremos en secciones posteriores. Por su parte,
+                <em>frozenset</em> es inmutable y su contenido no puede ser modificado una vez que ha sido inicializado.
+            </p>
+
+            <code>
+                <pre class="lime lighten-5">
+    >>> f = frozenset([3, 5, 6, 1, 5])
+    >>> f
+    frozenset({1, 3, 5, 6})
+                </pre>
+            </code>
+
+            <p class="card-panel yellow lighten-2">
+                <span class="orange-text accent-4-text text-darken-2">
+                    <strong>NOTA: </strong>El único modo en Python de tener un conjunto de conjuntos es utilizando objetos de tipo
+                    <em>frozenset</em> como elementos del propio conjunto.
+                </span>
+            </p>
+
+            <h4 id="set-elemento">¿Cómo acceder a los elementos de un conjunto en Python?</h4>
+            <p>Dado que los conjuntos son colecciones desordenadas, en ellos no se guarda la posición en la que son
+                insertados los elementos como ocurre en los tipos <a href="#">list</a> o <a href="#">tuple</a>.
+                Es por ello que no se puede acceder a los elementos a través de un índice.</p>
+
+            <p>Sin embargo, sí se puede acceder y/o recorrer todos los elementos de un conjunto usando un bucle for:</p>
+
+            <code>
+                <pre class="lime lighten-5">
+    >>> mi_conjunto = {1, 3, 2, 9, 3, 1}
+    >>> for e in mi_conjunto:
+    ...     print(e)
+    ...
+    1
+    2
+    3
+    9
+                </pre>
+            </code>
+
+            <h4 id="set-add">Añadir elementos a un conjunto (set) en Python</h4>
+            <p>Para añadir un elemento a un conjunto se utiliza el método <kbd>add()</kbd>. También existe el método
+            <kbd>update()</kbd>, que puede tomar como argumento una <em>lista</em>, <em>tupla</em>, <em>string</em>,
+            <em>conjunto</em> o cualquier objeto de tipo <em>iterable</em>.</p>
+
+            <code>
+                <pre class="lime lighten-5">
+    >>> mi_conjunto = {1, 3, 2, 9, 3, 1}
+    >>> mi_conjunto
+    {1, 2, 3, 9}
+
+    # Añade el elemento 7 al conjunto
+    >>> mi_conjunto.add(7)
+    >>> mi_conjunto
+    {1, 2, 3, 7, 9}
+
+    # Añade los elementos 5, 3, 4 y 6 al conjunto
+    # Los elementos repetidos no se añaden al conjunto
+    >>> mi_conjunto.update([5, 3, 4, 6])
+    >>> mi_conjunto
+    {1, 2, 3, 4, 5, 6, 7, 9}
+                </pre>
+            </code>
+
+            <p class="card-panel yellow lighten-2">
+                <span class="orange-text accent-4-text text-darken-2">
+                <strong>NOTA: </strong><kbd>add()</kbd> y <kbd>update()</kbd> no añaden elementos que ya existen al conjunto.
+                </span>
+            </p>
+
+            <h4 id="set-del">Eliminar un elemento de un conjunto en Python</h4>
+            <p>La clase <em>set</em> ofrece cuatro métodos para eliminar elementos de un conjunto. Son:
+                <kbd>discard()</kbd>, <kbd>remove()</kbd>, <kbd>pop()</kbd> y <kbd>clear()</kbd>.
+                A continuación te explico qué hace cada uno de ellos.
+            </p>
+
+            <p><kbd>discard(elemento)</kbd> y <kbd>remove(elemento)</kbd> eliminan <kbd>elemento</kbd> del conjunto.
+                La única diferencia es que si<kbd>elemento</kbd> no existe,
+                <kbd>discard()</kbd> no hace nada mientras que <kbd>remove()</kbd> lanza la excepción <kbd>KeyError</kbd>.
+            </p>
+
+            <p><kbd>pop()</kbd> es un tanto peculiar. Este método devuelve un elemento aleatorio del conjunto y lo elimina
+                del mismo. Si el conjunto está vacío, lanza la excepción <kbd>KeyError</kbd>.
+            </p>
+
+            <p>Finalmente, <kbd>clear()</kbd> elimina todos los elementos contenidos en el conjunto.</p>
+
+            <code>
+                <pre class="lime lighten-5">
+    >>> mi_conjunto = {1, 3, 2, 9, 3, 1, 6, 4, 5}
+    >>> mi_conjunto
+    {1, 2, 3, 4, 5, 6, 9}
+
+    # Elimina el elemento 1 con remove()
+    >>> mi_conjunto.remove(1)
+    >>> mi_conjunto
+    {2, 3, 4, 5, 6, 9}
+
+    # Elimina el elemento 4 con discard()
+    >>> mi_conjunto.discard(4)
+    >>> mi_conjunto
+    {2, 3, 5, 6, 9}
+
+    # Trata de eliminar el elemento 7 (no existe) con remove()
+    # Lanza la excepción KeyError
+    >>> mi_conjunto.remove(7)
+    Traceback (most recent call last):
+      File "input", line 1, in module
+    KeyError: 7
+
+    # Trata de eliminar el elemento 7 (no existe) con discard()
+    # No hace nada
+    >>> mi_conjunto.discard(7)
+    >>> mi_conjunto
+    {2, 3, 5, 6, 9}
+
+    # Obtiene y elimina un elemento aleatorio con pop()
+    >>> mi_conjunto.pop()
+    2
+    >>> mi_conjunto
+    {3, 5, 6, 9}
+
+    # Elimina todos los elementos del conjunto
+    >>> mi_conjunto.clear()
+    >>> mi_conjunto
+    set()
+                </pre>
+            </code>
+
+            <h4 id="set-len">Número de elementos (len) de un conjunto</h4>
+            <p>Como con cualquier otra colección, puedes usar la función
+                <kbd>len()</kbd> para obtener el número de elementos contenidos en un conjunto:
+            </p>
+
+            <code>
+                <pre class="lime lighten-5">
+    >>> mi_conjunto = set([1, 2, 5, 3, 1, 5])
+    >>> len(mi_conjunto)
+    4
+                </pre>
+            </code>
+
+            <h4 id="set-in">¿Cómo saber si un elemento está en un conjunto?</h4>
+            <p>Con los conjuntos también se puede usar el operador de pertenencia
+                <kbd>in</kbd> para comprobar si un elemento está contenido, o no, en un conjunto:
+            </p>
+
+            <code>
+                <pre class="lime lighten-5">
+    >>> mi_conjunto = set([1, 2, 5, 3, 1, 5])
+    >>> print(1 in mi_conjunto)
+    True
+    >>> print(6 in mi_conjunto)
+    False
+    >>> print(2 not in mi_conjunto)
+    False
+                </pre>
+            </code>
+
+
+            <h4 id="set-op">Operaciones sobre conjuntos en Python (set operations)</h4>
+            <p>Tal y como te adelanté al comienzo de este tutorial, uno de los principales usos del tipo
+                <kbd>set</kbd> es utilizarlo en operaciones del álgebra de conjuntos: <em>unión</em>,
+                <em>intersección</em>, <em>diferencia</em>, <em>diferencia simétrica</em>, …}
+            </p>
+
+            <p>A continuación veremos cómo llevar a cabo estas operaciones en Python.</p>
+
+            <h5>Unión de conjuntos en Python</h5>
+            <p>La unión de dos conjuntos A y B es el conjunto A ∪ B que contiene todos los elementos de A y de B.<div></div></p>
+            <p>En Python se utiliza el operador <kbd>|</kbd> para realizar la unión de dos o más conjuntos.</p>
+
+            <code>
+                <pre class="lime lighten-5">
+    >>> a = {1, 2, 3, 4}
+    >>> b = {2, 4, 6, 8}
+    >>> a | b
+    {1, 2, 3, 4, 6, 8}
+                </pre>
+            </code>
+
+
+            <h5>Intersección de conjuntos en Python</h5>
+            <p>La intersección de dos conjuntos A y B es el conjunto A ∩ B que contiene todos los elementos comunes de A y B.</p>
+            <p>En Python se utiliza el operador <kbd>&amp;</kbd> para realizar la intersección de dos o más conjuntos.</p>
+
+            <code>
+                <pre class="lime lighten-5">
+>>> a = {1, 2, 3, 4}
+>>> b = {2, 4, 6, 8}
+>>> a & b
+{2, 4}
+                </pre>
+            </code>
+
+            <h5>Diferencia de conjuntos en Python</h5>
+            <p>La diferencia entre dos conjuntos A y B es el conjunto A \ B que contiene todos los elementos de A que no pertenecen a B.</p>
+            <p>En Python se utiliza el operador <kbd>-</kbd> para realizar la diferencia de dos o más conjuntos.</p>
+
+            <code>
+                <pre class="lime lighten-5">
+    >>> a = {1, 2, 3, 4}
+    >>> b = {2, 4, 6, 8}
+    >>> a - b
+    {1, 3}
+                </pre>
+            </code>
+
+
+            <h5>Diferencia simétrica de conjuntos en Python</h5>
+            <p>La diferencia simétrica entre dos conjuntos A y B es el conjunto que contiene los elementos de A y B que no son comunes.</p>
+            <p>En Python se utiliza el operador <kbd>^</kbd> para realizar la diferencia simétrica de dos o más conjuntos.</p>
+
+            <code>
+                <pre class="lime lighten-5">
+    >>> a = {1, 2, 3, 4}
+    >>> b = {2, 4, 6, 8}
+    a ^ b
+    {1, 3, 6, 8}
+                </pre>
+            </code>
+
+            <h5>Inclusión de conjuntos en Python</h5>
+            <p>Dado un conjunto A, subcolección del conjunto B o igual a este, sus elementos son un
+                subconjunto de B. Es decir, A es un subconjunto de B y B es un superconjunto de A.</p>
+            <p>En Python se utiliza el operador <kbd>&lt;=</kbd> para comprobar si un conjunto A es
+                subconjunto de B y el operador <kbd>&gt;=</kbd> para comprobar si un conjunto A es superconjunto de B.</p>
+
+            <code>
+                <pre class="lime lighten-5">
+    >>> a = {1, 2}
+    >>> b = {1, 2, 3, 4}
+    >>> a <= b
+    True
+    >>> a >= b
+    False
+    >>> b >= a
+    True
+
+    >>> a = {1, 2}
+    >>> b = {1, 2}
+    >>> a < b  # Ojo al operador < sin el =
+    False
+    >>> a <= b
+    True
+                </pre>
+            </code>
+
+            <h5>Conjuntos disjuntos en Python</h5>
+            <p>Dos conjuntos A y B son disjuntos si no tienen elementos en común, es decir, la intersección de A y B es el conjunto vacío.</p>
+            <p>En Python se utiliza el método <kbd>isdisjoint()</kbd> de la clase <kbd>set</kbd> para comprobar si un conjunto es disjunto de otro.</p>
+
+            <code>
+                <pre class="lime lighten-5">
+    >>> a = {1, 2}
+    >>> b = {1, 2, 3, 4}
+    >>> a.isdisjoint(b)
+    False
+
+    >>> a = {1, 2}
+    >>> b = {3, 4}
+    >>> a.isdisjoint(b)
+    True
+                </pre>
+            </code>
+
+            <h5>Igualdad de conjuntos en Python</h5>
+            <p>En Python dos conjuntos son iguales si y solo si todos los elementos de
+                un conjunto están contenidos en el otro. Esto quiere decir que cada uno es un subconjunto del otro.</p>
+
+            <code>
+                <pre class="lime lighten-5">
+    >>> a = {1, 2}
+    >>> b = {1, 2}
+    >>> id(a)
+    4475070656
+    >>> id(b)
+    4475072096
+    >>> a == b
+    True
+                </pre>
+            </code>
+
+
+             <h4 id="set-methods">Métodos de la clase set en Python</h4>
+            <p>Termino este tutorial listando los métodos principales de la clase <em>set</em> en Python:</p>
+
+            <table class="post-table">
+                <thead class="grey white-text"><tr><td>Método</td><td>Descripción</td></tr></thead><tbody><tr><td><code>add(e)</code></td><td>Añade un elemento al conjunto.</td></tr><tr><td><code>clear()</code></td><td>Elimina todos los elementos del conjunto.</td></tr><tr><td><code>copy()</code></td><td>Devuelve una copia superficial del conjunto.</td></tr><tr><td><code>difference(iterable)</code></td><td>Devuelve la diferencia del conjunto con el <code>iterable</code> como un conjunto nuevo.</td></tr><tr><td><code>difference_update(iterable)</code></td><td>Actualiza el conjunto tras realizar la diferencia con el <code>iterable</code>.</td></tr><tr><td><code>discard(e)</code></td><td>Elimina, si existe, el elemento del conjunto.</td></tr><tr><td><code>intersection(iterable)</code></td><td>Devuelve la intersección del conjunto con el <code>iterable</code> como un conjunto nuevo.</td></tr><tr><td><code>intersection_update(iterable)</code></td><td>Actualiza el conjunto tras realizar la intersección con el <code>iterable</code>.</td></tr><tr><td><code>isdisjoint(iterable)</code></td><td>Devuelve <code>True</code> si dos conjuntos son disjuntos.</td></tr><tr><td><code>issubset(iterable)</code></td><td>Devuelve <code>True</code> si el conjunto es subconjunto del <code>iterable</code>.</td></tr><tr><td><code>issuperset(iterable)</code></td><td>Devuelve <code>True</code> si el conjunto es superconjunto del <code>iterable</code>.</td></tr><tr><td><code>pop()</code></td><td>Obtiene y elimina un elemento de forma aleatoria del conjunto.</td></tr><tr><td><code>remove(e)</code></td><td>Elimina el elemento del conjunto. Si no existe lanza un error.</td></tr><tr><td><code>symmetric_difference(iterable)</code></td><td>Devuelve la diferencia simétrica del conjunto con el <code>iterable</code> como un conjunto nuevo.</td></tr><tr><td><code>symmetric_difference_update(iterable)</code></td><td>Actualiza el conjunto tras realizar la diferencia simétrica con el <code>iterable</code>.</td></tr><tr><td><code>union(iterable)</code></td><td>Devuelve la unión del conjunto con el <code>iterable</code> como un conjunto nuevo.</td></tr><tr><td><code>update(iterable)</code></td><td>Actualiza el conjunto tras realizar la unión con el <code>iterable</code>.</td></tr></tbody></table>
+
+
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}

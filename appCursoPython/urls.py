@@ -16,4 +16,7 @@ urlpatterns = [
     path('sentenciaIf/', views.sentenciaIf, name="SentenciaIf"),
     path('bucleWhile/', views.bucleWhile, name="BucleWhile"),
     path('practica/<int:modulo>', views.practicapage),
+    path('tipoRange/', views.tipoRange, name="TipoRange"),
+    path('tipoSet/', views.tipoSet, name="TipoSet"),
+    path('tipoDict/', views.tipoDict, name="TipoDict"),
 ]
