@@ -16,10 +16,10 @@
                     <h5><center>Contenido</center></h5>
                     <div class="card-panel yellow lighten-2">
                         <ul class="browser-default">
-                            <li><a href="#forma-minima">Escribe una forma mínima</a></li>
-                            <li><a href="#vistas-genericas">Utilizando vistas genéricas</a></li>
-                            <li><a href="#modifique-urlconf">Modifique el URLconf</a></li>
-                            <li><a href="#modifique-vistas">Modificando las vistas</a></li>
+                            <li><a href="#forma-minima" class="grey-text text-darken-4">Escribe una forma mínima</a></li>
+                            <li><a href="#vistas-genericas" class="grey-text text-darken-4">Utilizando vistas genéricas</a></li>
+                            <li><a href="#modifique-urlconf" class="grey-text text-darken-4">Modifique el URLconf</a></li>
+                            <li><a href="#modifique-vistas" class="grey-text text-darken-4">Modificando las vistas</a></li>
                         </ul>
                     </div>
                 </div>
@@ -184,6 +184,7 @@
             <p>Por defecto, la vista genérica DetailView utiliza una plantilla llamada <b>&lt;app name>/&lt;model name>_detail.html</b>. En nuestro caso, utilizaría la plantilla <b>"polls/question_detail.html"</b>. El atributo <b>template_name</b> se utiliza para indicarle a Django que utilice un nombre de plantilla específico en vez del nombre de plantilla generado de forma automática. También especificamos el atributo <b>template_name</b> para la vista de lista <b>results</b>, esto garantiza que la vista de resultados y la vista detalle tengan un aspecto diferente cuando sean creadas, a pesar de que las dos son una vista genérica <b>DetailView</b> en segundo plano.</p>
             <p>Del mismo modo, la vista genérica <b>ListView</b> utiliza una plantilla predeterminada llamada &lt;app name>/&lt;model name>_list.html; utilizamos el atributo <b>template_name</b> para indicarle a ListView que utilice nuestra plantilla "polls/index.html" existente.</p>
             <p>En partes anteriores del tutorial, las plantillas se proporcionaron con un contexto que contiene las variables de contexto <b>question</b> y <b>latest_question_list</b>. Para <b>DetailView</b>, la variable de pregunta se proporciona automáticamente; dado que estamos usando un modelo de Django (Pregunta), Django puede determinar un nombre apropiado para la variable de contexto. Sin embargo, para <b>ListView</b>, la variable de contexto generada automáticamente es <b>question_list</b>. Para anular esto, proporcionamos el atributo <b>context_object_name</b>, especificando que queremos usar <b>latest_question_list</b> en su lugar. Como enfoque alternativo, puede cambiar sus plantillas para que coincidan con las nuevas variables de contexto predeterminadas, pero es mucho más fácil decirle a Django que use la variable que desea.</p>
+            <hr/>
             <p>
                 <b><a class="left" href="/tutorial03"><u>< Tutorial 03: Creación de la interfaz pública</u></a></b>
             </p>
