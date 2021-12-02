@@ -17,13 +17,14 @@
                   <h5><center>Contenido</center></h5>
                   <div class="card-panel yellow lighten-2">
                     <ul class="browser-default">
-                        <li><a href="#variab" class="grey-text text-darken-4">Variables en Python</a></li>
-                        <li><a href="#asig" class="grey-text text-darken-4">Asignar un valor a una variable en Python</a></li>
-                        <li><a href="#modi" class="grey-text text-darken-4">Modificar el valor de una variable en Python</a></li>
-                        <li><a href="#lit" class="grey-text text-darken-4">Literales</a></li>
-                        <li><a href="#asigVal" class="grey-text text-darken-4">Asignar un valor a múltiples variables</a></li>
-                        <li><a href="#asigMul" class="grey-text text-darken-4">Asignar múltiples valores a múltiples variables</a></li>
-                        <li><a href="#var" class="grey-text text-darken-4">Variables y memoria</a></li>
+                        <li><a href="#que" class="grey-text text-darken-4">Qué son los tipos de datos</a></li>
+                        <li><a href="#tiBa" class="grey-text text-darken-4">Tipos de datos básicos de Python</a></li>
+                        <li><a href="#tiNum" class="grey-text text-darken-4">Tipos numéricos</a></li>
+                        <li><a href="#tiBoo" class="grey-text text-darken-4">Tipo booleano</a></li>
+                        <li><a href="#tiCad" class="grey-text text-darken-4">Tipo cadena de caracteres</a></li>
+                        <li><a href="#otr" class="grey-text text-darken-4">Otros tipos</a></li>
+                        <li><a href="#conoc" class="grey-text text-darken-4">Conocer el tipo de una variable</a></li>
+                        <li><a href="#conv" class="grey-text text-darken-4">Conversión de tipos</a></li>
                     </ul>
                   </div>
                 </div>
@@ -31,178 +32,301 @@
         </div>
         <div class="col s9">
             <h2><center>Tipos de datos básicos de Python</center></h2>
-            <p>Este tutorial es muy, muy importante. En él aprenderás qué son las variables en Python, cómo asignarles un valor y cómo modificarlas.</p>
+            <p>Este tutorial se centra en describir los tipos de datos básicos de Python: qué es un tipo de dato, cuáles son los tipos de datos básicos y cuáles son sus características y propiedades principales.</p>
 
-            <h4 id="variab">Variables en Python</h4>
-            <p>Las variables son uno de los dos componentes básicos de cualquier programa.</p>
-            <p>En su esencia, un programa está compuesto por datos e instrucciones que manipulan esos datos. Normalmente, los datos se almacenan en memoria (memoria RAM) para que podamos acceder a ellos.</p>  
-            <p>Entonces, ¿qué es una variable? Una variable es una forma de identificar, de forma sencilla, un dato que se encuentra almacenado en la memoria del ordenador. Imagina que una variable es un contenedor en el que se almacena un dato, el cuál, puede cambiar durante el flujo del programa. Una variable nos permite acceder fácilmente a dicho dato para ser manipulado y transformado.</p>
-            <p>Por ejemplo, supongamos que queremos mostrar el resultado de sumar 1 + 2. Para mostrar el resultado, debemos indicarle al programa dónde se encuentra dicho dato en memoria y, para ello, hacemos uso de una variable:</p>
-            <code>
-                <pre class="lime lighten-5">
-                    # Guardamos en la variable suma el resultado de 1 + 2
-                    suma = 1 + 2
-
-                    # Accedemos al resultado de 1 + 2 a través de la variable suma
-                    print(suma) </pre>
-            </code>
+            <h4 id="que">Qué son los tipos de datos</h4>
+            <p>En cualquier lenguaje de programación de alto nivel se manejan tipos de datos. Los tipos de datos definen un conjunto de valores que tienen una serie de características y propiedades determinadas.</p>
+            <p>Pensemos por un momento cuando éramos jóvenes y estábamos en el colegio en clase de matemáticas. Seguro que diste alguna clase en la que te enseñaban los distintos conjuntos de números. Los naturales (1, 2, 3, 4, …), los enteros (…, -2, -1, 0, 1, 2, …), los reales (… -1.1, -0.3, 2.1, …), etc. Pues bien, en programación (y por supuesto en Python), cada uno de esos conjuntos sería lo que llamamos tipo de datos.</p>
+            <p>En Python, <b>todo valor que pueda ser asignado a una variable tiene asociado un tipo de dato</b>. Como ya te he mencionado alguna vez, en Python todo es un objeto. Así que los tipos de datos serían las clases (donde se definen las propiedades y qué se puede hacer con ellas) y las variables serían las instancias (objetos) de los tipos de datos. No te preocupes si no entiendes qué es una clase o un objeto, lo veremos en otro tutorial.</p>
+            <p>En definitiva, <b>un tipo de dato establece qué valores puede tomar una variable y qué operaciones se pueden realizar sobre la misma</b>.</p>
 
 
 
-            <h4 id="asig">Asignar un valor a una variable en Python</h4>
-            <p>Tal y como hemos visto en el ejemplo anterior, para asignar un valor (un dato) a una variable se utiliza el operador de asignación <kbd>=</kbd>.</p>
-            <p>En la operación de asignación se ven involucradas tres partes:</p>
+            <h4 id="tiBa">Tipos de datos básicos de Python</h4>
+            <p>¿Qué tipos de datos trae consigo Python?</p>
+            <p>En Python podemos encontrar distintos tipos de datos con diferentes características y clasificaciones. En este tutorial repasaremos los tipos de datos básicos, aunque te introduciré otros tipos de datos que veremos en tutoriales posteriores.</p>
+            <p>Los tipos de datos básicos de Python son los booleanos, los numéricos (enteros, punto flotante y complejos) y las cadenas de caracteres.</p>
+            <p>Python también define otros tipos de datos, entre los que se encuentran:</p>
             <ul class="browser-default">
-                <li>El operador de asignación <kbd>=</kbd></li>
-                <li>Un identificador o nombre de variable, a la izquierda del operador</li>
-                <li>Un literal, una expresión, una llamada a una función o una combinación de todos ellos a la derecha del operador de asignación</li>
+                <li>Secuencias: Los tipos list, tuple y range</li>
+                <li>Mapas: El tipo dict</li>
+                <li>Conjuntos: El tipo set</li>
+                <li>Iteradores</li>
+                <li>Clases</li>
+                <li>Instancias</li>
+                <li>Excepciones</li>
             </ul>
+            <p>A su vez, los tipos anteriores se pueden agrupar de diferente manera. Por ejemplo: el tipo cadena de caracteres es una secuencia inmutable; las listas, tuplas o diccionarios, entre otros, son contenedores y colecciones, etc. Pero esto no lo veremos aquí.</p>
+            <p>En fin, no te agobies con tanto tipo ni tanto concepto nuevo. Tómatelo con calma que estás aprendiendo. Comencemos por lo fácil revisando los tipos de datos básicos de Python.</p>
+            
+
+
+            <h4 id="tiNum">Tipos numéricos</h4>
+            <p>Python define tres tipos de datos numéricos básicos: enteros, números de punto flotante (simularía el conjunto de los números reales, pero ya veremos que no es así del todo) y los números complejos.</p>
+            
+            <h5>Números enteros</h5>
+            <p>El tipo de los números enteros es <kbd>int</kbd>. Este tipo de dato comprende el conjunto de todos los números enteros, pero como dicho conjunto es infinito, en Python el conjunto está limitado realmente por la capacidad de la memoria disponible. No hay un límite de representación impuesto por el lenguaje.</p>
+            <p>Pero tranquilidad, que para el 99% de los programas que desarrolles tendrás suficiente con el subconjunto que puedes representar.</p>
+            <p>Un número de tipo <kbd>int</kbd> se crea a partir de un literal que represente un número entero o bien como resultado de una expresión o una llamada a una función.</p>
             <p>Ejemplos:</p>
             <code>
                 <pre class="lime lighten-5">
-                    # Asigna a la variable 'a' el valor 1
-                    a = 1
-                    # Asigna a la variable 'a' el resultado de la expresión 3 * 4
-                    a = 3 * 4
-                    # Asigna a la variable 'a' la cadena de caracteres 'Pythonista'
-                    a = 'Pythonista'</pre>
+                    >>> a = -1  # a es de tipo int y su valor es -1
+                    >>> b = a + 2  # b es de tipo int y su valor es 1
+                    >>> print(b)
+                    1</pre>
             </code>
-            <p>Cuando asignamos un valor a una variable por primera vez, se dice que en ese lugar se define e inicializa la variable. En un script o programa escrito en Python, podemos definir variables en cualquier lugar del mismo. Sin embargo, es una buena práctica definir las variables que vayamos a utilizar al principio.</p>
-            <p>Si intentamos usar una variable que no ha sido definida/inicializada previamente, el intérprete nos mostrará un error:</p>
+            <p>También podemos representar los números enteros en formato binario, octal o hexadecimal.</p>
+            <p>Los números octales se crean anteponiendo <kbd>0o</kbd> a una secuencia de dígitos octales (del 0 al 7).</p>
+            <p>Para crear un número entero en hexadecimal, hay que anteponer <kbd>0x</kbd> a una secuencia de dígitos en hexadecimal (del 0 al 9 y de la A la F).</p>
+            <p>En cuanto a los números en binario, se antepone <kbd>0b</kbd> a una secuencia de dígitos en binario (0 y 1).</p>
             <code>
                 <pre class="lime lighten-5">
-                    >>> print(a)
-                    Traceback (most recent call last):
-                    File "<input>", line 1, in <module>
-                    NameError: name 'a' is not defined</pre>
+                    >>> diez = 10
+                    >>> diez_binario = 0b1010
+                    >>> diez_octal = 0o12
+                    >>> diez_hex = 0xa
+                    >>> print(diez)
+                    10
+                    >>> print(diez_binario)
+                    10
+                    >>> print(diez_octal)
+                    10
+                    >>> print(diez_hex)
+                    10</pre>
             </code>
-            <p>Para terminar esta sección de variables en Python, vamos a introducir el concepto tipo de dato. Al asignar un valor a una variable, dicho valor pertenece a un conjunto de valores conocido como tipo de dato. Un tipo de dato define una serie de características sobre esos datos y las variables que los contienen como, por ejemplo, las operaciones que se pueden realizar con ellos. En Python, los tipos de datos básicos son los numéricos (enteros, reales y complejos), los boolenaos (True, False) y las cadenas de caracteres.</p>
-            <p>Veamos un ejemplo:</p>
-            <code>
-                <pre class="lime lighten-5">
-                    a = 1  # La variable a es de tipo entero (int)
-                    b = 'Hola'  # La variable b es de tipo cadena de caracteres</pre>
-            </code>
-            <p>A diferencia de otros lenguajes, en Python no es necesario indicar el tipo de dato cuando se define una variable. Además, en cualquier momento, una variable que es de un tipo puede convertirse en una variable de otro tipo cualquiera:</p>
-            <code>
-                <pre class="lime lighten-5">
-                    a = 1  # a es de tipo entero
-                    a = 'Hola'  # Ahora a es de tipo cadena de caracteres</pre>
-            </code>
-            <p>Se dice que Python (el intérprete) infiere el tipo de dato al que pertenece una variable en tiempo de ejecución, es decir, es cuando se ejecuta el programa, cuando conoce su tipo de dato y qué operaciones pueden llevarse a cabo con él.</p>
 
-
-
-            <h4 id="modi">Modificar el valor de una variable en Python</h4>
-            <p>Para modificar el valor de una variable en Python, basta con asignarle un nuevo valor en cualquier momento y lugar después de la definición.</p>
-            <p>Por ejemplo:</p>
+            <h5>Números de punto flotante</h5>
+            <p>Bueno, bueno, bueno, entramos en tema caliente y no sé muy bien cómo explicar esto para que sea fácil de entender.</p>
+            <p>¿Recuerdas que te dije que los números de punto flotante representaban, más o menos, al conjunto de los números reales?</p>
+            <p>Vamos a hacer un experimento que te va a dejar a cuadros. Abre un terminal y ejecuta el comando python3 para lanzar el intérprete de Python. A continuación introduce la expresión <kbd>1.1 + 2.2</kbd> y mira cuál es el resultado.</p>
             <code>
                 <pre class="lime lighten-5">
-                    >>> a = 1
-                    >>> print(a)
-                    1
-                    >>> b = 'Hola'
-                    >>> a = 3
-                    >>> print(a)
-                    3</pre>
+                    >>> 1.1 + 2.2
+                    3.3000000000000003</pre>
             </code>
-            <p>Como vemos en el ejemplo anterior, hemos modificado el dato de la variable <kbd>a</kbd>. En la línea 1 le hemos asignado el valor <kbd>1</kbd>. Más tarde, en la línea 5, hemos actualizado su valor a <kbd>3</kbd>.</p>
+            <p>¿En serio? ¿Qué es ese 3 del final?</p>
+
+            <h5>Representación de los números de punto flotante</h5>
+            <p>Tenemos que repasar un poco de teoría que voy a tratar de simplificar porque la explicación completa da para un artículo entero.</p>
+            <p>Al igual que ocurre con los números enteros, los números reales son infinitos y, por tanto, es imposible representar todo el conjunto de números reales con un ordenador.</p>
+            <p><b>Para representar</b> el mayor número posible de <b>los números reales</b> con las limitaciones de memoria (tamaños de palabra de 32 y 64 bits), <b>se adaptó la notación científica de representación de números reales al sistema binario</b> (que es el sistema que se utiliza en programación para representar los datos e instrucciones).</p>
+            <p>En esta notación científica, los números se representan así:</p>
+            <table class="bordered highlight responsive-table">
+                <thead class="blue darken-4 white-text">
+                    <tr>
+                        <th>Número</th>
+                        <th>Notación científica</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>101.1</td>
+                        <td>1.011 * 10<sup>2</sup></td>
+                    </tr>
+                    <tr>
+                        <td>0.032</td>
+                        <td>3.2 * 10<sup>-2</sup></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Es una muy buena solución que ha llegado hasta nuestros días.</p>
+            <p>El caso es que la suma de la representación en punto flotante en binario del número 1,1 y de la representación en punto flotante en binario del número 2,2, dan como resultado 3,3000000000000003</p>
+            <p>Pero hay más casos, como por ejemplo la representación del número 1/3. En algún momento, el ordenador tiene que truncar el número periódico resultante</p>
+            <p>La explicación final es que los números de punto flotante se representan en el hardware del ordenador como fracciones de base 2 (binarias). Y el problema está en que la mayoría de las fracciones decimales no se pueden representar de forma exacta como fracciones binarias porque tienen infinitos números decimales. Una consecuencia es que, en general, los números decimales de punto flotante que usas en tus aplicaciones son una aproximación de los números binarios de punto flotante realmente almacenados en la máquina.</p>
+
+            <h5>Números de punto flotante en Python</h5>
+            <p>Pues una vez vista esta simplificada introducción a los números de punto flotante, te diré que este tipo de datos en Python es <kbd>float</kbd>.</p>
+            <p>Puedes usar el tipo <kbd>float</kbd> sin problemas para representar cualquier número real (siempre teniendo en cuenta que es una aproximación lo más precisa posible). Por tanto para longitudes, pesos, frecuencias, …, en los que prácticamente es lo mismo 3,3 que 3,3000000000000003 el tipo <kbd>float</kbd> es el más apropiado.</p>
+            <p>Cuando un número <kbd>float</kbd> vaya a ser usado por una persona, en lugar de por el ordenador, puedes darle formato al número de la siguiente manera:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    >>> real = 1.1 + 2.2  # real es un float
+                    >>> print(real)
+                    3.3000000000000003  # Representación aproximada de 3.3
+                    >>> print(f'{real:.2f}')
+                    3.30  # real mostrando únicamente 2 cifras decimales</pre>
+            </code>
+            <p>Al igual que los números enteros, un float se crea a partir de un literal, o bien como resultado de una expresión o una función.</p>
+            <code>
+                <pre class="lime lighten-5">
+                    >>> un_real = 1.1  # El literal debe incluir el carácter .
+                    >>> otro_real = 1/2  # El resultado de 1/2 es un float
+                    >>> not_cient = 1.23E3  # float con notación científica (1230.0)</pre>
+            </code>
+            <p>Y para terminar esta sección, te adelanto que, si por cualquier motivo sí que necesitas una mayor precisión a la hora de trabajar con los números reales, Python tiene otros tipos de datos, como Decimal.</p>
+            <p>El tipo Decimal es ideal a la hora de trabajar, por ejemplo, con dinero o tipos de interés. Este tipo de dato trunca la parte decimal del número para ser más preciso, pero no es el objetivo de este tutorial hablar sobre el tipo de dato Decimal.</p>
+
+            <h5>Números complejos</h5>
+            <p>El último tipo de dato numérico básico que tiene Python es el de los números complejos, <kbd>complex</kbd>.</p>
+            <p>Los números complejos tienen una parte real y otra imaginaria y cada una de ellas se representa como un <kbd>float</kbd>.</p>
+            <p>Para crear un número complejo, se sigue la siguiente estructura <kbd>&lt;parte_real&gt;+&lt;parte_imaginaria&gt;j</kbd>. Y se puede acceder a la parte real e imaginaria a través de los atributos <kbd>real</kbd> e <kbd>imag</kbd>:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    >>> complejo = 1+2j
+                    >>> complejo.real
+                    1.0
+                    >>> complejo.imag
+                    2.0</pre>
+            </code>
+
+            <h5>Aritmética de los tipos numéricos</h5>
+            <p>Con todos los tipos numéricos se pueden aplicar las operaciones de la aritmética: suma, resta, producto, división, …</p>
+            <p>En Python está permitido realizar una operación aritmética con números de distinto tipo. En este caso, el tipo numérico «más pequeño» se convierte al del tipo «más grande», de manera que el tipo del resultado siempre es el del tipo mayor. Entendemos que el tipo <kbd>int</kbd> es menor que el tipo <kbd>float</kbd> que a su vez es menor que el tipo <kbd>complex</kbd>.</p>
+            <p>Por tanto, es posible, por ejemplo, sumar un <kbd>int</kbd> y un float:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    >>> 1 + 2.0
+                    3.0
+                    >>> 2+3j + 5.7
+                    (7.7+3j)</pre>
+            </code>
             
             
             
-            <h4 id="lit">Literales</h4>
-            <p>Tal y como te he mencionado en un apartado anterior, a una variable se le puede asignar un literal, una expresión, una llamada a una función o una combinación de todos ellos.</p>
-            <p>Ahora bien, ¿qué es un literal? Ya hemos visto ejemplos de literales en los apartados anteriores. Un literal no es más que un dato en crudo que se puede asignar directamente a una variable o formar parte de una expresión.</p>
-            <p>En el siguiente ejemplo se asigna a la variable a el literal <kbd>1</kbd>:</p>
-            <code>
-                <pre class="lime lighten-5">
-                    a = 1</pre>
-            </code>
-            <p>El literal <kbd>1</kbd> representa el valor numérico del número entero 1.</p>
-            <p>Existen varios tipos de literales:</p>
+            <h4 id="tiBoo">Tipo booleano</h4>
+            <p>En Python la clase que representa los valores booleanos es <kbd>bool</kbd>. Esta clase solo se puede instanciar con dos valores/objetos: <kbd>True</kbd> para representar verdadero y <kbd>False</kbd> para representar falso.</p>
+            <p>Una particularidad del lenguaje es que cualquier objeto puede ser usado en un contexto donde se requiera comprobar si algo es verdadero o falso. Por tanto, cualquier objeto se puede usar en la condición de un if o un while (son estructuras de control que veremos en tutoriales posteriores) o como operando de una operación booleana.</p>
+            <p>Por defecto, <b>cualquier objeto es considerado como verdadero con dos excepciones</b>:</p>
             <ul class="browser-default">
-                <li>Numéricos (Enteros, reales y complejos): <kbd>1</kbd>, <kbd>3</kbd>, <kbd>3.14</kbd>, <kbd>-1</kbd>, <kbd>3.14j</kbd>, …</li>
-                <li>Cadenas de caracteres: <kbd>'Hola'</kbd>, <kbd>'Me gusta Python'</kbd>, …</li>
-                <li>Booleanos: <kbd>True</kbd> y <kbd>False</kbd></li>
-                <li>El literal especial <kbd>None</kbd>. <kbd>None</kbd> significa ausencia de valor y es muy utilizado en programación</li>
+                <li>Que implemente el método <kbd>__bool__()</kbd> y este devuelva <kbd>False</kbd>.</li>
+                <li>Que impleménte el método <kbd>__len__()</kbd> y este devuelva <kbd>0</kbd>.</li>
+            </ul>
+            <p>Además, los siguientes objetos/instancias también son consideradas falsas:</p>
+            <ul class="browser-default">
+                <li><kbd>None</kbd></li>
+                <li><kbd>False</kbd></li>
+                <li>El valor cero de cualquier tipo numérico: <kbd>0</kbd>, <kbd>0.0</kbd>, <kbd>0j</kbd>, …</li>
+                <li>Secuencias y colecciones vacías (veremos estos tipos en otros tutoriales): <kbd>''</kbd>, <kbd>()</kbd>, <kbd>[]</kbd>, <kbd>{}</kbd>, <kbd>set()</kbd>, <kbd>range(0)</kbd></li>
             </ul>
 
 
 
-            <h4 id="asigVal">Asignar un valor a múltiples variables</h4>
-            <p>Ahora vas a descubrir cómo asignar un mismo valor a múltiples variables a la vez. Si tienes que definir varias variables con un mismo dato, puedes usar la siguiente estructura:</p>
+            <h4 id="tiCad">Tipo cadena de caracteres</h4>
+            <p>Otro tipo básico de Python, e imprescindible, son las secuencias o cadenas de caracteres. Este tipo es conocido como string aunque su clase verdadera es str.</p>
+            <p>Formalmente, un string es una secuencia <b>inmutable</b> de caracteres en formato Unicode.</p>
+            <p>Para crear un string, simplemente tienes que encerrar entre comillas simples <kbd>''</kbd> o dobles <kbd>""</kbd> una secuencia de caracteres.</p>
+            <p>Se puede usar indistintamente comillas simples o dobles, con una particularidad. Si en la cadena de caracteres se necesita usar una comilla simple, tienes dos opciones: usar comillas dobles para encerrar el string, o bien, usar comillas simples pero anteponer el carácter <kbd>\</kbd> a la comilla simple del interior de la cadena. El caso contrario es similar.</p>
+            <p>Veamos todo esto con un ejemplo:</p>
             <code>
                 <pre class="lime lighten-5">
-                    >>> a = b = c = 1  # Inicializa a, b y c con el valor 1
-                    >>> print(a)
-                    1
-                    >>> print(b)
-                    1
-                    >>> print(c)
-                    1</pre>
+                    >>> hola = 'Hola "Pythonista"'
+                    >>> hola_2 = 'Hola \'Pythonista\''
+                    >>> hola_3 = "Hola 'Pythonista'"
+
+                    >>> print(hola)
+                    Hola "Pythonista"
+
+                    >>> print(hola_2)
+                    Hola 'Pythonista'
+
+                    >>> print(hola_3)
+                    Hola 'Pythonista'</pre>
+            </code>
+            <p>A diferencia de otros lenguajes, en Python no existe el tipo «carácter». No obstante, se puede simular con un string de un solo carácter:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    >>> caracter_a = 'a'
+                    >>> print(caracter_a)
+                    a</pre>
             </code>
 
 
 
-            <h4 id="asigMul">Asignar múltiples valores a múltiples variables</h4>
-            <p>También es posible inicializar varias variables con un valor diferente cada una del siguiente modo:</p>
+            <h4 id="otr">Otros tipos</h4>
+            <p>Hasta aquí hemos repasado los tipos de datos básicos de Python, sin embargo, el lenguaje ofrece muchos tipos más. Te hago aquí un avance de los más importantes, aunque los veremos en detalle en otros tutoriales.</p>
+            <p>Además de los tipos básicos, otros tipos fundamentales de Python son las secuencias (<kbd>list</kbd> y <kbd>tuple</kbd>), los conjuntos (<kbd>set</kbd>) y los mapas (<kbd>dict</kbd>).</p>
+            <p>Todos ellos son tipos compuestos y se utilizan para agrupar juntos varios valores.</p>
+            <ul class="browser-default">
+                <li>Las listas son secuencias mutables de valores.</li>
+                <li>Las tuplas son secuencias inmutables de valores.</li>
+                <li>Los conjuntos se utilizan para representar conjuntos únicos de elementos, es decir, en un conjunto no pueden existir dos objetos iguales.</li>
+                <li>Los diccionarios son tipos especiales de contenedores en los que se puede acceder a sus elementos a partir de una clave única.</li>
+            </ul>
+
             <code>
                 <pre class="lime lighten-5">
-                    >>> a, b, c = 1, 2, 3
-                    >>> print(a)
-                    1
-                    >>> print(b)
-                    2
-                    >>> print(c)
-                    3</pre>
+                    >>> lista = [1, 2, 3, 8, 9]
+                    >>> tupla = (1, 4, 8, 0, 5)
+                    >>> conjunto = set([1, 3, 1, 4])
+                    >>> diccionario = {'a': 1, 'b': 3, 'z': 8}
+                    >>> print(lista)
+                    [1, 2, 3, 8, 9]
+                    >>> print(tupla)
+                    (1, 4, 8, 0, 5)
+                    >>> print(conjunto)
+                    {1, 3, 4}
+                    >>> print(diccionario)
+                    {'a': 1, 'b': 3, 'z': 8}</pre>
             </code>
-            <p>No obstante, te desaconsejo que lo hagas así porque el código es menos legible.</p>
 
 
 
-            <h4 id="var">Variables y memoria</h4>
-            <p>Finalmente, para terminar esta sección, quiero que te quede realmente claro qué es esto de una variable y cómo asigna Python las direcciones de memoria a los datos y a las variables.</p>
-            <p>Para empezar, te diré que <b>en Python todo es un objeto</b>. Sí, todavía no hemos visto el apartado de programación orientada a objetos con Python, pero ten presente que en Python todo es un objeto.</p>
-            <p>Entonces, ¿qué ocurre cuando a la variable a le asigno el valor 1?</p>
+            <h4 id="conoc">Conocer el tipo de una variable</h4>
+            <p>Ahora te voy a presentar dos funciones para que puedas jugar con todo lo que hemos visto en este tutorial. Son <kbd>type()</kbd> e <kbd>isinstance()</kbd>:</p>
+            <ul class="browser-default">
+                <li><kbd>type()</kbd> recibe como parámetro un objeto y te devuelve el tipo del mismo.</li>
+                <li><kbd>isinstance()</kbd> recibe dos parámetros: un objeto y un tipo. Devuelve <kbd>True</kbd> si el objeto es del tipo que se pasa como parámetro y <kbd>False</kbd> en caso contrario.</li>
+            </ul>
             <code>
                 <pre class="lime lighten-5">
-                    a = 1</pre>
+                    >>> type(3)
+                    &lt;class 'int'&gt;
+                    >>> type(2.78)
+                    &lt;class 'float'&gt;
+                    >>> type('Hola')
+                    &lt;class 'str'&gt;
+                    >>> isinstance(3, float)
+                    False
+                    >>> isinstance(3, int)
+                    True
+                    >>> isinstance(3, bool)
+                    False
+                    >>> isinstance(False, bool)
+                    True</pre>
             </code>
             
-            <p>Realmente, la variable <kbd>a</kbd> hace referencia al objeto que representa al número entero con valor <kbd>1</kbd>. Si ahora creas una nueva variable <kbd>b</kbd> y le asignas también el valor <kbd>1</kbd>, <kbd>b</kbd> está haciendo referencia al mismo objeto que la variable <kbd>a</kbd>. En definitiva, <kbd>a</kbd> y <kbd>b</kbd> hacen referencia al mismo objeto y, por tanto, están asociadas a la misma dirección de memoria. Esto no es así en otros lenguajes, en otros lenguajes <kbd>a</kbd> y <kbd>b</kbd> estarían asociadas a direcciones de memoria diferentes.</p>
-            <p>Para que lo entiendas mejor te voy a presentar la función id() que viene con Python. La función id() devuelve un identificador único del objeto que se le pasa como parámetro. Este identificador es un entero el cuál se garantiza que es único e inmutable durante toda la vida del objeto en memoria.</p>
-            <p>En la implementación de Python CPython (la más común), este identificador es realmente la dirección en memoria del objeto.</p>
-            <p>Veamos todo lo anterior con un ejemplo:</p>
+
+
+            <h4 id="conv">Conversión de tipos</h4>
+            <p>Lo último que veremos en este tutorial sobre tipos de datos es la conversión de tipos.</p>
+            <p>¿Esto qué significa?</p>
+            <p>Imagina que tienes una variable <kbd>edad</kbd> de tipo string cuyo valor es <kbd>'25'</kbd>. Se podría decir que <kbd>edad</kbd>, aunque realmente es una cadena de caracteres, contiene un número. Sin embargo, si intentas sumar 10 a <kbd>edad</kbd>, el intérprete te dará un error porque edad es de tipo <kbd>str</kbd> y 10 un tipo numérico.</p>
             <code>
                 <pre class="lime lighten-5">
-                    # a y b hacen referencia al objeto que representa al entero 1
-                    # Referencian a la misma dirección de memoria
-                    >>> a = 1
-                    >>> b = 1
-                    >>> id(1)
-                    4299329328
-                    >>> id(a)
-                    4299329328
-                    >>> id(b)
-                    4299329328
+                    >>> edad = '25'
+                    >>> edad = edad + 10
+                    Traceback (most recent call last):
+                        File "&lt;input&gt;", line 1, in &lt;module&gt;
+                    TypeError: can only concatenate str (not "int") to str</pre>
+            </code>
+            <p>¿Cómo puedo tratar la variable edad como un número? Convirtiéndola a un tipo numérico, por ejemplo, al tipo <kbd>int</kbd>.</p>
+            <p>Para ello, Python ofrece las siguientes funciones:</p>
+            <ul class="browser-default">
+                <li><kbd>str()</kbd>: Devuelve la representación en cadena de caracteres del objeto que se pasa como parámetro.</li>
+                <li><kbd>int()</kbd>: Devuelve un <kbd>int</kbd> a partir de un número o secuencia de caracteres.</li>
+                <li><kbd>float()</kbd>: Devuelve un <kbd>float</kbd> a partir de un número o secuencia de caracteres.</li>
+                <li><kbd>complex()</kbd>: Devuelve un <kbd>complex</kbd> a partir de un número o secuencia de caracteres.</li>
+            </ul>
+            <p>Si a las funciones anteriores se les pasa como parámetro un valor inválido, el intérprete mostrará un error.</p>
+            <code>
+                <pre class="lime lighten-5">
+                    >>> edad = int(edad) + 10  # Convierte edad a int
+                    >>> edad  #  edad es un int
+                    35
 
-                    # b es asignado con el objeto que representa el entero 2
-                    # a y b referencian a diferentes direcciones de memoria
-                    # a mantiene la referencia al entero 1
-                    >>> b = 2
-                    >>> id(a)
-                    4299329328
-                    >>> id(b)
-                    4299329360
+                    >>> edad = str(edad)  # Convierte edad a str
+                    >>> edad  # edad es un str (se muestran las '')
+                    '35'
 
-                    # a es asignada con el valor de b
-                    # a y b referencian al mismo objeto y, por tanto,
-                    # a la misma dirección de memoria
-                    >>> a = b
-                    >>> id(a)
-                    4299329360
-                    >>> a
-                    2</pre>
+                    >>> float('18.66')  # Convierte un str a float
+                    18.66
+
+                    >>> float('hola')  # Convierte un str a float (pero no es válido)
+                    Traceback (most recent call last):
+                        File "&lt;input&gt;", line 1, in &lt;module&gt;
+                    ValueError: could not convert string to float: 'hola'</pre>
             </code>
 
         </div>
