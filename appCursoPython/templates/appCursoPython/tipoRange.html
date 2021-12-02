@@ -1,0 +1,150 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+<!--Titulo de la pagina-->
+{% block title %}
+    Tipo Range
+{% endblock %}
+
+<!--Contenido de la pagina-->
+{% block content %}
+<div class="principal">
+    <div class="row">
+        <div class="col s3">
+            <div class="row">
+                <div class="col s12">
+                    <br/><br/><br><br>
+                  <h5><center>Contenido</center></h5>
+                  <div class="card-panel yellow lighten-2">
+                    <ul class="browser-default">
+                        <li><a href="#classRange" class="grey-text text-darken-4">La clase range en Python</a></li>
+                        <li><a href="#RecorrerSecu" class="grey-text text-darken-4">Recorrer una sentencia numerica</a></li>
+                        <li><a href="#Vent" class="grey-text text-darken-4">Ventajas de usar range en Python</a></li>
+                        <li><a href="#Op" class="grey-text text-darken-4">Operaciones de la clase range</a></li>
+
+                    </ul>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col s9">
+            <h2><center>range python – El tipo range en Python: Secuencias numéricas</center></h2>
+            <p>range en Python es un tipo que se utiliza para representar una secuencia inmutable de números.
+                Uno de sus principales usos es junto a la sentencia for,
+                para definir un bucle sobre el que se itera un número determinado de veces.</p>
+            <p>Descubre en este tutorial la clase range y sus principales usos y operaciones.</p>
+
+            <h4 id="classRange">La clase range en Python</h4>
+            <p>Como te adelantaba en la introducción, range es un tipo de dato que representa una secuencia de números inmutable.</p>
+            <p>Para crear un objeto de tipo <kbd>range</kbd>, se pueden usar dos constructores :</p>
+            <ul class="browser-default collection">
+                <li class="collection-item"><kbd>range(fin)</kbd>: Crea una secuencia numérica que va desde <kbd>0</kbd> hasta <kbd>fin - 1</kbd>.</li>
+                <li class="collection-item"><kbd>range(inicio, fin, [paso])</kbd>: Crea una secuencia numérica que va desde <kbd>inicio</kbd> hasta <kbd>fin - 1</kbd>. Si además se indica el parámetro <kbd>paso</kbd>, la secuencia genera los números de <kbd>paso</kbd> en <kbd>paso</kbd>.</li>
+            </ul>
+            <p>Veamoslo con un ejemplo:</p>
+            <code>
+                <pre class="lime lighten-5">
+    >>> list(range(10))
+    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    >>> list(range(5, 10))
+    [5, 6, 7, 8, 9]
+    >>> list(range(0, 10, 3))
+    [0, 3, 6, 9]
+    >>> list(range(0, -10, -1))
+    [0, -1, -2, -3, -4, -5, -6, -7, -8, -9]
+    >>> list(range(5, -5, -2))
+    [5, 3, 1, -1, -3]
+                </pre>
+            </code>
+
+            <p>¿Por qué estoy utilizando en los ejemplos la clase <kbd>range</kbd> como argumento de <kbd>list</kbd>? <kbd>range</kbd>,
+                además de un tipo <em>secuencial</em> es un tipo <em>iterable</em> con una particularidad: a diferencia de los tipos
+                <a href="#">list</a> o <a href="#">tuple</a>,
+                <kbd>range</kbd> <strong>calcula los ítems al vuelo, cuando los necesita</strong>. Como <em>list</em> acepta un objeto
+                <em>iterable</em> como parámetro, por eso paso un objeto <em>range</em> al constructor de <em>list</em>, para que se
+                muestre por pantalla la secuencia completa que se genera con <em>range</em>.</p>
+
+            <p class="card-panel yellow lighten-2">
+                <span class="orange-text accent-4-text text-darken-2">
+                <strong>NOTA: </strong> Si se llama al constructor <kbd>range()</kbd> con parámetros incorrectos, se obtendrá un objeto vacío.
+                </span>
+            </p>
+
+            <code>
+                <pre class="lime lighten-5">
+    # Nunca se puede ir de 0 a 10 de -1 en -1
+
+    >>> list(range(0, 10, -1))
+    []
+
+                </pre>
+            </code>
+
+            <h4 id="RecorrerSecu">Recorrer una secuencia numerica</h4>
+            <p>
+                En la introducción te adelanté que uno de los principales usos de <kbd>range()</kbd> es utilizarlo en bucles <kbd>for</kbd>.
+                Aquí puedes ver todos los detalles del uso de
+                <a href="#">for y range en Python</a>.
+            </p>
+            <code>
+                <pre class="lime lighten-5">
+    >>> for i in range(1, 11):
+    ...     print(i)
+    ...
+    1
+    2
+    3
+    4
+    5
+    6
+    7
+    8
+    9
+    10
+                </pre>
+            </code>
+
+            <h4 id="Vent">Ventajas de usar range en Python</h4>
+            <p>La principal ventaja de usar <em>range</em> sobre <em>list</em> o <em>tuple</em> es que es un iterable que genera
+                los elementos solo en el momento en que realmente los necesita. Esto implica que usa una cantidad de memoria mínima,
+                por muy grande que sea el rango de números que represente.</p>
+
+            <p>Veamos una comparación de una lista que almacena los números del 0 al 100.000 y un rango del 0 al 100.000:</p>
+            <code>
+                <pre class="lime lighten-5">
+    >>> import sys
+    >>> lista = list(range(0, 100000))
+    >>> rango = range(0, 100000)
+    >>> sys.getsizeof(lista)
+    900120
+    >>> sys.getsizeof(rango)
+    48
+                </pre>
+            </code>
+
+            <h4 id="Op">Operaciones de la clase range</h4>
+            <p>Al tratarse de un tipo secuencial, <em>range</em> implementa las operaciones básicas de ese tipo a excepción de la concatenación y la repetición:</p>
+
+            <code>
+                <pre class="lime lighten-5">
+    >>> r = range(0,30, 3)
+    >>> r[2]
+    6
+    >>> r[-1]
+    27
+    >>> 13 in r
+    False
+    >>> 12 in r
+    True
+    >>> r.index(18)
+    6
+                </pre>
+            </code>
+
+            <p>Bueno, pues con esto, hemos llegado al final de este tutorial. Recuerda, usa la clase <em>range</em>
+                para generar secuencias de números, especialmente si las necesitas en un bucle <em>for</em>.</p>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

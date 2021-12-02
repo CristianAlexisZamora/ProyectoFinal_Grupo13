@@ -54,3 +54,14 @@ def introduccion(request):
 #Vista creada para el tutorial de variables
 def variables(request):
     return render(request, "appcursoPython/variables.html")
+#Modulo 3
+
+# Vista creada para el tutorial de tipoRange
+def tipoRange(request):
+    return render(request, "appCursoPython/tipoRange.html")
+# Vista creada para el tutorial de tipoSet
+def tipoSet(request):
+    return render(request, "appCursoPython/tipoSet.html")
+# Vista creada para el tutorial de tipoDict
+def tipoDict(request):
+    return render(request, "appCursoPython/tipoDict.html")

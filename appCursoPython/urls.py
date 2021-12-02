@@ -18,4 +18,7 @@ urlpatterns = [
     path('practica/<int:modulo>', views.practicapage),
     path('introduccion/', views.introduccion, name="Introduccion"),
     path('variables/', views.variables, name="Variables"),
+    path('tipoRange/', views.tipoRange, name="TipoRange"),
+    path('tipoSet/', views.tipoSet, name="TipoSet"),
+    path('tipoDict/', views.tipoDict, name="TipoDict"),
 ]
