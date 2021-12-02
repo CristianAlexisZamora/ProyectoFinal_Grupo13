@@ -3,13 +3,13 @@
 
 <!--Titulo de la pagina-->
 {% block title %}
-    Libros
+    Libros y más
 {% endblock %}
 
 <!--Contenido de la pagina-->
 {% block content %}
 <div class="container">
-    <h2>Recursos de texto disponibles</h2>
+    <center><h2>Recursos de texto disponibles</h2></center>
     <div class="row">
         <div class="col s7">
 
@@ -17,57 +17,49 @@
             <p class="flow-text">Modulo #1</p>
             <ul class="collection">
                 <li class="collection-item avatar">
-                  <img src="images/yuna.jpg" alt="" class="circle">
-                  <span class="title">Title</span>
-                  <p>First Line <br>
-                     Second Line
+                  <img src="{% static 'media/libros/img/introduccion_al_lenguaje_python.png' %}" alt="" class="circle">
+                  <span class="title"><b>Introducci&oacute;n al lenguaje Python</b></span>
+                  <p>Autora: Eugenia Bahit<br>
+                    Introducción a la programación en lenguaje Python híbrido.
                   </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                  <a href="/static/media/libros/documentos/01IntroduccionAlLenguajePython_Ed2018.pdf" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a>
                 </li>
                 <li class="collection-item avatar">
-                  <i class="material-icons circle">folder</i>
-                  <span class="title">Title</span>
-                  <p>First Line <br>
-                     Second Line
+                  <img src="{% static 'media/libros/img/Python_y_variables.jpg' %}" alt="" class="circle">
+                  <span class="title"><b>Python y Variables</b></span>
+                  <p>Autor: Rodrigo Toro Icarte<br>
+                    Introducción a la programación en python.
                   </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                  <a href="/static/media/libros/documentos/01Python_y_variables.pdf" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a>
                 </li>
                 <li class="collection-item avatar">
-                  <i class="material-icons circle green">insert_chart</i>
-                  <span class="title">Title</span>
-                  <p>First Line <br>
-                     Second Line
+                  <img src="{% static 'media/libros/img/instalacion.jpg' %}" alt="" class="circle">
+                  <span class="title"><b>Instalar Python</b></span>
+                  <p>Autor: Rodrigo Toro Icarte<br>
+                    Introducción a la programación en python.
                   </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                  <a href="/static/media/libros/documentos/01instalar_python.pdf" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a>
                 </li>
               </ul>
 
               <!--Modulo #2-->
               <p class="flow-text">Modulo #2</p>
-            <ul class="collection">
+              <ul class="collection">
                 <li class="collection-item avatar">
-                  <img src="images/yuna.jpg" alt="" class="circle">
-                  <span class="title">Title</span>
-                  <p>First Line <br>
-                     Second Line
+                  <img src="{% static 'media/libros/img/funciones.jpg' %}" alt="" class="circle">
+                  <span class="title"><b>Funciones y condicionales en Python</b></span>
+                  <p>Autor: Alfredo S&aacute;nchez S&aacute;nchez<br>
+                    Elementos de control.
                   </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                  <a href="/static/media/libros/documentos/02Condicionales_y_bucles.pdf" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a>
                 </li>
                 <li class="collection-item avatar">
-                  <i class="material-icons circle">folder</i>
-                  <span class="title">Title</span>
-                  <p>First Line <br>
-                     Second Line
+                  <img src="{% static 'media/libros/img/condicionales_y_bucles.jpg' %}" alt="" class="circle">
+                  <span class="title"><b>Condicionales y Bucles en Python</b></span>
+                  <p>Autor: Rodrigo Toro Icarte<br>
+                    Introducción a la programación en python.
                   </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                </li>
-                <li class="collection-item avatar">
-                  <i class="material-icons circle green">insert_chart</i>
-                  <span class="title">Title</span>
-                  <p>First Line <br>
-                     Second Line
-                  </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                  <a href="/static/media/libros/documentos/02Funciones.pdf" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a>
                 </li>
               </ul>
 
@@ -75,28 +67,20 @@
               <p class="flow-text">Modulo #3</p>
               <ul class="collection">
                 <li class="collection-item avatar">
-                  <img src="images/yuna.jpg" alt="" class="circle">
-                  <span class="title">Title</span>
-                  <p>First Line <br>
-                     Second Line
+                  <img src="{% static 'media/libros/img/listas.jpg' %}" alt="" class="circle">
+                  <span class="title"><b>Listas en Python</b></span>
+                  <p>Autor: Rodrigo Toro Icarte<br>
+                    Introducción a la programación en python.
                   </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                  <a href="/static/media/libros/documentos/03Listas.pdf" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a>
                 </li>
                 <li class="collection-item avatar">
-                  <i class="material-icons circle">folder</i>
-                  <span class="title">Title</span>
-                  <p>First Line <br>
-                     Second Line
+                  <img src="{% static 'media/libros/img/Tuplas.jpg' %}" alt="" class="circle">
+                  <span class="title"><b>Listas, Tuplas y Diccionarios en Python</b></span>
+                  <p>Autor: Alfredo S&aacute;nchez S&aacute;nchez<br>
+                    Python un lenguaje de programación muy completo.
                   </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                </li>
-                <li class="collection-item avatar">
-                  <i class="material-icons circle green">insert_chart</i>
-                  <span class="title">Title</span>
-                  <p>First Line <br>
-                     Second Line
-                  </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                  <a href="/static/media/libros/documentos/03Tuplas.pdf" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a>
                 </li>
               </ul>
 
@@ -104,28 +88,12 @@
               <p class="flow-text">Modulo #4</p>
               <ul class="collection">
                 <li class="collection-item avatar">
-                  <img src="images/yuna.jpg" alt="" class="circle">
-                  <span class="title">Title</span>
-                  <p>First Line <br>
-                     Second Line
+                  <img src="{% static 'media/libros/img/poo.jpg' %}" alt="" class="circle">
+                  <span class="title"><b>Programación Orientada a Objetos</b></span>
+                  <p>Autor: Rodrigo Toro Icarte<br>
+                    Introducción a la programación en python.
                   </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                </li>
-                <li class="collection-item avatar">
-                  <i class="material-icons circle">folder</i>
-                  <span class="title">Title</span>
-                  <p>First Line <br>
-                     Second Line
-                  </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                </li>
-                <li class="collection-item avatar">
-                  <i class="material-icons circle green">insert_chart</i>
-                  <span class="title">Title</span>
-                  <p>First Line <br>
-                     Second Line
-                  </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                  <a href="/static/media/libros/documentos/04POO.pdf" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a>
                 </li>
               </ul>
 
@@ -133,28 +101,14 @@
               <p class="flow-text">Framework Django</p>
               <ul class="collection">
                 <li class="collection-item avatar">
-                  <img src="images/yuna.jpg" alt="" class="circle">
-                  <span class="title">Title</span>
-                  <p>First Line <br>
-                     Second Line
+                  <img src="{% static 'media/libros/img/Django.jpg' %}" alt="" class="circle">
+                  <span class="title"><b>Aprendiza Django</b></span>
+                  <p>Autor: Stack Overflow contributors<br>
+                    Es un libro electrónico de Django no oficial y gratuito creado con fines educativos. Todo el contenido es
+                    extraído de Stack Overflow Documentation, que está escrito por muchas personas trabajadoras en
+                    Desbordamiento de pila. No está afiliado a Stack Overflow ni a Django oficial.
                   </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                </li>
-                <li class="collection-item avatar">
-                  <i class="material-icons circle">folder</i>
-                  <span class="title">Title</span>
-                  <p>First Line <br>
-                     Second Line
-                  </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-                </li>
-                <li class="collection-item avatar">
-                  <i class="material-icons circle green">insert_chart</i>
-                  <span class="title">Title</span>
-                  <p>First Line <br>
-                     Second Line
-                  </p>
-                  <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+                  <a href="/static/media/libros/documentos/05Django.pdf" class="secondary-content blue-text text-darken-4"><i class="material-icons">launch</i></a>
                 </li>
               </ul>
         </div>
@@ -169,10 +123,10 @@
                       <span class="card-title">Pythonico</span>
                     </div>
                     <div class="card-content">
-                      <p class="">Encontraras muchos personas que inician con este lenguaje de programación tan maravillosa, además, encontraras documentos, libros, codigo y mucho mas.</p>
+                      <p class="">Encontraras muchos personas que inician con este lenguaje de programación tan genial, además, encontraras documentos, libros, c&oacute;digo y mucho m&aacute;s.</p>
                     </div>
                     <div class="card-action">
-                      <a href="#">Visitar</a>
+                      <a href="https://discord.gg/zQ2vpJRUUa">Unirme a la comunidad</a>
                     </div>
                   </div>
                 </div>
