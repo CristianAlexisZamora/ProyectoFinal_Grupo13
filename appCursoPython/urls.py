@@ -11,6 +11,7 @@ urlpatterns = [
     path('tutorial04/', views.cursoDjango04, name="FrameworkDjango04"),
     path('libros/', views.listado_libros, name="Libros"),
     path('videosComplementarios/', views.videosComplementarios, name="VideosComplementarios"),
+    path('comunidad/', views.comunidad, name="comunidad"),
     path('operadores/', views.operadores, name="Operadores"),
     path('sentenciaIf/', views.sentenciaIf, name="SentenciaIf"),
     path('bucleWhile/', views.bucleWhile, name="BucleWhile"),
