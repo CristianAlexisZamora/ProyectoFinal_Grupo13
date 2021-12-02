@@ -1,0 +1,78 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+<!--Titulo de la pagina-->
+{% block title %}
+    Práctica
+{% endblock %}
+
+<!--Contenido de la pagina-->
+{% block content %}
+<div class="container">
+    <h1>{{tema}}</h1>
+    <div class="col s12 m7">
+      <h3 class="header">Practica #1</h3>
+      <div class="card horizontal">
+        <div class="card-stacked">
+          <div class="card-content">
+            <p>{{pregunta1}}</p>
+          </div>
+          <div class="card-action">
+            <div class="row">
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input placeholder="Respuesta" id="pregunta1" type="text" class="validate">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="header">Practica #2</h3>
+      <div class="card horizontal">
+        <div class="card-stacked">
+          <div class="card-content">
+            <p>{{pregunta2}}</p>
+          </div>
+          <div class="card-action">
+            <div class="row">
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input placeholder="Respuesta" id="pregunta1" type="text" class="validate">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h3 class="header">Practica #3</h3>
+      <div class="card horizontal">
+        <div class="card-stacked">
+          <div class="card-content">
+            <p>{{pregunta3}}</p>
+          </div>
+          <div class="card-action">
+            <div class="row">
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input placeholder="Respuesta" id="pregunta1" type="text" class="validate">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="btn waves-effect waves-light" type="button">Enviar</button>
+</div>
+<br>
+<br>
+{% endblock %}
+
+
