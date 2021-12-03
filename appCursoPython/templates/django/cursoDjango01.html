@@ -72,12 +72,12 @@
                 las opciones específicas de Django y las configuraciones específicas de la aplicación.
             </p>
             <p>Desde la línea de comando, cd a un directorio donde le gustaria almacenar su código, luego ejecute el siguiente comando:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 django-admin startproject mysite
             </pre>
             <p>Esto creará mysite en su directorio actual. Si no funcionó, consulte <a href="https://docs.djangoproject.com/en/3.2/faq/troubleshooting/#troubleshooting-django-admin" target="blank">Problemas al ejecutar django-admin</a>.</p>
             <p>Veamos lo que <a href="https://docs.djangoproject.com/en/3.2/ref/django-admin/#django-admin-startproject" target="blank">startproject</a> creó:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 mysite/
                     manage.py
                     mysite/
@@ -101,9 +101,9 @@
             </ul>
             <h4 id="servidor">El servidor de desarrollo</h4>
             <p>Verifiquemos que su proyecto Django funciona. Cambie al mysitedirectorio externo , si aún no lo ha hecho, y ejecute los siguientes comandos:</p>
-            <pre>python manage.py runserver</pre>
+            <pre class="lime lighten-5">python manage.py runserver</pre>
             <p>Verá el siguiente resultado en la línea de comando:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 Realización de comprobaciones del sistema ...
                 La verificación del sistema no identificó problemas (0 silenciados).
                 Tiene migraciones sin aplicar; es posible que su aplicación no funcione correctamente hasta que se apliquen.
@@ -130,9 +130,9 @@
             </div>
             <p>Sus aplicaciones pueden vivir en cualquier lugar de su ruta de Python. En este tutorial, crearemos nuestra aplicación de encuesta en el mismo directorio que su archivo <b>manage.py</b> para que se pueda importar como su propio módulo de nivel superior, en lugar de un submódulo de mysite.</p>
             <p>Para crear su aplicación, asegúrese de estar en el mismo directorio <b>manage.py</b> y escriba este comando:</p>
-            <pre>python manage.py startapp polls</pre>
+            <pre class="lime lighten-5">python manage.py startapp polls</pre>
             <p>Eso creará un directorio <b>polls</b>, que se presenta así:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 polls/
                     __init__.py
                     admin.py
@@ -154,7 +154,7 @@
             </pre>
             <p>Esta es la vista más simple posible en Django. Para llamar a la vista, necesitamos mapearla a una URL, y para esto necesitamos una URLconf.</p>
             <p>Para crear una URLconf en el directorio de encuestas, cree un archivo llamado <b>urls.py</b>. El directorio de su aplicación ahora deberia verse así:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 polls/
                     __init__.py 
                     admin.py 
@@ -167,7 +167,7 @@
                     views.py 
             </pre>
             <p>En el archivo <b>polls/urls.py</b> incluya el siguiente código:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 from django.urls import path
 
                 from . import views
@@ -177,7 +177,7 @@
                 ]
             </pre>
             <p>El siguiente paso es apuntar la URLconf raíz al polls.urls módulo. En <b>mysite/urls.py</b> agregue una importación para <b>django.urls.include</b> e inserte una <b>include()</b> en la <b>urlpatterns</b> lista, para que tenga:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 from django.contrib import admin
                 from django.urls import include, path
 
@@ -188,7 +188,7 @@
             </pre>
             <p>La función <b>include()</b> permite hacer referencia a otras UTLconfs. Siempre que se encuentra Django <b>include()</b>, corta cualquier parte de la URL que coincida hasta ese punto y envía la cadena restante a la URLconf incluida para su posterior procesamiento.</p>
             <p>Ahora ha conectado una vista index a la URLconf. Verifique que esté funcionando con el siguiente comando:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 python manage.py runserver
             </pre>
             <p>A la función <b>path()</b> se le pasan cuatro argumentos, dos obligatorios: <b>route</b> y <b>view</b>, y dos opcionales: <b>kwargs</b> y <b>name</b>. En este punto, vale la pena revisar para qué sirven estos argumentos.</p>
@@ -224,7 +224,7 @@
             </ul>
             <p>Estas aplicaciones se incluyen de forma predeterminada como una conveniencia para el caso común.</p>
             <p>Sin embargo, algunas de estas aplicaciones utilizan al menos una tabla de base de datos, por lo que debemos crear las tablas en la base de datos antes de poder usarlas. Para hacer eso, ejecute el siguiente comando:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 python manage.py migrar
             </pre>
             <p>El <a href="https://docs.djangoproject.com/en/3.2/ref/django-admin/#django-admin-migrate" target="_blank" rel="noopener noreferrer">migrate</a> comando observa la <a href="https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-INSTALLED_APPS" target="_blank" rel="noopener noreferrer">INSTALLED_APPS</a> configuración y crea las tablas de base de datos necesarias de acuerdo con la configuración de la base de datos en su mysite/settings.pyarchivo y las migraciones de la base de datos enviadas con la aplicación (las cubriremos más adelante). Verá un mensaje para cada migración que aplique. Si está interesado, ejecute el cliente de línea de comandos para su base de datos y escriba \dt(PostgreSQL), (MariaDB, MySQL), (SQLite) u (Oracle) para mostrar las tablas que creó Django.SHOW TABLES;.schemaSELECT TABLE_NAME FROM USER_TABLES;</p>
@@ -243,7 +243,7 @@
             </div>
             <p>En nuestra aplicación de encuesta, crearemos dos modelos: <b>Question</b> y <b>Choice</b>. A <b>Question</b> tiene una pregunta y una fecha de publicación. Choice tiene dos campos: el texto de la elección y un recuento de votos. Cada Choice está asociado con un Question.</p>
             <p>Estos conceptos están representados por clases de Python. Edite el archivo polls/models.py para que se vea así:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 from django.db import models
 
                 classQuestion(models.Model):
@@ -270,7 +270,7 @@
             </ul>
             <p>Pero primero debemos decirle a nuestro proyecto que la aplicación <b>polls</b> está instalada.</p>
             <p>Para incluir la aplicación en nuestro proyecto, necesitamos agregar una referencia a su clase de configuración en <b>INSTALLED_APPS</b>. La clase<b>PollsConfig</b> está en el archivo<b>polls/apps.py</b>, por lo que su ruta de puntos es <b>'polls.apps.PollsConfig'</b>. Edite el archivo <b>mysite/settings.py</b> y agregue esa ruta de puntos a la configuración <b>INSTALLED_APPS</b>. Se verá asi:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 <b>INSTALLED_APPS</b> = [
                     'polls.apps.PollsConfig',
                     'django.contrib.admin',
@@ -282,11 +282,11 @@
                 ]
             </pre>
             <p>Ahora Django sabe incluir la aplicación <b>polls</b>. Ejecutemos otro comando:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 python manage.py makemigrations polls
             </pre>
             <p>Debería ver algo similar a lo siguiente:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 Migrations for 'polls':
                     polls/migrations/001_initial.py
                         - Create model Question
@@ -295,9 +295,9 @@
             <p>Al ejecutar <b>makemigrations</b>, le está diciendo a Django que ha realizado algunos cambios en sus modelos (en este caso, ha realizado otros nuevos) y que le gustaria que los cambios se almacenen como una migración.</p>
             <p>Las migraciones son la forma en que Django almacena los cambios en sus modelos (y, por lo tanto, en el esquema de su base de datos): son archivos en el disco. Puede leer la migración de su nuevo modelo si lo desea; es el archivo polls/migrations/0001_initial.py. No se preocupe, no se espera que los lea cada vez que Django crea uno, pero están diseñados para ser editables por humanos en caso de que desee modificar manualmente cómo Django cambia las cosas.</p>
             <p>Hay un comando que ejecutará las migraciones por usted y administrará el esquema de su base de datos automáticamente, que se llama <b><a href="https://docs.djangoproject.com/en/3.2/ref/django-admin/#django-admin-migrate" target="_blank" rel="noopener noreferrer">migrate</a></b> y lo veremos en un momento, pero primero, veamos qué SQL ejecutaría esa migración. El comando <b><a href="https://docs.djangoproject.com/en/3.2/ref/django-admin/#django-admin-sqlmigrate" target="_blank" rel="noopener noreferrer">sqlmigrate</a></b> toma los nombres de las migraciones y devuelve su SQL:</p>
-            <pre>python manage.py sqlmigrate polls 001</pre>
+            <pre class="lime lighten-5">python manage.py sqlmigrate polls 001</pre>
             <p>Debería ver algo similar a lo siguiente (lo hemos reformateado para facilitar la lectura):</p>
-            <pre>
+            <pre class="lime lighten-5">
                 <b>BEGIN</b>
                 --
                 -- Create model Question

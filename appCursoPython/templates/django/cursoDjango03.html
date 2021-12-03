@@ -55,7 +55,7 @@
             <p>Para pasar de una URL a una vista, Django usa lo que se conoce como 'URLconfs'. Una URLcong asigna patrones de URL a vistas.</p>
             <h4 id="escribiendo-mas-vistas">Escribiendo más vistas</h4>
             <p>Ahora agregaremos algunas vistas más a <b>polls/views.py</b>. Estos puntos de vista son ligeramente diferentes, porque toman un argumento:</p>
-            <pre>""
+            <pre class="lime lighten-5">""
                 def detail(request, question_id):
                     return HttpResponse("You're looking at question %s." % question_id)
 
@@ -67,7 +67,7 @@
                     return HttpResponse("You're voting on question %s." % question_id)
             </pre>
             <p>Conecte estas nuevas vistas al módulo <b>polls.urls</b> agregando las siguientes llamadas <b>path()</b>:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 from django.urls import path
 
                 from . import views
@@ -86,7 +86,7 @@
             <p>Eche un vistazo en su navegador, en “/ polls / 34 /”. Ejecutará el detail() método y mostrará cualquier ID que proporcione en la URL. Pruebe también con “/ polls / 34 / results /” y “/ polls / 34 / vote /”; estos mostrarán los resultados del marcador de posición y las páginas de votación.</p>
             <p>Cuando alguien solicita una página de su sitio web, digamos, "/polls/34/", Django cargará el módulo <b>mysite.urls</b> de Python porque está indicado por la configuración <b><a href="http://" target="_blank" rel="noopener noreferrer">ROOT_URLCONF</a></b>. Encuentra la variable nombrada <b>urlpatterns</b> y recorre los patrones en orden. Despues de encontrar la coincidencia en <b>'polls'</b>, quita el texto coincidente \
             <b>("polls/")</b> y envía el texto restante - <b>"34/"</b> - a la URLconf 'polls.urls' para su posterior procesamiento. Allí coincide '< int:question_id >/', lo que resulta en una llamada a la vista detail() así:            </p>
-            <pre>
+            <pre class="lime lighten-5">
                 detail(request=< HttpRequest object>, question_id=34)
             </pre>
             <p>La parte question_id=34 viene de < int:question_id >. El uso de corchetes angulares "captura" parte de la URL y la envía como un argumento de palabra clave a la función de visualización. La parte question_id de la cadena define el nombre que se utilizará para identificar el patrón coincidente, y la parte int es un convertidor que determina qué patrones deben coincidir con esta parte de la ruta URL. Los dos puntos ( :) separan el convertidor y el nombre del patrón.</p>
@@ -95,7 +95,7 @@
             <p>Su vista puede leer registros de una base de datos, o no. puede usar un sistema de plantillas como el de Django, o un sistema de plantillas de Python de terceros, o no. Puede generar un archivo PDF, generar XML, crear un archivo ZIP sobre la marcha, cualquier cosa que desee, utilizando las bibliotecas de Python que desee.</p>
             <p>Todo lo que Django quiere es eso HttpRespinse o una excepción.</p>
             <p>Por que es conveniente, usemos la propia API de base de datos de Django, que cubrimos en el <a href="/tutorial02/">tutorial 2</a>. Aquí hay una puñalada en una nueva vista <b>index()</b>, que muestra las últimas 5 preguntas de la encuesta en el sistema, separadas por comas, según la fecha de publicación.</p>
-            <pre>
+            <pre class="lime lighten-5">
                 from django.http import HttpResponse
 
                 from .models import Question
@@ -115,7 +115,7 @@
                 Dentro del directorio <b>templates</b> que acaba de crear, cree otro directorio llamadado <b>polls</b>, y dentro de ese cree un archivo llamado <b>index.html</b>. En otras palabras, su plantilla deberia estar en <b>polls/templates/polls/index.html</b>. Debido a cómo funciona el cargador de plantillas <b>app_directories</b> como se describe anteriormente, puede hacer referencia a esta plantilla dentro de Django como <b>polls/index.html.</b>
             </p>
             <p>Pon el siguiente código en esa plantilla:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 &#123;% if latest_question_list %&#125;
                     &lt;ul>
                     &#123;% for question in latest_question_list %&#125;
@@ -127,7 +127,7 @@
                 &#123;% endif %&#125;
             </pre>
             <p>Ahora actualice <b>index</b> para usar la plantilla <b>polls/views.py</b>:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 from django.http import HttpResponse
                 from django.template import loader
 
@@ -146,7 +146,7 @@
             <p>Cargue la página apuntando su navegador a "/polls/", y deberia ver una lista con viñetas que contiene la pregunta "¿Qué pasa?" Del tutorial 2. El enlace apunta a la página de detalles de la pregunta.</p>
             <h4 id="render">Un atajo: render()</h4>
             <p>Es un modismo muy común cargar una plantilla, llenar un contexto y devolver un objeto <b>HttpResponse</b> con el resultado de la plantilla renderizada. Django proporciona un atajo. Aquí está la vista completa <b>index()</b>, reescrita:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 from django.shortcuts import render
 
                 from .models import Question
@@ -162,7 +162,7 @@
             objeto HttpResponse de la plantilla renderizado con el contexto dado.</p>
             <h4 id="error-404">Generando un error 404</h4>
             <p>Ahora, abordaremos la vista de detalles de la pregunta: la página que muestra el texto de la pregunta para una encuesta determinada. Aquí está la vista:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 from django.http import Http404
                 from django.shortcuts import render
 
@@ -178,7 +178,7 @@
             <p>El nuevo concepto aqué: la vista genera la excepción <b><a href="https://docs.djangoproject.com/en/3.2/topics/http/views/#django.http.Http404" target="_blank" rel="noopener noreferrer">Http404</a></b> si no existe una pregunta con el ID solicitado.</p>
             <h4 id="get-object">Un atajo: get_object_or_404()</h4>
             <p>Es un modismo muy común de usar <b><a href="https://docs.djangoproject.com/en/3.2/ref/models/querysets/#django.db.models.query.QuerySet.get">get()</a></b> y aumentar <b>Http404</b> si el objeto no existe. Django proporciona un atajo. Aquí está la vista <b>detail()</b>, reescrita:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 from django.shortcuts import get_object_or_404, render
 
                 from .models import Question
@@ -190,7 +190,7 @@
             <p>La función <b><a href="https://docs.djangoproject.com/en/3.2/topics/http/shortcuts/#django.shortcuts.get_object_or_404" target="_blank" rel="noopener noreferrer">get_object_or_404()</a></b> toma un modelo de Django como primer argumento y un número arbitrario de argumentos de palabras clave, que pasa a la función <b>get()</b> del administrador del modelo. Aumenta <b>Http404</b> si el objeto no existe.</p>
             <h4 id="sistema-plantillas">Utilice el sistema de plantillas</h4>
             <p>Volver a la vista <b>detail()</b> de nuestra aplicación de encuesta. Dada la variable de contexto <b>question</b>, así es <b>polls/detail.html</b> como se vería la plantilla:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 &lt;h1>&#123;{ question.question_text }&#125;&lt;/h1>
                 &lt;ul>
                 &#123;% for choice in question.choice_set.all %&#125;
@@ -204,18 +204,18 @@
 
             <h4 id="delete-url">Eliminar URL codificadas en plantillas</h4>
             <p>Recuerde, cuando escribimos el enlace a una pregunta en la plantilla <b>polls/index.html</b>, el enlace estaba parcialmente codificado de esta manera:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 &lt;li>&lt;a href="/polls/&#123;{ questio.id }&#125;/"> &#123;{ question.question_text }&#125;&lt;/a>&lt;/li>
             </pre>
             <p>La forma en que esto funciona es buscando la definicion de URL como se especifica en el módulo polls.urls. Puede ver exactamente dónde se define el nombre de la URL de 'detalle' a continuación:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 ...
                 # the 'name' value as called by the &#123;% url %&#125; template tag
                 path('&lt;int:question_id>/', views.detail, name='detail'),
                 ...
             </pre>
             <p>Si desea cambiar la URL de la vista de detalles de las encuestas a otra cosa, tal vez a algo como en <b>polls/specifics/12/</b> en lugar de hacerlo en la plantilla, lo cambiaría en <b>polls/urls.py:</b></p>
-            <pre>
+            <pre class="lime lighten-5">
                 ...
                 # added the word 'specifics'
                 path('specifics/&lt;int:question_id>/', views.detail, name='detail'),
@@ -224,7 +224,7 @@
             <h4 id="nombre-url">Nombres de URL de espacio de nombres</h4>
             <p>El proyecto tutorial tiene una sola aplicación polls. En proyectos reales de Django, puede haber cindo, diez, veinte aplicaciones o más. ¿Cómo diferencia Django los nombres de URL entre ellos? Por ejemplo, la aplicación polls tiene una vista detail, al igual que una aplicación en el mismo proyecto que es para un blog. ¿Cómko se hace para que Django sepa qué vista de aplicación crear para una URL cuando se usa la etiqueta de plantilla? { % url % }</p>
             <p>La respuesta es agregar espacios de nombres a su URLconf. En el archivo <b>polls/urls.py</b>, continúe y agregue un <b>app_name</b> para configurar el espacio de nombres de la aplicación:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 from django.urls import path
 
                 from . import views
@@ -238,11 +238,11 @@
                 ]
             </pre>
             <p>Ahora cambie su plantilla <b>polls/index.html</b> de:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 &lt;li>&lt;a href="&#123;% url 'detail' question.id %&#125;">&#123;{ question.question_text }&#125;&lt;/a>&lt;/li>
             </pre>
             <p>Para apuntar a la vista detallada del espacio de nombres:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 &lt;li>&lt;a href="&#123;% url 'polls:detail' question.id %&#125;">&#123;{ question.question_text }&#125;&lt;/a>&lt;/li>
             </pre>
             <hr/>
