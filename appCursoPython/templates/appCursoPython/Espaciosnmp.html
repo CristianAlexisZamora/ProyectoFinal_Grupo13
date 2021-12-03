@@ -1,0 +1,310 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+<!--Titulo de la pagina-->
+{% block title %}
+    Espacios de nombres, modulos y paquetes en Python
+{% endblock %}
+
+<div class="principal">
+    <div class="row">
+        <div class="col s3">
+            <div class="row">
+                <div class="col s12">
+                    <br/><br/><br><br>
+                  <h5><center>Contenido</center></h5>
+                  <div class="card-panel yellow lighten-2">
+                    <ul class="browser-default">
+                        <li><a href="#Nombres" class="grey-text text-darken-4">Nombres y espacios de nombres en Python</a></li>
+                        <li><a href="#Ambvar" class="grey-text text-darken-4">Ámbito de una variable en Python</a></li>
+                        <li><a href="#Modpython" class="grey-text text-darken-4">Qué es un módulo en Python </a></li>
+                        <li><a href="#Impomod" class="grey-text text-darken-4">Cómo importar módulos en Python </a></li>
+                        <li><a href="#Ejecmod" class="grey-text text-darken-4">Ejecutar módulos como scripts </a></li>
+                        <li><a href="#Pythonmod" class="grey-text text-darken-4">Dónde y cómo busca Python los módulos </a></li>
+                        <li><a href="#dir" class="grey-text text-darken-4">La función dir() </a></li>
+                        <li><a href="#Paqpyth" class="grey-text text-darken-4">Paquetes en Python </a></li>
+                        <li><a href="#Impaque" class="grey-text text-darken-4">Importar definiciones de un paquete </a></li>                        
+
+                    </ul>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col s9">
+            <h2><center>Espacios de nombres, módulos y paquetes en Python</center></h2>
+            <p>Los módulos y paquetes en Python son la forma de organizar los scripts y programas a medida que estos crecen en número de líneas de código. Por otro lado, un espacio de nombres define los límites en que se puede utilizar un nombre o identificador determinado.</p>
+            <p>No importa si ahora mismo no sabes qué significan estos conceptos o no entiendes a qué me refiero. Lo descubrirás a lo largo de este tutorial. ¿Te lo vas a perder?</p>
+
+            <h4 id="Nombres">Nombres y espacios de nombres en Python</h4>
+            <strong>Nombres</strong>
+            <p>Lo primero que debes tener claro antes de profundizar en los conceptos de este tutorial es qué es un <i>nombre</i>.</p>
+            <p>Como ya se te ha señalado en varias ocasiones a lo largo de los diferentes tutoriales, <b>en Python todo es un objeto</b>. El <i>número 2</i> es un objeto, el texto ‘Hola mundo’ es un objeto, las funciones son objetos, … Pues bien, <b>un nombre o identificador es la forma que existe en Python de referenciar a un objeto concreto. Equivaldría al concepto de variable</b>. En definitiva, una variable no es más que el nombre con el que nos referimos a un objeto que existe en memoria.</p>
+
+            <strong>Espacios de nombres</strong>
+            <p>Una vez aclarado este término, paso a explicarte qué son los <i>espacios de nombres</i> en Python. <b>Un espacio de nombres es una colección aislada de nombres (o identificadores) que referencian a objetos</b>. Como veremos a continuación, en un mismo script o programa Python pueden coexistir varios espacios de nombres a la vez.</p>
+            <p>Cuando accedemos a un intérprete de Python o ejecutamos un programa, <b>todos los identificadores que define el lenguaje son añadidos a un espacio de nombres al que es posible acceder desde cualquier punto de un script</b>. Es por esto que las funciones como print() o len() están siempre accesibles. Este espacio de nombres es conocido como <i>espacio de nombres incorporado (o built-in namespace)</i></p>
+            <p>Además, <b>cada módulo en Python crea su propio espacio de nombres global.</b> Como te decía, los espacios de nombres están aislados. Esa es la razón por la que en diferentes módulos se pueden usar los mismos nombres y estos no interfieren entre sí.</p>
+            <p>A su vez, en un módulo existen funciones y clases. <b>Cuando se invoca a una función se crea un espacio de nombres local asociado a dicha función que contiene todos los nombres definidos dentro de la misma</b> (sucede algo similar para las clases).</p>
+
+            <img src="https://j2logo.com/wp-content/uploads/espacios-de-nombres-en-python.png" width="500" height="350"></img>
+
+            <h4 id="Ambvar">Ámbito de una variable en Python</h4>
+            <p>Un ámbito define los límites de un programa en los que un espacio de nombres puede ser accedido sin utilizar un prefijo.</p>
+            <p></p>
+            <ul class="browser-default">
+                <li><a class="grey-text text-darken-4">Ámbito de la función actual, que tiene los nombres locales a la función.</a></li>
+                <li><a class="grey-text text-darken-4">Ámbito a nivel de módulo, que tiene los nombres globales, los que se definen en el propio módulo.</a></li>
+                <li><a class="grey-text text-darken-4">Ámbito incorporado, el más externo, que tiene los nombres que define Python. </a></li>                                      
+            </ul>
+            <p>Cuando desde dentro de una función se hace referencia a un nombre, este se busca en primer lugar en el espacio de nombres local, luego en el espacio de nombres global y finalmente en el espacio de nombres incorporado.</p>
+            <p>Si hay una función dentro de otra función, se anida un nuevo ámbito dentro del ámbito local.</p>
+            <strong>local, nonlocal y global en Python</strong>
+            <p>Veamos mejor los conceptos anteriores con unos ejemplos:</p>
+            <code>
+                <pre>
+                    def funcion_a():
+                    y = 2
+                    def funcion_b():
+                    z = 3
+                    print(z)
+
+                    funcion_b()
+                    print(y)
+
+                    x = 1
+                    funcion_a()
+                    print(x)
+                </pre>
+            </code>
+
+            <p>En el programa de arriba tenemos una variable x que está definida en el espacio de nombres global, una variable y definida en el espacio de nombres local de la función funcion_a y una variable z que está definida en el espacio de nombres local de la función funcion_b.</p>
+            <p>Imagina por un momento que estamos dentro de la función funcion_b. La variable z es local para nosotros (está en el ámbito local), y es no local y x es global. Esto quiere decir que podemos acceder y modificar la variable z pero solo podemos consultar el valor de x e y puesto que se encuentran en un ámbito diferente al nuestro.</p>
+            <p>Si dentro de la función funcion_b asignamos un valor a una variable y, realmente estamos creando una nueva variable en nuestro espacio de nombres local. Esta variable es diferente a la variable no local y que está definida en la función funcion_a. Lo mismo ocurriría con la variable global x.</p>
+            <p>Para poder modificar la variable x dentro de funcion_b, debemos definir la variable como global. Y para modificar la variable y, hay que definirla como nonlocal.</p>
+            <p>Redefiniendo el programa del comienzo de este apartado de este modo</p>
+            <code>
+                <pre>
+                    def funcion_a():
+                    x = 2
+                    def funcion_b():
+                    x = 3
+                    print(x)
+
+                    funcion_b()
+                    print(x)
+
+                    x = 1
+                    funcion_a()
+                    print(x)
+                </pre>
+            </code>
+            <p>el resultado sería el siguiente:</p>
+            <code>
+                <pre>
+                    3
+                    2
+                    1
+                </pre>
+            </code>
+            <p>Sin embargo, si definimos la variable x como global, la cosa cambia:</p>
+            <code>
+                <pre>
+                    def funcion_a():
+                    global x
+                    x = 2
+                    def funcion_b():
+                    global x
+                    x = 3
+                    print(x)
+
+                    funcion_b()
+                    print(x)
+
+                    x = 1
+                    funcion_a()
+                    print(x)
+                </pre>
+            </code>
+            <p>Ahora el resultado sería este otro:</p>
+            <code>
+                <pre>
+                    3
+                    3
+                    3
+                </pre>
+            </code>
+            <h4 id="Modpython">Qué es un módulo en Python</h4>
+            <p>En Python, <b>un módulo no es más que un fichero que contiene instrucciones y definiciones</b> (variables, funciones, clases, …). El fichero debe tener extensión .py y su nombre se corresponde con el nombre del módulo.</p>
+            <p style="color:blue;"><b>! NOTA:</b>Dentro de un módulo, puedes acceder al nombre del mismo a través de la variable global __name__.</p>
+            <p>Los módulos tienen un doble propósito:</p>
+
+            <ul class="browser-default">
+                <li><a class="grey-text text-darken-4">Dividir un programa con muchas líneas de código en partes más pequeñas.</a></li>
+                <li><a class="grey-text text-darken-4">Extraer un conjunto de definiciones que utilizas frecuentemente en tus programas para ser reutilizadas. Esto evita, por ejemplo, tener que estar copiando funciones de un programa a otro.</a></li>
+            </ul>
+            <p style="color:blue;">Es una buena practica que un modulo solo contenga instrucciones y definiciones relacionadas entre si</p>
+            <p>Para crear tu primer modulo sigue los siguientes pasos:</p>
+            <p>Sitúate en un directorio para un nuevo proyecto y crea en él un fichero llamado mis_funciones.py con el siguiente contenido:</p>
+            <code>
+                <pre>
+                    def saludo(nombre):
+                    print(f'Hola {nombre}')
+                </pre>
+            </code>
+            <p>Ahora, desde una consola, sitúate en el directorio anterior y ejecuta el comando python3 para lanzar el intérprete de Python.</p>
+            <p>Una vez dentro del intérprete, ejecuta el siguiente comando:</p>
+            <code>
+                <pre>
+                    >>> import mis_funciones
+                </pre>
+            </code>
+
+            <p>Con el comando anterior estamos importando el módulo mis_funciones en el intérprete. Prueba a llamar ahora a la función saludo() de este modo:</p>
+            <code>
+                <pre>
+                    >>> mis_funciones.saludo('j2logo')
+                    Hola j2logo 
+                </pre>
+            </code>
+
+            <h4 id="Impomod">Cómo importar módulos en Python</h4>
+            <p>Como has visto al final del apartado anterior, para usar las definiciones de un módulo en el intérprete o en otro módulo, primero hay que importarlo. Para ello, se usa la palabra reservada import. Una vez que un módulo ha sido importado, se puede acceder a sus definiciones a través del operador punto ""."". </p>
+            <p style="color:blue;">Aunque puedes importar los módulos y sus definiciones dónde y cuando quieras, es una buena práctica que aparezcan al principio del módulo.</p>
+            <p>Ya sabes que un módulo puede contener instrucciones y definiciones. Normalmente, las instrucciones son utilizadas para inicializar el módulo y solo son ejecutadas la primera vez que aparece el nombre del módulo en una sentencia import.</p>
+            <p>Previamente te he enseñado una forma de importar un módulo en otro módulo para usar sus definiciones, sin embargo, existen otros modos de usarlas e importarlas.</p>
+            <strong>from … import …</strong>
+            <p>Podemos importar uno o varios nombres de un módulo del siguiente modo:</p>
+            <code>
+                <pre>
+                    from mis_funciones import saludo, otra_funcion
+
+                    saludo('j2logo')
+                </pre>
+            </code>
+            <p>Esto nos permite acceder directamente a los nombres definidos en el módulo sin tener que utilizar el operador ".".</p>
+
+            <strong>from … import *</strong>
+            <code>
+                <pre>
+                    from mis_funciones import *
+
+                    saludo('j2logo')
+                </pre>
+            </code>
+            <p>Es similar al caso anterior, solo que importa todas las definiciones del módulo a excepción de los nombres que comienzan por guión bajo _.</p>
+            <p style="color:red;"><b>! IMPORTANTE: </b>No es una buena práctica importar así las definiciones de un módulo porque dificulta la lectura y los nombres importados pueden ocultar identificadores y nombres usados en el módulo en el que se importan.</p>
+            <strong>from … import as</strong>
+            <p>Por último, podemos redefinir el nombre con el que una definición será usada dentro de un módulo utilizando la palabra reservada as:</p>
+            <code>
+                <pre>
+                    >>> from mis_funciones import saludo as hola
+
+                    >>> hola('j2logo')
+                    Hola j2logo
+                </pre>
+            </code>
+            <h4 id="Ejecmod">Ejecutar módulos como scripts</h4>
+            <p>Un módulo puede ser ejecutado como un script o como punto de entrada de un programa cuando se pasa directamente como parámetro al intérprete de Python:</p>
+            <code>
+                <pre>
+                    >>> python mis_funciones.py
+                </pre>
+            </code>
+            <p>Cuando esto ocurre, el código del módulo se ejecuta como si se hubiera importado, con la particularidad de que el nombre del módulo, __name__, es __main__.</p>
+            <p>Esto hace realmente interesante añadir al final del módulo las siguientes líneas de código, que solo se ejecutarán en caso de que dicho módulo se haya ejecutado como el principal:</p>
+            <code>
+                <pre>
+                    if __name__ == '__main__':
+                    hola('j2logo')
+                </pre>
+            </code>
+            <p>No se ejecutarán en caso de que el módulo se importe en otro módulo.</p>
+            
+            <h4 id="Pythonmod">Dónde y cómo busca Python los módulos</h4>
+            <p>Python trae consigo un gran catálogo de módulos estándar con multitud de funciones y clases que puedes usar en tus aplicaciones. Este catálogo es conocido como la Biblioteca de Referencia.</p>
+            <p>Ahora bien, cuando importamos un módulo, ¿cómo sabe Python a qué módulo nos referimos? ¿Dónde busca Python los ficheros correspondientes a los módulos?</p>
+            <p>En primer lugar, Python busca el módulo en el catálogo de módulos estándar y si no lo encuentra, entonces busca el fichero en el listado de directorios definidos en la variable sys.path. Esta variable es inicializada con las siguientes rutas y localizaciones:</p>
+
+            <ul class="browser-default">
+                <li><a class="grey-text text-darken-4">El directorio en el que se encuentra el script principal.</a></li>
+                <li><a class="grey-text text-darken-4">PYTHONPATH, una variable de entorno similar a PATH.</a></li>
+                <li><a class="grey-text text-darken-4">Directorios de instalación por defecto de Python</a></li>            
+            </ul>
+
+            <h4 id="dir">La función dir()</h4>
+            <p>La función dir() devuelve una lista con todas las definiciones (variables, funciones, clases, …) contenidas en un módulo.</p>
+            <p>Por ejemplo, si ejecutamos dir() sobre el módulo mis_funciones que creamos previamente, obtendríamos el siguiente resultado:</p>
+            <code>
+                <pre>
+                    >>> dir(mis_funciones)
+                    ['__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'saludo']
+                </pre>
+            </code>
+            <p>Fíjate en que al final aparece el nombre saludo referente a la función que hemos definido.</p>
+            <p>Si a dir() no se le pasa ningún argumento, entonces devuelve todas las definiciones del módulo actual.</p>
+
+            <h4 id="Paquepyth">Paquetes en Python</h4>
+            <p>Del mismo modo en que agrupamos las funciones y demás definiciones en módulos, los paquetes en Python permiten organizar y estructurar de forma jerárquica los diferentes módulos que componen un programa. Además, los paquetes hacen posible que existan varios módulos con el mismo nombre y que no se produzcan errores.</p>
+            <p><b>Un paquete es simplemente un directorio que contiene otros paquetes y módulos.</b> Además, en Python, para que un directorio sea considerado un paquete, este debe incluir un módulo llamado __init__.py. En la mayoría de ocasiones, el fichero __init__.py estará vacío, sin embargo, se puede utilizar para inicializar código relacionado con el paquete.</p>
+            <p>Al igual que sucede con los módulos, cuando se importa un paquete, Python busca a través de los directorios definidos en sys.path el directorio perteneciente a dicho paquete.</p>
+            <p>Para que lo veas todo de forma gráfica, te muestro los conceptos con una imagen. Imagina que estás haciendo una aplicación para gestionar pedidos. Una forma de organizar los diferentes módulos podría ser la siguiente:</p>
+
+            <img src="https://j2logo.com/wp-content/uploads/paquetes-en-python.png" width="500" height="500"></img>
+            
+
+            <h4 id="Impaque">Importar definiciones de un paquete</h4>
+            <p>Para importar módulos y definiciones de módulos que están contenidos en paquetes, se usa el operador .. Las referencias se hacen indicando el nombre completo del módulo, es decir, especificando los paquetes hasta llegar al módulo en cuestión separándolos con puntos.</p>
+            <p>Teniendo en cuenta el diagrama de la sección anterior, si en el módulo app.pedidos.vistas se quiere importar el módulo app.usuarios.dao, simplemente hay que añadir la siguiente sentencia:</p>
+            <code>
+                <pre>
+                    # Módulo app.pedidos.vistas
+
+                    import app.usuarios.dao
+                </pre>
+            </code>
+            <p>El único problema de hacerlo así, es que si, por ejemplo, dicho módulo define una función llamada guardar(), hay que especificar toda la jerarquía para invocar a esta función:</p>
+            <code>
+                <pre>
+                    app.usuarios.dao.guardar(usuario)
+                </pre>
+            </code>
+            <p>Una forma mejor es importar el módulo. Esto se consigue de la siguiente manera:</p>
+            <code>
+                <pre>
+                    # Módulo app.pedidos.vistas
+
+                    from app.usuarios import dao
+
+                    dao.guardar(usuario)
+                </pre>
+            </code>
+            <p>Incluso, se puede importar una definición de un módulo del siguiente modo:</p>
+            <code>
+                <pre>
+                    # Módulo app.pedidos.vistas
+
+                    from app.usuarios.dao import guardar
+
+                    guardar(usuario)
+                </pre>
+            </code>
+            <p>Y para terminar este tutorial, vamos a ver que dentro de un módulo los paquetes se pueden referenciar de forma relativa.</p>
+            <p>Imagina ahora que desde el módulo app.pedidos.vistas quieres importar los módulos app.pedidos.dao y app.usuarios.vistas. Se podría hacer como hemos visto hasta ahora:</p>
+            <code>
+                <pre>
+                    # Módulo app.pedidos.vistas
+
+                    from app.pedidos import dao
+                    from app.usuarios import vistas
+                </pre>
+            </code>
+            <p>O también se podría hacer así:</p>
+            <code>
+                <pre>
+                    # Módulo app.pedidos.vistas
+
+                    from . import dao  # Un punto referencia al paquete actual
+                    from ..usuarios import vistas  # Dos puntos referencian al paquete padre
+                </pre>
+            </code>
+            <p>Bueno, hemos llegado al final de este tutorial. Ha sido intenso pero necesario para conocer mejor cómo funciona Python internamente y poder sacar más provecho al lenguaje. ¡Te espero en el siguiente, en el que veremos conceptos de programación orientada a objetos!</p>
