@@ -19,4 +19,7 @@ urlpatterns = [
     path('tipoRange/', views.tipoRange, name="TipoRange"),
     path('tipoSet/', views.tipoSet, name="TipoSet"),
     path('tipoDict/', views.tipoDict, name="TipoDict"),
+    path('introduccion/', views.introduccion, name="Introduccion"),
+    path('variables/', views.variables, name="Variables"),
+    path('tiposDatos/', views.tiposDatos, name="TiposDatos"),
 ]

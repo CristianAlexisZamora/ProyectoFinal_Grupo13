@@ -58,3 +58,15 @@ def tipoSet(request):
 # Vista creada para el tutorial de tipoDict
 def tipoDict(request):
     return render(request, "appCursoPython/tipoDict.html")
+
+#Vista para el tutorial de introduccion
+def introduccion(request):
+    return render(request, "appCursoPython/introduccion.html")
+
+#Vista para el tutorial de tipos de datos
+def variables(request):
+    return render(request, "appCursoPython/variables.html")
+
+#Vista para el tutorial de variables
+def tiposDatos(request):
+    return render(request, "appCursoPython/tiposDatos.html")
