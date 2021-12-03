@@ -49,7 +49,7 @@ def bucleWhile(request):
 #Vista creada para la práctica
 def practicapage(request, modulo):
     resultado = practica.objects.get(idpractica=modulo)
-    return render(request, "appcursoPython/practica.html", {"tema":resultado.tema, "pregunta1":resultado.pregunta1, "pregunta2":resultado.pregunta2, "pregunta3":resultado.pregunta3})
+    return render(request, "appcursoPython/practica.html", {"modulo":resultado.idpractica,"tema":resultado.tema, "pregunta1":resultado.pregunta1, "pregunta2":resultado.pregunta2, "pregunta3":resultado.pregunta3, "res1":resultado.respuesta1, "res2":resultado.respuesta2, "res3":resultado.respuesta3})
 
 #Modulo 3
 
