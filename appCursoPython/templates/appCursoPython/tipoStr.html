@@ -1,0 +1,315 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+<!--Titulo de la pagina-->
+{% block title %}
+    Tipo Str
+{% endblock %}
+
+<div class="principal">
+    <div class="row">
+        <div class="col s3">
+            <div class="row">
+                <div class="col s12">
+                    <br/><br/><br><br>
+                  <h5><center>Contenido</center></h5>
+                  <div class="card-panel yellow lighten-2">
+                    <ul class="browser-default">
+                        <li><a href="#Questr" class="grey-text text-darken-4">Qué es el tipo str en Python</a></li>
+                        <li><a href="#Comocrear" class="grey-text text-darken-4">Como crear una cadena en Python</a></li>
+                        <li><a href="#Comoacceder" class="grey-text text-darken-4">Como acceder a los caracteres de una cadena en Python </a></li>
+                        <li><a href="#forstr" class="grey-text text-darken-4">for str Python - Recorrer los caracteres de una cadena </a></li>
+                        <li><a href="#Compchar" class="grey-text text-darken-4">Comprobar si un caracter esta en una cadena en Python </a></li>
+                        <li><a href="#Compigual" class="grey-text text-darken-4">Comprobar si dos strings son iguales en Python </a></li>
+                        <li><a href="#Longi" class="grey-text text-darken-4">Longitud (len) de una cadena en Python </a></li>
+                        <li><a href="#Escap" class="grey-text text-darken-4">Escapar caracteres de una cadena en Python </a></li>
+                        <li><a href="#Rawstr" class="grey-text text-darken-4">Raw strings </a></li>
+                        <li><a href="#Repreob" class="grey-text text-darken-4">Representacion de un objeto como cadena </a></li>
+
+                    </ul>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col s9">
+            <h2><center>str python – Strings en Python: El tipo str y operaciones más comunes</center></h2>
+            <p>En el tutorial sobre tipos de datos básicos ya indiqué que el tipo str en Python se utilizaba para representar cadenas de caracteres.</p>
+            <p>En este tutorial describiré en detalle la clase str y descubrirás las principales operaciones que se pueden realizar sobre un string en Python.</p>
+        
+            <h4 id="Questr">Qué es el tipo str en Python</h4>
+            <p>La clase <i>str</i> en Python se utiliza para representar texto, más conocido en el mundo de la programación como string o cadena de caracteres.</p>
+            <p>Poniéndome un poco más técnico, el tipo <i>str</i> es una <b>secuencia inmutable de caracteres Unicode.</b> 
+                Por tanto, al igual que <i>list, tuple</i> o <i>range</i>, es un tipo secuencial y como es inmutable,
+                 un objeto de este tipo no se puede modificar después de haber sido creado</p>
+            <p style="color:red;"><b>! IMPORTANTE</b> Cuidado cuando trabajes con texto procedente de ficheros u otras fuentes de datos.
+                 Fíjate en qué codificación está y haz las transformaciones necesarias si no quieres tener problemas.
+                 Por defecto, la codificación de un <i>string</i> en Python es <i>Unicode</i>, concretamente <i>UTF-8</i>.</p>
+                  
+            <h4 id="Comocrear">Cómo crear una cadena en Python</h4>
+            <p>Crear una cadena de texto en Python es muy sencillo. Simplemente encierra una secuencia de caracteres entre comillas simples '' o dobles "".            </p>
+            
+    <code>
+        <pre class="lime lighten-5">
+             >>> s = 'Hola Pythonista'
+             >>> s
+             'Hola Pythonista'
+             >>> type(s)
+             &lt;class 'str'&gt;
+
+             >>> s2 = "Me gusta Python"
+             >>> s2
+             'Me gusta Python'
+             >>> type(s2)
+             &lt;class 'str'&gt;
+        </pre>
+    </code> 
+            <p>Si quieres o necesitas que un string ocupe más de una línea, entonces debes encerrar el texto entre tres comillas simples '''...''' o dobles """...""".</p>
+
+    <code>        
+        <pre class="lime lighten-5">
+            >>> s = '''
+            ... Este string
+            ...    ocupa más
+            ...     de
+            ...  una línea'''
+
+            >>> s
+            '\nEste string\n   ocupa más\n    de\n una línea'
+
+            >>> print(s)
+
+            Este string
+            ocupa más
+            de
+            una línea
+        </pre>
+    </code>        
+            <p>Como puedes observar, el uso de las tres comillas (simples o dobles) guarda el carácter de fin de línea. Esto se puede evitar añadiendo el carácter \ al final de cada línea.</p>
+            
+    <code>
+        <pre class="lime lighten-5">
+            >>> s = '''Este string \
+            ...    ocupa más \
+            ...     de \
+            ...  una línea'''
+
+            >>> s
+            'Este string    ocupa más     de  una línea'
+
+            >>> print(s)
+            Este string    ocupa más     de  una línea       
+        </pre>
+    </code> 
+
+            <p style="color:red;"><b>! OJO:</b>No confundas un string multilínea con un <i>docstring</i>. Un <i>docstring</i> es un string multilínea que se utiliza para documentar un módulo, función, clase o método, entre otros.</p>
+
+            <p>Además, dos cadenas se pueden concatenar con el operador +, o incluso repetir, usando el operador *. El resultado en ambos casos es un nuevo string.</p>
+    <code>
+        <pre>
+            >>> hola = 'hola'
+            >>> s = hola + ' Pythonista'
+            >>> s
+            'hola Pythonista'
+
+            >>> s2 = hola * 3 + ' Pythonista'
+            >>> s2
+            'holaholahola Pythonista'
+        </pre>
+    </code>        
+            <p>Y para terminar esta sección, simplemente resaltar que dos strings literales se pueden concatenar si aparecen juntos uno tras otro.</p>
+    <code>
+        <pre>
+            >>> s = 'Hola' ' Pythonista'
+            >>> s
+            'Hola Pythonista'
+
+            >>> s = ('Hola'
+            ... ' Pythonista'
+            ... ' ¿Te gusta Python?')
+            >>> s
+            'Hola Pythonista ¿Te gusta Python?'
+        </pre>
+    </code> 
+
+
+            <h4 id="Comoacceder">Cómo acceder a los caracteres de una cadena en Python</h4>
+            <p>Como el resto de tipos secuencia, podemos acceder a los caracteres de una cadena a través de un índice numérico.
+                 <b>Un índice es un número entero que indica la posición de un carácter en la cadena.</b>
+                 Siempre el primer carácter de la secuencia tiene como índice 0.</p>
+
+    <code>
+        <pre>
+            >>> s = 'Hola Pythonista'
+
+            # Primer carácter de la cadena
+            >>> s[0]
+            'H'
+
+            # Sexto carácter de la cadena
+            >>> s[5]
+            'P'
+
+            # Tercer carácter de la cadena
+            >>> s[2]
+            'l'
+        </pre>
+    </code>
+
+            <p>Si se intenta acceder a un índice que está fuera del rango del string, el intérprete lanzará la excepción <i>IndexError</i>. 
+                De igual modo, si se utiliza un índice que no es un número entero, se lanzará la excepción <i>TypeError</i></p>
+    <code>
+        <pre>
+            >>> s = 'Hola Pythonista'
+
+            >>> s[30]
+            Traceback (most recent call last):
+            File "<input>", line 1, in <module>
+            IndexError: string index out of range
+
+            >>> s[1.0]
+            Traceback (most recent call last):
+            File "<input>", line 1, in <module>
+            TypeError: string indices must be integers
+        </pre>
+    </code>            
+            <p>Los índices también puede ser negativos. En este caso, el índice -1 hace referencia al último carácter, -2 al penúltimo, y así, sucesivamente.</p>
+    <code>
+        <pre>
+            >>> s = 'Hola Pythonista'
+            >>> s[-1]
+            'a'
+            >>> s[-2]
+            't'
+        </pre>
+    </code>
+
+            <h4 id="forstr">for str Python – Recorrer los caracteres de una cadena</h4>
+            <p>En Python es posible recorrer todos los caracteres de una cadena usando la sentencia for. Para ello, lo más fácil es seguir la siguiente plantilla:</p>
+
+    <code>
+        <pre>
+            >>> saludo = 'Hola'
+            >>> for c in saludo:
+            ...     print(c)
+            ...     
+            H
+            o
+            l
+            a
+        </pre>
+    </code>            
+
+            <h4 id="Compchar">Comprobar si un carácter está en una cadena en Python</h4>
+            <p>Para comprobar si un carácter está contenido en una cadena, utiliza el operador de pertenencia in. Esto nos devolverá True si al menos hay una ocurrencia del carácter en el string o False en caso contrario.</p>
+    <code>
+        <pre>
+            >>> saludo = 'Hola'
+            >>> print('o' in saludo)
+            True
+            >>> print('p' in saludo)
+            False
+            >>> print('p' not in saludo)
+            True    
+        </pre>
+    </code>      
+    
+            <h4 id="Compigual">Comprobar si dos strings son iguales en Python</h4>
+            <p>En Python, para comparar si dos cadenas de caracteres son iguales, se utiliza el operador de igualdad ==. <b>Dos strings son iguales si y solo si ambas cadenas contienen la misma secuencia de caracteres</b> (se distingue entre mayúsculas y minúsculas).</p>
+
+    <code>
+        <pre>
+            >>> s1 = 'hola'
+            >>> s2 = 'hola'
+            >>> print(s1 == s2)
+            True
+
+            >>> s3 = 'Hola'
+            >>> print(s1 == s3)
+            False
+        </pre>
+    </code>            
+            <h4 id="Longi">Longitud (len) de una cadena en Python</h4>
+            <p>Como con cualquier otro tipo contenedor o secuencia, para obtener la longitud de una cadena se debe utilizar la función de Python len(). A esta función se le pasa como argumento la cadena en cuestión y nos devolverá el número de caracteres que tiene.</p>
+
+    <code>
+        <pre>
+            >>> saludo = 'Hola'
+            >>> len(saludo)
+            4
+        </pre>
+    </code>                
+            <h4 id="Escap">Escapar caracteres de una cadena en Python</h4>
+            <p>Como un string está limitado por los caracteres '' o "", ¿qué ocurre si necesito usar el carácter ' o " dentro de una cadena?</p>
+            <p>Lo más fácil si tienes que usar el carácter ' en tu cadena, es encerarla entre comillas dobles. Por el contrario, si necesitas usar " dentro del string, enciérralo entre comillas simples.</p>
+
+    <code>
+        <pre>
+            >>> s = 'Dijo: "Hola Pythonista"'
+            >>> print(s)
+            Dijo: "Hola Pythonista"
+
+            >>> s = "Dijo: 'Hola Pythonista'"
+            >>> print(s)
+            Dijo: 'Hola Pythonista'
+        </pre>
+    </code>
+
+            <p>También puedes usar la combinación \' para mostrar una comilla simple o \" para mostrar una comilla doble, independientemente de si la cadena está encerrada entre comillas simples o dobles.</p>
+
+    <code>
+        <pre>
+            >>> s = 'Dijo: \'Hola Pythonista\''
+            >>> print(s)
+            Dijo: 'Hola Pythonista'
+
+            >>> s = "Dijo: \"Hola Pythonista\""
+            >>> print(s)
+            Dijo: "Hola Pythonista"
+        </pre>
+    </code>
+
+            <p>Además del carácter ' y ", hay otros caracteres especiales que para ser usados dentro de una cadena necesitan ser «escapados» con el carácter \. Son, entre otros, los siguientes: tabulador (\t), barra invertida (\\), retroceso (\b), nueva línea (\n) o retorno de carro (\r).</p>
+    <code>
+        <pre>
+            # Ejemplo para declarar una ruta en Windows
+            >>> s = 'C:\\Users\\Documents\\'
+            >>> print(s)
+            C:\Users\Documents\
+
+            # Nueva línea más tabulador
+            >>> s = 'Hola\n\tPythonista'
+            >>> print(s)
+            Hola
+                Pythonista
+        </pre>
+    </code>
+
+
+            <h4 id="Rawstr">Raw strings</h4>
+            <p>En relación con la sección anterior, puede haber ocasiones en que se quiera usar el carácter \ pero sin ser utilizado como carácter de escape. Para ello, se puede hacer uso de las raw strings. Una cadena de este tipo comienza anteponiendo el carácter r a las comillas (simples o dobles).</p>
+
+    <code>
+        <pre>
+            # Aquí, \n es interpretado como nueva línea
+            >>> s = 'C:\python\noticias'
+            >>> print(s)
+            C:\python
+            oticias
+
+            # En una raw string no se interpreta el carácter \
+            >>> s = r'C:\python\noticias'
+            >>> print(s)
+            C:\python\noticias
+        </pre>
+    </code>
+
+            <h4 id="Repreob">Representación de un objeto como cadena</h4>
+            <p>Una singularidad de la clase str es que a su constructor se le puede pasar cualquier objeto. Al hacer esto, la función str() devuelve la representación en forma de cadena de caracteres del propio objeto (si se pasa un string devuelve el string en sí).</p>
+            <p>Normalmente, al llamar a la función str(objeto) lo que se hace internamente es llamar al método __str__() del objeto. Si este método no existe, entonces devuelve el resultado de invocar a repr(objeto).</p>
+
+
+        </div>
+
+
+    </div>        
+</div>
