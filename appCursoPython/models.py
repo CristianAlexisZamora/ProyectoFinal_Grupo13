@@ -10,10 +10,10 @@ class usuario(models.Model):
 
 class practica(models.Model):
     idpractica = models.AutoField(primary_key=True)
-    tema = models.CharField(max_length=30,null=False)
-    pregunta1 = models.CharField(max_length=160)
-    pregunta2 = models.CharField(max_length=160)
-    pregunta3 = models.CharField(max_length=160)
+    tema = models.CharField(max_length=40,null=False)
+    pregunta1 = models.TextField()
+    pregunta2 = models.TextField()
+    pregunta3 = models.TextField()
     respuesta1 = models.CharField(max_length=80, default="")
     respuesta2 = models.CharField(max_length=80, default="")
     respuesta3 = models.CharField(max_length=80, default="")

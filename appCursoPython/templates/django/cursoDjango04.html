@@ -16,8 +16,10 @@
                     <h5><center>Contenido</center></h5>
                     <div class="card-panel yellow lighten-2">
                         <ul class="browser-default">
-                            <li><a href="#jugando-api">Jugando con la API</a></li>
-                            <li><a href="#administrador-django">Presentando el administrador de Django</a></li>
+                            <li><a href="#forma-minima" class="grey-text text-darken-4">Escribe una forma mínima</a></li>
+                            <li><a href="#vistas-genericas" class="grey-text text-darken-4">Utilizando vistas genéricas</a></li>
+                            <li><a href="#modifique-urlconf" class="grey-text text-darken-4">Modifique el URLconf</a></li>
+                            <li><a href="#modifique-vistas" class="grey-text text-darken-4">Modificando las vistas</a></li>
                         </ul>
                     </div>
                 </div>
@@ -26,8 +28,8 @@
         <div class="col s9">
             <h2><center>Continuación del curso de django</center></h2>
             <p>Continuamos con la aplicación de encuestas web y nos centraremos en el procesamiento de formularios y en la reduccion de nuestro código.</p>
-            <h4>Escribe una forma mínima</h4>
-            <p>Actualicemos nuestra plantilla de detalles de la encuesta ("polls/detail.html") del último tutorial, para que la plantilla contenga un elemento HTML < form>:</p>
+            <h4 id="forma-minima">Escribe una forma mínima</h4>
+            <p>Actualicemos nuestra plantilla de detalles de la encuesta ("polls/detail.html") del último tutorial, para que la plantilla contenga un elemento HTML &lt;form>:</p>
             <pre>
                 &lt;form action="{&#37; url 'polls:vote' question.id &#37;}" method="post">
                 {&#37; csrf_token &#37;}
@@ -45,8 +47,147 @@
             <p>Un resumen rápido:</p>
             <ul class="browser-default">
                 <li>La plantilla muestra un botón de opción para cada opción de pregunta. El value de cada botón es el ID de la opción de pregunta asociada. El <b>name</b> de cada botón de opción es "choice". Eso significa que cuando alguien selecciona uno de los botones de choice y envia un formulario, enviará los datos POST donde # es el ID de la opción seleccionada. Este es el concepto básico de los formularios HTML.</b></li>
-                
+                <li>Establecemos la <b>acción</b> del formulario en <b>&#123;% url 'polls:vote' question.id%&#125;</b> y establecemos method = "post". El uso de method = "post" (a diferencia de method = "get") es muy importante porque el acto de enviar este formulario alterará los datos del lado del servidor. Siempre que cree un formulario que altere los datos del lado del servidor, use method = "post". Este consejo no es específico de Django; es una buena práctica de desarrollo web en general.</b></li>
+                <li><b>forloop.counter</b> indica cuántas veces la etiqueta <a href="https://docs.djangoproject.com/en/3.2/ref/templates/builtins/#std:templatetag-for" target="_blank" rel="noopener noreferrer">for</a> ha pasado por su bucle.</li>
+                <li>Dado que estamos creando un formulario POST (que puede tener el efecto de modificar los datos), debemos preocuparnos por las falsificaciones de solicitudes entre sitios. Afortunadamente, no tiene que preocuparse demasiado, porque Django viene con un sistema útil para protegerse contra él. En resumen, todos los formularios POST destinados a URL internas deben utilizar la etiqueta de plantilla &#123;% csrf_token%&#125;.</li>
             </ul>
+            <p>Ahora, crearemos una vista de Django que maneje los datos enviados y haga algo con ellos. Recuerde, en el <a href="/tutorial03/">tutorial 3</a>, creamos una URLconf para la aplicación de encuestas que incluye esta línea:</p>
+            <pre>
+                path('&lt;int:question_id>/vote/', views.vote, name='vote'),
+            </pre>
+            <p>También creamos una implementación ficticia de la función <b>vote()</b>. Creemos una versión real. Agregue lo siguiente a <b>polls/views.py</b></p>
+            <pre>
+                from django.http import HttpResponse, HttpResponseRedirect
+                from django.shortcuts import get_object_or_404, render
+                from django.urls import reverse
+                from .models import Choice, question
+                
+                def vote(request, question_id):
+                    question = get_object_or_404(Question, pk=question_id)
+                    try:
+                        selected_choice = question.choice_set.get(pk=request.POST['choice'])
+                    except (KeyError, Choice.DoesNotExist):
+                        # Redisplay the question voting form.
+                        return render(request, 'polls/detail.html', {
+                            'question': question,
+                            'error_message': "You didn't select a choice.",
+                        })
+                    else:
+                        selected_choice.votes += 1
+                        selected_choice.save()
+                        # Always return an HttpResponseRedirect after successfully dealing
+                        # with POST data. This prevents data from being posted twice if a
+                        # user hits the Back button.
+                        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+            </pre>
+            <p>Este código incluye algunas cosas que aún no hemos cubierto en este tutorial:</p>
+            <ul class="browser-default">
+                <li><b><a href="https://docs.djangoproject.com/en/3.2/ref/request-response/#django.http.HttpRequest.POST" target="_blank">request.POST</a></b> es un objeto similar a un diccionario que le permite acceder a los datos enviados por nombre de clave. En este caso, <b>request.POST['choice']</b> devuelve el ID de la opción seleccionada, como una cadena. Los valores de <b>request.POST</b> son siempre cadenas.
+                <p>Tenga en cuenta que Django también proporciona <a href="https://docs.djangoproject.com/en/3.2/ref/request-response/#django.http.HttpRequest.GET" target="_blank">request.GET</a> para acceder a los datos GET de la misma manera, pero estamos usando explícitamente request.POST en nuestro código, para asegurarnos de que los datos solo se alteren a través de una llamada POST.</p>
+                </li>
+                <li><b>request.POST['choice'] generará <a href="https://docs.python.org/3/library/exceptions.html#KeyError" target="_blank">KeyError</a></b> si la opción no se proporcionó en los datos POST. El código anterior busca KeyError y vuelve a mostrar el formulario de pregunta con un mensaje de error si no se da la opción.</li>
+                <li>Después de incrementar el recuento de opciones, el código devuelve un <a href="https://docs.djangoproject.com/en/3.2/ref/request-response/#django.http.HttpResponseRedirect" target="_blank">HttpResponseRedirect</a> en lugar de un <b>HttpResponse</b> normal. <b>HttpResponseRedirect</b> toma un único argumento: la URL a la que se redigirá al usuario (consulte el siguiente punto para ver cómo construimos la URL en este caso).
+                <p>Como señala el comentario de Python anterior, siempre debe devolver un <a href="https://docs.djangoproject.com/en/3.2/ref/request-response/#django.http.HttpResponseRedirect" target="_blank">HttpResponseRedirect</a> después de tratar con éxito los datos POST. Este consejo no es específico de Django; es una buena práctica de desarrollo web en general.</p>
+                </li>
+                <li>Estamos usando la función <a href="https://docs.djangoproject.com/en/3.2/ref/urlresolvers/#django.urls.reverse" target="_blank">reverse()</a> en el constructor HttpResponseRedirect en este ejemplo. Esta función ayuda a evitar tener que codificar una URL en la función de visualización. Se le da el nombre de la vista a la que queremos pasar el control y la parte variable del patrón de URL que apunta a esa vista. En este caso, usando la URLconf que configuramos en el Tutorial 3, esta llamada <a href="https://docs.djangoproject.com/en/3.2/ref/urlresolvers/#django.urls.reverse" target="_blank">reverse()</a> devolverá una cadena como</li>
+            </ul>
+            <pre>
+                '/polls/3/results/'
+            </pre>
+            <p>Donde 3 es el valor de question.id. Esta URL redirigida llamará a la vista de "resultados" para mostrar la página final.</p>
+            <p>Después de que alguien vota en una pregunta, la vista <b>vote()</b> redirige a la página de resultados de la pregunta. Escribamos esa opinión:</p>
+            <pre>
+                from django.shortcuts import get_object_or_404, render
+
+                def results(request, question_id):
+                    question = get_object_or_404(Question, pk=question_id)
+                    return render(request, 'polls/results.html', {'question': question})
+            </pre>
+            <p>Ahora, cree una plantilla <b>polls/results.html:</b></p>
+            <pre>
+                &lt;h1>&#123;{ question.question_text }&#125;&lt;/h1>
+
+                &lt;ul>
+                &#123;% for choice in question.choice_set.all %&#125;
+                    &lt;li>&#123;{ choice.choice_text }&#125; -- &#123;{ choice.votes }&#125; vote&#123;{ choice.votes|pluralize }&#125;&lt;/li>
+                &#123;% endfor %&#125;
+                &lt;/ul>
+
+                &lt;a href="&#123;% url 'polls:detail' question.id %&#125;">Vote again?&lt;/a>
+            </pre>
+            <p>Ahora, vaya a /polls/1/ en su navegador y vote la pregunta. Deberia ver una p;agina de resultados que se actualiza cada vez que vota. Si envía el formulario sin haber elegido ver el mensaje de error.</p>
+            <h4 id="vistas-genericas">Utilice vistas genéricas: menos código es mejor</h4>
+            <p>Las vistas de <b>detail()</b> y <b>results()</b> son muy breves y, como se mencionó anteriormente, redundantes. La vista <b>index()</b>, que muestra una lista de encuestas, es similar.</p>
+            <p>Estas vistas representan un caso común de desarrollo web básico: obtener datos de la base de datos según un parámetro pasado en la URL, cargar una plantilla y retornar la plantilla creada. Debido a que esto es tan común, Django proporciona un atajo denominado sistema de «vistas genéricas».</p>
+            <p>Las vistas genéricas abstraen los patrones comunes hasta el punto en que ni siquiera es necesario escribir código Python para escribir una aplicación.</p>
+            <p>Convirtamos nuestra aplicación de encuestas para que utilice el sistema de vistas genéricas, de modo que podamos eliminar un montón de nuestro propio código. Tendremos que seguir algunos pasos para realizar la conversión. Lo haremos:</p>
+            <ol>
+                <li>Convertir el URLconf.</li>
+                <li>Elimina algunas de las vistas viejas e innecesarias.</li>
+                <li>Introduce nuevas vistas basadas en las vistas genéricas de Django.</li>
+            </ol>
+            <p>Siga leyendo para conocer más detalles.</p>
+            <h4 id="modifique-urlconf">Modifique el URLconf</h4>
+            <p>Primero, abra el URLconf <b>polls/urls.py</b> y modifiquelo de la siguiente manera:</p>
+            <pre>
+                from django.urls import path
+
+                from . import views
+
+                app_name = 'polls'
+                urlpatterns = [
+                    path('', views.IndexView.as_view(), name='index'),
+                    path('&lt;int:pk>/', views.DetailView.as_view(), name='detail'),
+                    path('&lt;int:pk>/results/', views.ResultsView.as_view(), name='results'),
+                    path('&lt;int:question_id>/vote/', views.vote, name='vote'),
+                ]
+            </pre>
+            <p>Tenga en cuenta que el nombre del patrón coincidente en las cadenas de ruta de los patrones segundo y tercero ha cambiado de <b>&lt;question_id></b> a <b>&lt;pk></b></p>
+            <h4 id="modifique-vistas">Modifique las vistas</h4>
+            <p>A continuación, vamos a eliminar nuestras viejas vistas <b>index, detail y results</b> y en su lugar vamos a usar las vistas genéricas de django. Para ello, abra el archivo <b>polls/views.py</b> y modifiquelo de la siguiente manera:</p>
+            <pre>
+                from django.http import HttpResponseRedirect
+                from django.shortcuts import get_object_or_404, render
+                from django.urls import reverse
+                from django.views import generic
+
+                from .models import Choice, Question
+
+
+                class IndexView(generic.ListView):
+                    template_name = 'polls/index.html'
+                    context_object_name = 'latest_question_list'
+
+                    def get_queryset(self):
+                        """Return the last five published questions."""
+                        return Question.objects.order_by('-pub_date')[:5]
+
+
+                class DetailView(generic.DetailView):
+                    model = Question
+                    template_name = 'polls/detail.html'
+
+
+                class ResultsView(generic.DetailView):
+                    model = Question
+                    template_name = 'polls/results.html'
+
+
+                def vote(request, question_id):
+                    ... # same as above, no changes needed.
+            </pre>
+            <p>Estamos utilizando dos vistas genéricas aqui: <b><a href="https://docs.djangoproject.com/es/3.2/ref/class-based-views/generic-display/#django.views.generic.list.ListView" target="_blank">ListView</a></b> y <b><a href="https://docs.djangoproject.com/es/3.2/ref/class-based-views/generic-display/#django.views.generic.detail.DetailView" target="_blank">DetailView</a></b>. Respectivamente, esas dos vistas abstraen los conceptos de «mostrar una lista de objetos» y «mostrar una página de detalles para un tipo específico de objeto.»</p>
+            <ul class="browser-default">
+                <li>Cada vista genérica tiene que saber cuál es el modelo sobre el que estará actuando. Esto se proporciona utilizando el atributo model.</li>
+                <li>La vista genérica <b><a href="https://docs.djangoproject.com/es/3.2/ref/class-based-views/generic-display/#django.views.generic.detail.DetailView" target="_blank">DetailView</a></b> espera que el valor de la clave primaria capturado desde la URL sea denominado "pk", por lo que hemos cambiado``question_id`` a pk para las vistas genéricas.</li>
+            </ul>
+            <p>Por defecto, la vista genérica DetailView utiliza una plantilla llamada <b>&lt;app name>/&lt;model name>_detail.html</b>. En nuestro caso, utilizaría la plantilla <b>"polls/question_detail.html"</b>. El atributo <b>template_name</b> se utiliza para indicarle a Django que utilice un nombre de plantilla específico en vez del nombre de plantilla generado de forma automática. También especificamos el atributo <b>template_name</b> para la vista de lista <b>results</b>, esto garantiza que la vista de resultados y la vista detalle tengan un aspecto diferente cuando sean creadas, a pesar de que las dos son una vista genérica <b>DetailView</b> en segundo plano.</p>
+            <p>Del mismo modo, la vista genérica <b>ListView</b> utiliza una plantilla predeterminada llamada &lt;app name>/&lt;model name>_list.html; utilizamos el atributo <b>template_name</b> para indicarle a ListView que utilice nuestra plantilla "polls/index.html" existente.</p>
+            <p>En partes anteriores del tutorial, las plantillas se proporcionaron con un contexto que contiene las variables de contexto <b>question</b> y <b>latest_question_list</b>. Para <b>DetailView</b>, la variable de pregunta se proporciona automáticamente; dado que estamos usando un modelo de Django (Pregunta), Django puede determinar un nombre apropiado para la variable de contexto. Sin embargo, para <b>ListView</b>, la variable de contexto generada automáticamente es <b>question_list</b>. Para anular esto, proporcionamos el atributo <b>context_object_name</b>, especificando que queremos usar <b>latest_question_list</b> en su lugar. Como enfoque alternativo, puede cambiar sus plantillas para que coincidan con las nuevas variables de contexto predeterminadas, pero es mucho más fácil decirle a Django que use la variable que desea.</p>
+            <hr/>
+            <p>
+                <b><a class="left" href="/tutorial03"><u>< Tutorial 03: Creación de la interfaz pública</u></a></b>
+            </p>
         </div>
     </div>
 </div>

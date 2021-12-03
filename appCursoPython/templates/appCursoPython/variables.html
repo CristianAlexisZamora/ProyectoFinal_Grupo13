@@ -1,0 +1,211 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+<!--Titulo de la pagina-->
+{% block title %}
+    Variables en Python
+{% endblock %}
+
+<!--Contenido de la pagina-->
+{% block content %}
+<div class="principal">
+    <div class="row">
+        <div class="col s3">
+            <div class="row">
+                <div class="col s12">
+                    <br/><br/><br><br>
+                  <h5><center>Contenido</center></h5>
+                  <div class="card-panel yellow lighten-2">
+                    <ul class="browser-default">
+                        <li><a href="#variab" class="grey-text text-darken-4">Variables en Python</a></li>
+                        <li><a href="#asig" class="grey-text text-darken-4">Asignar un valor a una variable en Python</a></li>
+                        <li><a href="#modi" class="grey-text text-darken-4">Modificar el valor de una variable en Python</a></li>
+                        <li><a href="#lit" class="grey-text text-darken-4">Literales</a></li>
+                        <li><a href="#asigVal" class="grey-text text-darken-4">Asignar un valor a múltiples variables</a></li>
+                        <li><a href="#asigMul" class="grey-text text-darken-4">Asignar múltiples valores a múltiples variables</a></li>
+                        <li><a href="#var" class="grey-text text-darken-4">Variables y memoria</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+        </div>
+        <div class="col s9">
+            <h2><center>Variables en Python</center></h2>
+            <p>Este tutorial es muy, muy importante. En él aprenderás qué son las variables en Python, cómo asignarles un valor y cómo modificarlas.</p>
+
+            <h4 id="variab">Variables en Python</h4>
+            <p>Las variables son uno de los dos componentes básicos de cualquier programa.</p>
+            <p>En su esencia, un programa está compuesto por datos e instrucciones que manipulan esos datos. Normalmente, los datos se almacenan en memoria (memoria RAM) para que podamos acceder a ellos.</p>  
+            <p>Entonces, ¿qué es una variable? Una variable es una forma de identificar, de forma sencilla, un dato que se encuentra almacenado en la memoria del ordenador. Imagina que una variable es un contenedor en el que se almacena un dato, el cuál, puede cambiar durante el flujo del programa. Una variable nos permite acceder fácilmente a dicho dato para ser manipulado y transformado.</p>
+            <p>Por ejemplo, supongamos que queremos mostrar el resultado de sumar 1 + 2. Para mostrar el resultado, debemos indicarle al programa dónde se encuentra dicho dato en memoria y, para ello, hacemos uso de una variable:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    # Guardamos en la variable suma el resultado de 1 + 2
+                    suma = 1 + 2
+
+                    # Accedemos al resultado de 1 + 2 a través de la variable suma
+                    print(suma) </pre>
+            </code>
+
+
+
+            <h4 id="asig">Asignar un valor a una variable en Python</h4>
+            <p>Tal y como hemos visto en el ejemplo anterior, para asignar un valor (un dato) a una variable se utiliza el operador de asignación <kbd>=</kbd>.</p>
+            <p>En la operación de asignación se ven involucradas tres partes:</p>
+            <ul class="browser-default">
+                <li>El operador de asignación <kbd>=</kbd></li>
+                <li>Un identificador o nombre de variable, a la izquierda del operador</li>
+                <li>Un literal, una expresión, una llamada a una función o una combinación de todos ellos a la derecha del operador de asignación</li>
+            </ul>
+            <p>Ejemplos:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    # Asigna a la variable 'a' el valor 1
+                    a = 1
+                    # Asigna a la variable 'a' el resultado de la expresión 3 * 4
+                    a = 3 * 4
+                    # Asigna a la variable 'a' la cadena de caracteres 'Pythonista'
+                    a = 'Pythonista'</pre>
+            </code>
+            <p>Cuando asignamos un valor a una variable por primera vez, se dice que en ese lugar se define e inicializa la variable. En un script o programa escrito en Python, podemos definir variables en cualquier lugar del mismo. Sin embargo, es una buena práctica definir las variables que vayamos a utilizar al principio.</p>
+            <p>Si intentamos usar una variable que no ha sido definida/inicializada previamente, el intérprete nos mostrará un error:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    >>> print(a)
+                    Traceback (most recent call last):
+                    File "&lt;input&gt;", line 1, in &lt;module&gt;
+                    NameError: name 'a' is not defined</pre>
+            </code>
+            <p>Para terminar esta sección de variables en Python, vamos a introducir el concepto tipo de dato. Al asignar un valor a una variable, dicho valor pertenece a un conjunto de valores conocido como tipo de dato. Un tipo de dato define una serie de características sobre esos datos y las variables que los contienen como, por ejemplo, las operaciones que se pueden realizar con ellos. En Python, los tipos de datos básicos son los numéricos (enteros, reales y complejos), los boolenaos (True, False) y las cadenas de caracteres.</p>
+            <p>Veamos un ejemplo:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    a = 1  # La variable a es de tipo entero (int)
+                    b = 'Hola'  # La variable b es de tipo cadena de caracteres</pre>
+            </code>
+            <p>A diferencia de otros lenguajes, en Python no es necesario indicar el tipo de dato cuando se define una variable. Además, en cualquier momento, una variable que es de un tipo puede convertirse en una variable de otro tipo cualquiera:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    a = 1  # a es de tipo entero
+                    a = 'Hola'  # Ahora a es de tipo cadena de caracteres</pre>
+            </code>
+            <p>Se dice que Python (el intérprete) infiere el tipo de dato al que pertenece una variable en tiempo de ejecución, es decir, es cuando se ejecuta el programa, cuando conoce su tipo de dato y qué operaciones pueden llevarse a cabo con él.</p>
+
+
+
+            <h4 id="modi">Modificar el valor de una variable en Python</h4>
+            <p>Para modificar el valor de una variable en Python, basta con asignarle un nuevo valor en cualquier momento y lugar después de la definición.</p>
+            <p>Por ejemplo:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    >>> a = 1
+                    >>> print(a)
+                    1
+                    >>> b = 'Hola'
+                    >>> a = 3
+                    >>> print(a)
+                    3</pre>
+            </code>
+            <p>Como vemos en el ejemplo anterior, hemos modificado el dato de la variable <kbd>a</kbd>. En la línea 1 le hemos asignado el valor <kbd>1</kbd>. Más tarde, en la línea 5, hemos actualizado su valor a <kbd>3</kbd>.</p>
+            
+            
+            
+            <h4 id="lit">Literales</h4>
+            <p>Tal y como te he mencionado en un apartado anterior, a una variable se le puede asignar un literal, una expresión, una llamada a una función o una combinación de todos ellos.</p>
+            <p>Ahora bien, ¿qué es un literal? Ya hemos visto ejemplos de literales en los apartados anteriores. Un literal no es más que un dato en crudo que se puede asignar directamente a una variable o formar parte de una expresión.</p>
+            <p>En el siguiente ejemplo se asigna a la variable a el literal <kbd>1</kbd>:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    a = 1</pre>
+            </code>
+            <p>El literal <kbd>1</kbd> representa el valor numérico del número entero 1.</p>
+            <p>Existen varios tipos de literales:</p>
+            <ul class="browser-default">
+                <li>Numéricos (Enteros, reales y complejos): <kbd>1</kbd>, <kbd>3</kbd>, <kbd>3.14</kbd>, <kbd>-1</kbd>, <kbd>3.14j</kbd>, …</li>
+                <li>Cadenas de caracteres: <kbd>'Hola'</kbd>, <kbd>'Me gusta Python'</kbd>, …</li>
+                <li>Booleanos: <kbd>True</kbd> y <kbd>False</kbd></li>
+                <li>El literal especial <kbd>None</kbd>. <kbd>None</kbd> significa ausencia de valor y es muy utilizado en programación</li>
+            </ul>
+
+
+
+            <h4 id="asigVal">Asignar un valor a múltiples variables</h4>
+            <p>Ahora vas a descubrir cómo asignar un mismo valor a múltiples variables a la vez. Si tienes que definir varias variables con un mismo dato, puedes usar la siguiente estructura:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    >>> a = b = c = 1  # Inicializa a, b y c con el valor 1
+                    >>> print(a)
+                    1
+                    >>> print(b)
+                    1
+                    >>> print(c)
+                    1</pre>
+            </code>
+
+
+
+            <h4 id="asigMul">Asignar múltiples valores a múltiples variables</h4>
+            <p>También es posible inicializar varias variables con un valor diferente cada una del siguiente modo:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    >>> a, b, c = 1, 2, 3
+                    >>> print(a)
+                    1
+                    >>> print(b)
+                    2
+                    >>> print(c)
+                    3</pre>
+            </code>
+            <p>No obstante, te desaconsejo que lo hagas así porque el código es menos legible.</p>
+
+
+
+            <h4 id="var">Variables y memoria</h4>
+            <p>Finalmente, para terminar esta sección, quiero que te quede realmente claro qué es esto de una variable y cómo asigna Python las direcciones de memoria a los datos y a las variables.</p>
+            <p>Para empezar, te diré que <b>en Python todo es un objeto</b>. Sí, todavía no hemos visto el apartado de programación orientada a objetos con Python, pero ten presente que en Python todo es un objeto.</p>
+            <p>Entonces, ¿qué ocurre cuando a la variable a le asigno el valor 1?</p>
+            <code>
+                <pre class="lime lighten-5">
+                    a = 1</pre>
+            </code>
+            
+            <p>Realmente, la variable <kbd>a</kbd> hace referencia al objeto que representa al número entero con valor <kbd>1</kbd>. Si ahora creas una nueva variable <kbd>b</kbd> y le asignas también el valor <kbd>1</kbd>, <kbd>b</kbd> está haciendo referencia al mismo objeto que la variable <kbd>a</kbd>. En definitiva, <kbd>a</kbd> y <kbd>b</kbd> hacen referencia al mismo objeto y, por tanto, están asociadas a la misma dirección de memoria. Esto no es así en otros lenguajes, en otros lenguajes <kbd>a</kbd> y <kbd>b</kbd> estarían asociadas a direcciones de memoria diferentes.</p>
+            <p>Para que lo entiendas mejor te voy a presentar la función id() que viene con Python. La función id() devuelve un identificador único del objeto que se le pasa como parámetro. Este identificador es un entero el cuál se garantiza que es único e inmutable durante toda la vida del objeto en memoria.</p>
+            <p>En la implementación de Python CPython (la más común), este identificador es realmente la dirección en memoria del objeto.</p>
+            <p>Veamos todo lo anterior con un ejemplo:</p>
+            <code>
+                <pre class="lime lighten-5">
+                    # a y b hacen referencia al objeto que representa al entero 1
+                    # Referencian a la misma dirección de memoria
+                    >>> a = 1
+                    >>> b = 1
+                    >>> id(1)
+                    4299329328
+                    >>> id(a)
+                    4299329328
+                    >>> id(b)
+                    4299329328
+
+                    # b es asignado con el objeto que representa el entero 2
+                    # a y b referencian a diferentes direcciones de memoria
+                    # a mantiene la referencia al entero 1
+                    >>> b = 2
+                    >>> id(a)
+                    4299329328
+                    >>> id(b)
+                    4299329360
+
+                    # a es asignada con el valor de b
+                    # a y b referencian al mismo objeto y, por tanto,
+                    # a la misma dirección de memoria
+                    >>> a = b
+                    >>> id(a)
+                    4299329360
+                    >>> a
+                    2</pre>
+            </code>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -50,3 +50,27 @@ def bucleWhile(request):
 def practicapage(request, modulo):
     resultado = practica.objects.get(idpractica=modulo)
     return render(request, "appcursoPython/practica.html", {"tema":resultado.tema, "pregunta1":resultado.pregunta1, "pregunta2":resultado.pregunta2, "pregunta3":resultado.pregunta3})
+
+#Modulo 3
+
+# Vista creada para el tutorial de tipoRange
+def tipoRange(request):
+    return render(request, "appCursoPython/tipoRange.html")
+# Vista creada para el tutorial de tipoSet
+def tipoSet(request):
+    return render(request, "appCursoPython/tipoSet.html")
+# Vista creada para el tutorial de tipoDict
+def tipoDict(request):
+    return render(request, "appCursoPython/tipoDict.html")
+
+#Vista para el tutorial de introduccion
+def introduccion(request):
+    return render(request, "appCursoPython/introduccion.html")
+
+#Vista para el tutorial de tipos de datos
+def variables(request):
+    return render(request, "appCursoPython/variables.html")
+
+#Vista para el tutorial de variables
+def tiposDatos(request):
+    return render(request, "appCursoPython/tiposDatos.html")
