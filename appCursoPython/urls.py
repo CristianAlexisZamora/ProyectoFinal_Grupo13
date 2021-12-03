@@ -4,8 +4,8 @@ from django.urls import path
 from appCursoPython import views
 
 urlpatterns = [
+    path('', views.inicio, name="Inicio"),
     path('POO/', views.pythonPOO, name="POO"),
-    path('inicio/', views.inicio, name="Inicio"),
     path('tutorial01/', views.cursoDjango01, name="FrameworkDjango01"),
     path('tutorial02/', views.cursoDjango02, name="FrameworkDjango02"),
     path('tutorial03/', views.cursoDjango03, name="FrameworkDjango03"),

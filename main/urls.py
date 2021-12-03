@@ -5,6 +5,5 @@ from main import views
 from django.conf.urls import url
 
 urlpatterns = [
-    path('', views.home, name="Inicio"),
     path('academia/', views.academiaCurso, name="AcademiaCurso"),
 ]
