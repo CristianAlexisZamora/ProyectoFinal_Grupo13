@@ -16,8 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from login.views import LoginFormView
+from main.user.views import RegistroUsuario
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
     path('', include('appCursoPython.urls')),
+    path('login/', LoginFormView.as_view()),
+    path('registrar/', RegistroUsuario.as_view()),
 ]

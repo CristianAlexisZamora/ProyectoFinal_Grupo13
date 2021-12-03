@@ -1,0 +1,163 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <link href="{% static 'css/materialize.min.css' %}" rel="stylesheet"/>
+    <link rel="stylesheet" href="../static/fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="../static/css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+
+    <!-- Style -->
+    <link rel="stylesheet" href="../static/css/style1.css">
+
+    <title>Registrar usuario</title>
+  </head>
+<body>
+    <nav class=" blue darken-4">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo"><img  width="62" src="{% static 'media/PYTHONICO.png' %}"></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="#">Tutorial</a></li>
+                <li><a href="#">Premium</a></li>
+                <li><a href="/comunidad">Comunidad</a></li>
+                <li><a href="#">Acerca de</a></li>
+                <li><a href="#">Iniciar sesi&oacute;n</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <h1>Crear cuenta</h1>
+                    </div>
+                    <div class="row">
+                        <form method="post">
+                                    {% csrf_token %}
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input class="form-control" type="text" name="first-name" placeholder="Nombre">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input class="form-control text-sm-left" type="text" name="last-name" placeholder="Apellido">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                          <div class="form-group">
+                                            <select class="form-control " name="sexo" id="exampleFormControlSelect1">
+                                              <option>Masculino</option>
+                                              <option>Femenino</option>
+                                            </select>
+                                          </div>
+                                        </div>
+
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input class="form-control text-sm-left" type="text" name="edad" placeholder="Edad">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                            <input class="form-control" type="text" name="username" placeholder="Nombre de usuario">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <input class="form-control" type="email" name="email" placeholder="Correo">
+                                            </div>
+                                            </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <input class="form-control" type="password" name="password1" placeholder="Contraseña">
+                                            </div>
+                                            </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <input class="form-control" type="password" name="password2" placeholder="Confirmar contraseña">
+                                            </div>
+                                            </div>
+                                    </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button class="btn btn-warning" type="submit">Cancelar</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button class="btn btn-info" type="submit">Guardar</button>
+                                </div>
+
+                            </div>
+
+            </form>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <img src="../static/images/pyLogin.svg" alt="Image" class="img-fluid">
+                </div>
+            </div>
+      </div>
+    </div>
+
+    <script type='application/javascript'>
+            {% if form.errors %}
+            var errors = '';
+            {% for field in form %}
+                {% for error in field.errors %}
+                    errors += '{{ error }}\n';
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                errors += '{{ error }}\n';
+            {% endfor %}
+            Swal.fire({
+                title: 'Error!',
+                text: errors,
+                icon: 'error'
+            });
+        {% endif %}
+                </script>
+
+
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/js/popper.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/main.js"></script>
+
+
+</body>
+
+</html>
