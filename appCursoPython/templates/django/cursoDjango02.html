@@ -33,11 +33,11 @@
             <p>En está segunda parte de Django seguiremos con el ejemplo práctico de una aplicación de encuestas.</p>
             <h4 id="jugando-api"><center>Jugando con la API</center></h4>
             <p>Ahora, vayamos al shell interactivo de Python y juguemos con la API gratuita que te ofrece Django. Para invocar el shell de Python, use este comando:</p>
-            <pre>python manage.py shell</pre>
+            <pre class="lime lighten-5">python manage.py shell</pre>
             <p>Estamos usando esto en lugar de simplemente escribir "python", porque <b>manage.py</b> establece la variable de entorno <b><a href="https://docs.djangoproject.com/en/3.2/topics/settings/#envvar-DJANGO_SETTINGS_MODULE" target="_blank" rel="noopener noreferrer">DJANGO_SETTINGS_MODULE</a></b>, que le da a Django la ruta de importación de Python a su archivo <b>mysite/settings.py</b>.</p>
             <p>Una vez que esté en el shell, explore la <b><u><a href="https://docs.djangoproject.com/en/3.2/topics/db/queries/" target="blank">API</a></u></b> de la base de datos.</p>
             <p>Estamos usando esto en lugar de simplemente escribir "python", porque <b>manage.py</b> establece la variable de entorno <b>DJANGO_SETTINGS_MODULE</b>, que le da a Django la ruta de importación de Python a su archivo <b>mysite/settings.py</b>.</p>
-            <pre>
+            <pre class="lime lighten-5">
                 >>> from polls.models import Choice, Question # Import the model classes we just wrote.
                 # No questions are in the system yet.
                 >>> Question.objects.all()
@@ -72,7 +72,7 @@
                 &lt;QuerySet [&lt;Question: Question object (1)>]>
             </pre>
             <p>Espera un minuto, no es una representación útil de este objeto. Arreglemos eso editando el modelo (en el archivo) y agregando un método a ambos y: <b><Question: Question object (1)>Questionpolls/models.py__str__()QuestionChoice</b></p>
-            <pre>
+            <pre class="lime lighten-5">
                 from django.db import models
 
                 class Question(models.Model):
@@ -87,7 +87,7 @@
             </pre>
             <p>Es importante agregar el método __str__() a sus modelos, no solo para su propia conveniencia al tratar con el indicador interactivo, sino también porque las representaciones de los objetos se utilizan en todo el administrador generado automáticamente por Django.</p>
             <p>Agreguemos también un método personalizado a este modelo:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 import datetime
 
                 from django.db import models
@@ -115,19 +115,19 @@
             </div>
             <h5 id="creando-usuario-administrador">Creando un usuario administrador</h5>
             <p>Primero, necesitaremos crear un usuario que pueda iniciar sesión en el sitio de administración. Ejecute el siguiente comando: </p>
-            <pre>
+            <pre class="lime lighten-5">
                 python manage.py createsuperuser
             </pre>
             <p>Ingrese su nombre de usuario y presiones enter:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 Username: admin
             </pre>
             <p>A continuación, se le pedirá la dirección de correo electrónico que desee:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 Email address: admin@example.com
             </pre>
             <p>El último paso ingresar su contraseña. Se le pedirá que ingrese su contraseña dos veces, la segunda vez como confirmación de la primera.</p>
-            <pre>
+            <pre class="lime lighten-5">
                 Password: **********
                 Password (again): **********
                 Superuser created successfully.
@@ -143,7 +143,7 @@
             <p>Deberia ver algunos tipos de contenido editable: grupos y usuarios. Son proporcionados por el marco de autenticación enviado por Django <b><a href="https://docs.djangoproject.com/en/3.2/topics/auth/#module-django.contrib.auth" target="_blank" rel="noopener noreferrer">django.contrib.auth</a></b></p>
             <h5 id="hacer-visible-app">Haga que la aplicación de encuesta sea modificable en el administrador</h5>
             <p>Para hacer visible nuestra aplicación en el índice de administración necesitamos decirle al administrador que los objetos <b>Question</b> tienen una interfaz de administrador. Para hacer esto, abra el archivo <b>polls/admin/py</b> y editelo para que se vea así:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 from django.contrib import admin
                 
                 from .models import Question 

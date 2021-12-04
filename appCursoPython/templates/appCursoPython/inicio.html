@@ -1,0 +1,114 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+<!--Titulo de la pagina-->
+{% block title %}
+    Inicio
+{% endblock %}
+{% block content %}
+<div class="container center-align">
+    <h2>Python, de principiante a experto</h2>
+    <h4>Aprende Python de forma divertida</h4>
+</div>
+    <div class="row">
+        <div class="col s1"></div>
+        <div class="col s6">
+            <br><br><br>
+            <blockquote>
+                <h5>¡Pythonico es un curso de Python en español!</h5>
+            </blockquote>
+            
+            <p>Aquí aprenderás a programar en Python desde cero a avanzado gracias a los tutoriales, guías, ejercicios,recursos preparados especialmente para ti y con temas como:
+                características básicas del lenguaje, estructuras del control de flujo, tipos de datos complejos, división de la lógica de un programa y más.
+            </p>
+            <p> Queremos ser la comunidad más grande de la red, de habla hispana, donde se comparta conocimiento sobre el lenguaje de programación Python.</p>
+        </div>
+        <div class="col s4">
+            <img width="350" class="responsive-img" src="{% static 'media/imagenInicio.png' %}" alt="">
+        </div>
+    </div>
+<div class="grey lighten-3">
+    <br>
+    <div class="row"> 
+        <div class="col s1"></div>
+        <div class="col s4">
+            <img width="350" class="responsive-img" src="{% static 'media/imagenInicio2.png' %}" alt="">
+        </div>
+        <div class="col s6"> 
+            <blockquote>
+                <h5>¡Aprendamos Python!</h5>
+            </blockquote>
+            <p>
+            Aprender lo básico del lenguaje es relativamente fácil y lo puedes hacer en muy poco tiempo. Ya que la sintaxis de Python es clara, elegante y sencilla. Esta es la filosofía que lo caracteriza.
+            </p>
+            <p>Python es un lenguaje de alto nivel de propósito general. Fue inventado por Guido van Rossum pero en la actualidad es administrado por la Python Software Foundation.</p>
+            <p>Es altamente recomendable para multitud de campos, aunque destaca en desarollo web, scripting, big data y machine learning.</p>
+
+        </div>
+    </div>
+</div>
+<div class="parallax-container">
+    <div class="parallax"><img src="{% static 'media/imgInicio.jpg' %}"></div>
+</div>      
+<br>
+<div class="row">
+    <div class=" col s1"></div>
+    <div class="col s4 blue darken-1 white-text">
+        <h5 class="center">Algunos temas del curso</h5>
+        <p>El curso de Pythonico es un curso diferente. Si quieres aprender a programar en Python, este es tu curso.</p>
+        <p>Aquí tienes algunas de los temas del curso de Pythonico:</p>
+        <div class="container">
+            <li >Introducción a Python</li>
+            <li>Tipos de datos básicos</li>
+            <li>Sentencia if</li>
+            <li >Funciones</li>
+            <li >Programación orientada a objetos en Python</li>
+            <li >El tipo range en Python: Secuencias numéricas</li>
+            <li >Entrada de datos mediante el teclado</li>
+            <li>Tuplas en Python: El tipo tuple y operaciones más comunes</li>
+            <li>Diccionarios en Python: El tipo diccionario y operaciones más comunes</li>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+    <div class="col s2"></div>
+    <div class="col s4 yellow lighten-3">
+        <h5 class="center">Curso Python</h5>
+        <p>Aprenderás lo básico del lenguaje con todo lujo de detalles para que, posteriormente, te puedas dedicar a lo que realmente te guste: desarrollo web, análisis de datos, machine learning, … Y contarás con mi soporte durante todo el curso para resolver cualquier duda.</p>
+        <iframe  class="col s12" width="560" height="315" src="https://www.youtube.com/embed/TDZyvcfMhjE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="yellow-text">.</div>
+
+    </div>
+
+    
+
+</div>
+<br>
+<div class="parallax-container">
+    <div class="parallax"><img src="{% static 'media/imgInicio.jpg' %}"></div>
+</div>   
+<br>
+<div class="grey lighten-3">
+    <br>
+    <div class="row"> 
+        <div class="col s1"></div>
+        <div class="col s4">
+            <img width="350" class="responsive-img" src="{% static 'media/imagenInicio3.png' %}" alt="">
+        </div>
+        <div class="col s6"> 
+            <blockquote>
+                <h5>Adquiere premium</h5>
+            </blockquote>
+            <p>
+                Puedes adquirir el premium del curso en el cual obtendrás contenido exclusivo y extra.
+            </p>
+            <p>Podrás accesar y observar el contenido extra de los cursos y de esa manera ampliar más tus conocimientos.</p>
+            <p>Crea tu cuenta y se parte de la comunidad premium de Pythonico.</p>
+
+        </div>
+    </div>
+</div> 
+
+
+{% endblock %}

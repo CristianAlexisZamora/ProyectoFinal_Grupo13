@@ -16,51 +16,50 @@
 </head>
 <body>
     <!--Barra de navegacion-->
-    <nav class=" blue darken-4">
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo"><img  width="62" src="{% static 'media/PYTHONICO.png' %}"></a>   
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#">Tutorial</a></li>
-                <li><a href="#">Premium</a></li>
-                <li><a href="/comunidad">Comunidad</a></li>
-                <li><a href="#">Acerca de</a></li>
-                <li><a href="#">Iniciar sesi&oacute;n</a></li>
-            </ul>
-        </div>
-    </nav>
+    <div class="navbar-fixed">
+      <nav class=" indigo darken-4">
+          <div class="nav-wrapper">
+              <a href="{% url 'Inicio' %}" class="brand-logo"><img  width="62" src="{% static 'media/PYTHONICO.png' %}"></a>   
+              <ul id="nav-mobile" class="right hide-on-med-and-down">
+                  <li><a class="#1565c0" href="#">Tutorial</a></li>
+                  <li><a href="#">Premium</a></li>
+                  <li><a href="/comunidad">Comunidad</a></li>
+                  <li><a href="#">Acerca de</a></li>
+                  <li><a href="#">Iniciar sesi&oacute;n</a></li>
+              </ul>
+          </div>
+      </nav>
+    </div>
     <!--Contenido cambiante-->
     {% block content %}
 
 
     {% endblock %}
     <!--Pie de pagina-->
-    <footer class="page-footer blue darken-4">
+    <footer class="page-footer indigo darken-4">
         <div class="container">
           <div class="row">
             <div class="col l6 s12">
               <h5 class="white-text">Pythonico</h5>
               <p class="grey-text text-lighten-4">Curso de python desarrollado por el Grupo #13 con fines educativos para la materia T&eacute;cnicas de Programaci&oacute;n para Internet de la Universidad de El Salvador.</p>
             </div>
-            <div class="col l4 offset-l2 s12">
-              <h5 class="white-text">Links</h5>
-              <ul>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-                <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-              </ul>
+            <div class="col l4 offset-l2 s12 center">
+              <br><br><br>
+              <a class="grey-text text-lighten-3" href="https://discord.gg/zQ2vpJRUUa"><img class="circle" style="width: 55px;" src="https://play-lh.googleusercontent.com/s7SUyvveKqEgpwVz74VDeQWGGhob_Vyj9_ubJGwUPvAXpPe4xAJeZ0l3pF2F7njB_NYM" alt=""></a>
+              <a class="grey-text text-lighten-3" href="https://www.facebook.com/profile.php?id=100075521319974"><img class="circle" style="width: 55px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Facebook_icon.svg/1200px-Facebook_icon.svg.png" alt=""></a>
+              <a class="grey-text text-lighten-3" href="https://twitter.com/PythonicoU"><img class="circle" style="width: 55px;" src="https://play-lh.googleusercontent.com/J8k5q78xv4R8Smi4vOE6iUphLvOz0efC-0lzoyGfd0KRUlAv4ekuCtlss6KBN-tMvEw" alt=""></a> 
             </div>
           </div>
         </div>
         <div class="footer-copyright">
-          <div class="container">
-          © 2021 Copyright
-          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+          <div class="container center">
+            <a class="grey-text text-lighten-4 " href="#!">© 2021 Copyright</a>
           </div>
         </div>
       </footer>   
       
     <!-- Compiled and minified JavaScript for Materialize-->
     <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/script.js' %}"></script>
 </body>
 </html>

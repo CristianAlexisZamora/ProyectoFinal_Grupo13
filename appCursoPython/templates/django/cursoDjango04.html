@@ -30,7 +30,7 @@
             <p>Continuamos con la aplicación de encuestas web y nos centraremos en el procesamiento de formularios y en la reduccion de nuestro código.</p>
             <h4 id="forma-minima">Escribe una forma mínima</h4>
             <p>Actualicemos nuestra plantilla de detalles de la encuesta ("polls/detail.html") del último tutorial, para que la plantilla contenga un elemento HTML &lt;form>:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 &lt;form action="{&#37; url 'polls:vote' question.id &#37;}" method="post">
                 {&#37; csrf_token &#37;}
                 &lt;fieldset>
@@ -52,11 +52,11 @@
                 <li>Dado que estamos creando un formulario POST (que puede tener el efecto de modificar los datos), debemos preocuparnos por las falsificaciones de solicitudes entre sitios. Afortunadamente, no tiene que preocuparse demasiado, porque Django viene con un sistema útil para protegerse contra él. En resumen, todos los formularios POST destinados a URL internas deben utilizar la etiqueta de plantilla &#123;% csrf_token%&#125;.</li>
             </ul>
             <p>Ahora, crearemos una vista de Django que maneje los datos enviados y haga algo con ellos. Recuerde, en el <a href="/tutorial03/">tutorial 3</a>, creamos una URLconf para la aplicación de encuestas que incluye esta línea:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 path('&lt;int:question_id>/vote/', views.vote, name='vote'),
             </pre>
             <p>También creamos una implementación ficticia de la función <b>vote()</b>. Creemos una versión real. Agregue lo siguiente a <b>polls/views.py</b></p>
-            <pre>
+            <pre class="lime lighten-5">
                 from django.http import HttpResponse, HttpResponseRedirect
                 from django.shortcuts import get_object_or_404, render
                 from django.urls import reverse
@@ -91,12 +91,12 @@
                 </li>
                 <li>Estamos usando la función <a href="https://docs.djangoproject.com/en/3.2/ref/urlresolvers/#django.urls.reverse" target="_blank">reverse()</a> en el constructor HttpResponseRedirect en este ejemplo. Esta función ayuda a evitar tener que codificar una URL en la función de visualización. Se le da el nombre de la vista a la que queremos pasar el control y la parte variable del patrón de URL que apunta a esa vista. En este caso, usando la URLconf que configuramos en el Tutorial 3, esta llamada <a href="https://docs.djangoproject.com/en/3.2/ref/urlresolvers/#django.urls.reverse" target="_blank">reverse()</a> devolverá una cadena como</li>
             </ul>
-            <pre>
+            <pre class="lime lighten-5">
                 '/polls/3/results/'
             </pre>
             <p>Donde 3 es el valor de question.id. Esta URL redirigida llamará a la vista de "resultados" para mostrar la página final.</p>
             <p>Después de que alguien vota en una pregunta, la vista <b>vote()</b> redirige a la página de resultados de la pregunta. Escribamos esa opinión:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 from django.shortcuts import get_object_or_404, render
 
                 def results(request, question_id):
@@ -104,7 +104,7 @@
                     return render(request, 'polls/results.html', {'question': question})
             </pre>
             <p>Ahora, cree una plantilla <b>polls/results.html:</b></p>
-            <pre>
+            <pre class="lime lighten-5">
                 &lt;h1>&#123;{ question.question_text }&#125;&lt;/h1>
 
                 &lt;ul>
@@ -129,7 +129,7 @@
             <p>Siga leyendo para conocer más detalles.</p>
             <h4 id="modifique-urlconf">Modifique el URLconf</h4>
             <p>Primero, abra el URLconf <b>polls/urls.py</b> y modifiquelo de la siguiente manera:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 from django.urls import path
 
                 from . import views
@@ -145,7 +145,7 @@
             <p>Tenga en cuenta que el nombre del patrón coincidente en las cadenas de ruta de los patrones segundo y tercero ha cambiado de <b>&lt;question_id></b> a <b>&lt;pk></b></p>
             <h4 id="modifique-vistas">Modifique las vistas</h4>
             <p>A continuación, vamos a eliminar nuestras viejas vistas <b>index, detail y results</b> y en su lugar vamos a usar las vistas genéricas de django. Para ello, abra el archivo <b>polls/views.py</b> y modifiquelo de la siguiente manera:</p>
-            <pre>
+            <pre class="lime lighten-5">
                 from django.http import HttpResponseRedirect
                 from django.shortcuts import get_object_or_404, render
                 from django.urls import reverse

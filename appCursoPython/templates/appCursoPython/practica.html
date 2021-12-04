@@ -3,19 +3,20 @@
 
 <!--Titulo de la pagina-->
 {% block title %}
-    Práctica
+Práctica
 {% endblock %}
 
 <!--Contenido de la pagina-->
 {% block content %}
 <div class="container">
+  <div class="section">
     <h1>{{tema}}</h1>
     <div class="col s12 m7">
       <h3 class="header">Practica #1</h3>
       <div class="card horizontal">
         <div class="card-stacked">
           <div class="card-content">
-            <p>{{pregunta1}}</p>
+            <p>{{pregunta1 | linebreaks}}</p>
           </div>
           <div class="card-action">
             <div class="row">
@@ -34,14 +35,14 @@
       <div class="card horizontal">
         <div class="card-stacked">
           <div class="card-content">
-            <p>{{pregunta2}}</p>
+            <p>{{pregunta2 | linebreaks}}</p>
           </div>
           <div class="card-action">
             <div class="row">
               <form class="col s12">
                 <div class="row">
                   <div class="input-field col s12">
-                    <input placeholder="Respuesta" id="pregunta1" type="text" class="validate">
+                    <input placeholder="Respuesta" id="pregunta2" type="text" class="validate">
                   </div>
                 </div>
               </form>
@@ -53,14 +54,14 @@
       <div class="card horizontal">
         <div class="card-stacked">
           <div class="card-content">
-            <p>{{pregunta3}}</p>
+            <p>{{pregunta3 | linebreaks}}</p>
           </div>
           <div class="card-action">
             <div class="row">
               <form class="col s12">
                 <div class="row">
                   <div class="input-field col s12">
-                    <input placeholder="Respuesta" id="pregunta1" type="text" class="validate">
+                    <input placeholder="Respuesta" id="pregunta3" type="text" class="validate">
                   </div>
                 </div>
               </form>
@@ -69,10 +70,71 @@
         </div>
       </div>
     </div>
-    <button class="btn waves-effect waves-light" type="button">Enviar</button>
+    <a class="btn-large waves-effect waves-light" type="button" onclick="comprobacion()">Enviar <i class="material-icons right">send</i></a>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="row">
+      <div class="col s12 m12 l2 offset-l5">
+      <div class="card">
+        <div class="card-content">
+          <p class="center-align">Nota</p>
+        </div>
+        <div class="card-content grey lighten-4" id="logrado">
+          <p id="nota" class="center-align">0.0</p>
+        </div>
+      </div>
+      </div>
+    </div>  
+    <div class="row">
+    <div class="col s12 m12 l4 offset-l5">
+      <a class="btn-large indigo darken-4 waves-effect waves-light" type="button" href="guardar/{{modulo}}">Guardar <i class="material-icons right">save</i></a>
+    </div>
+    </div>   
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <iframe src="https://trinket.io/embed/python3/a5bd54189b" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+  </div>
 </div>
+
+<script>
+  const res = ["{{res1}}","{{res2}}","{{res3}}"];
+  
+  function comprobacion(){
+    var resultado = 0.0;
+    var pr1 = document.getElementById("pregunta1").value;
+    var pr2 = document.getElementById("pregunta2").value;
+    var pr3 = document.getElementById("pregunta3").value;
+    
+    var pr = [pr1,pr2,pr3];
+    for(i=0; i<=2; i++){
+      if(res[i] == pr[i]){
+        resultado = resultado + 1/3;
+      }
+    }
+    
+    resultado = Math.round((resultado*10)*100) / 100;
+    
+    let notafinal = document.getElementById("nota");
+    let estilo = document.getElementById("logrado");
+    estilo.classList.remove("grey");
+    if(resultado>5.0){
+      estilo.classList.remove("red");
+      estilo.classList.add("teal");
+    }else{
+      estilo.classList.remove("teal");
+      estilo.classList.add("red");
+    }
+    
+    notafinal.innerHTML = resultado;
+    
+  };
+  
+</script>
+
+
 <br>
 <br>
 {% endblock %}
-
 
