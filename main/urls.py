@@ -7,4 +7,6 @@ from django.conf.urls import url
 urlpatterns = [
     path('', views.home, name="Inicio"),
     path('academia/', views.academiaCurso, name="AcademiaCurso"),
+    path('cuenta/', views.cuenta, name="Cuenta"),
+    path('nosotros/', views.nosotros, name="Nosotros"),
 ]

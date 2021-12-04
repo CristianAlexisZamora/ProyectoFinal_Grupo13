@@ -162,8 +162,8 @@
             <p>Con el comando anterior estamos importando el módulo mis_funciones en el intérprete. Prueba a llamar ahora a la función saludo() de este modo:</p>
             <code>
                 <pre>
-                    >>> mis_funciones.saludo('j2logo')
-                    Hola j2logo 
+                    >>> mis_funciones.saludo('Pythonico')
+                    Hola Pythonico 
                 </pre>
             </code>
 
@@ -178,7 +178,7 @@
                 <pre>
                     from mis_funciones import saludo, otra_funcion
 
-                    saludo('j2logo')
+                    saludo('Pythonico')
                 </pre>
             </code>
             <p>Esto nos permite acceder directamente a los nombres definidos en el módulo sin tener que utilizar el operador ".".</p>
@@ -188,7 +188,7 @@
                 <pre>
                     from mis_funciones import *
 
-                    saludo('j2logo')
+                    saludo('Pythonico')
                 </pre>
             </code>
             <p>Es similar al caso anterior, solo que importa todas las definiciones del módulo a excepción de los nombres que comienzan por guión bajo _.</p>
@@ -199,8 +199,8 @@
                 <pre>
                     >>> from mis_funciones import saludo as hola
 
-                    >>> hola('j2logo')
-                    Hola j2logo
+                    >>> hola('Pythonico')
+                    Hola Pythonico
                 </pre>
             </code>
             <h4 id="Ejecmod">Ejecutar módulos como scripts</h4>
@@ -215,7 +215,7 @@
             <code>
                 <pre>
                     if __name__ == '__main__':
-                    hola('j2logo')
+                    hola('Pythonico')
                 </pre>
             </code>
             <p>No se ejecutarán en caso de que el módulo se importe en otro módulo.</p>

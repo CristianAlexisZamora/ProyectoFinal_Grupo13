@@ -9,3 +9,11 @@ def home(request):
 #Vista de la pagina principal de academia
 def academiaCurso(request):
     return render(request, "main/academiaCurso.html")
+
+#Vista de mi cuenta
+def cuenta(request):
+    return render(request, "main/cuenta.html")
+
+#Vista de acerca de nosotros
+def nosotros(request):
+    return render(request, "main/nosotros.html")
