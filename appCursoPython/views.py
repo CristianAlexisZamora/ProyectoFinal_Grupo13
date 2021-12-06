@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from appCursoPython.models import practica
 
 #--------------------Modulo 1 ------------------------#
@@ -28,8 +28,13 @@ def sentenciaIf(request):
 def bucleWhile(request):
     return render(request, "appcursoPython/bucleWhile.html")
 
+def bucleFor(request):
+    return render(request, "appcursoPython/bucleFor.html")
 
 #------------------ Modulo 3 -------------------------#
+#vista creada para el tutorial de tipo List
+def tipoList(request):
+    return render(request, "appcursoPython/tipoList.html")
 # Vista creada para el tutorial de tipoRange
 def tipoRange(request):
     return render(request, "appCursoPython/tipoRange.html")

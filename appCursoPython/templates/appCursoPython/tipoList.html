@@ -1,0 +1,400 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+<!--Titulo de la pagina-->
+{% block title %}
+Tipo List
+{% endblock %}
+
+<!--Contenido de la pagina-->
+{% block content %}
+<div class="principal">
+    <div class="row">
+        <div class="col s3">
+            <div class="row">
+                <div class="col s12">
+                    <br/><br/><br><br>
+                    <h5><center>Contenido</center></h5>
+                    <div class="card-panel yellow lighten-2">
+                        <ul class="browser-default">
+                            <li><a href="#qlist" class="grey-text text-darken-4">¿Qué es una lista?</a></li>
+                            <li><a href="#elist" class="grey-text text-darken-4">¿Cómo acceder a los elementos de una lista en Python?</a></li>
+                            <li><a href="#folis" class="grey-text text-darken-4">for list en Python - Recorrer una lista</a></li>
+                            <li><a href="#addli" class="grey-text text-darken-4">Añadir elementos a una lista en Python</a></li>
+                            <li><a href="#modli" class="grey-text text-darken-4">Modificar elementos de una lista</a></li>
+                            <li><a href="#delli" class="grey-text text-darken-4">Eliminar un elemento de una lista en Python</a></li>
+                            <li><a href="#lenli" class="grey-text text-darken-4">Longitud (len) de una lista en Python</a></li>
+                            <li><a href="#perli" class="grey-text text-darken-4">¿Cómo saber si un elemento está en una lista en Python?</a></li>
+                            <li><a href="#sortl" class="grey-text text-darken-4">sort list Python – Ordenar una lista en Python</a></li>
+                            <li><a href="#metli" class="grey-text text-darken-4">Listado de métodos de la clase list</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s9">
+            <h2><center>Listas en Python</center></h2>
+            <p>La clase list en Python es una de las más utilizadas por su naturaleza, dinamismo, fácil manejo y potencia. Tengo que decir que el tipo lista de Python me sorprende gratamente y es uno de los grandes aciertos del lenguaje. Descubre en este tutorial qué es el tipo list y cuáles son sus operaciones más comunes para sacarle el máximo provecho.</p>
+            
+            
+            <h4 id="qlist">¿Qué es una lista?</h4>
+            <p>Las listas en Python son un tipo contenedor, compuesto, que se usan para almacenar conjuntos de elementos relacionados del mismo tipo o de tipos distintos.
+            <br><br>
+            Junto a las clases tuple, range y str, son uno de los tipos de secuencia en Python, con la particularidad de que son mutables. Esto último quiere decir que su contenido se puede modificar después de haber sido creada.
+            <br><br>
+            Para crear una lista en Python, simplemente hay que encerrar una secuencia de elementos separados por comas entre paréntesis cuadrados <kbd>[]</kbd>.
+            <br><br>
+            Por ejemplo, para crear una lista con los números del 1 al 10 se haría del siguiente modo:
+            </p>
+            <code>
+                <pre class="lime lighten-5">
+                >>> numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                </pre>
+                </code>
+                <p>Como te decía, las listas pueden almacenar elementos de distinto tipo. La siguiente lista también es válida:</p>
+            <code>
+                    <pre class="lime lighten-5">
+                >>> lista = [1, ['a', 'e', 'i', 'o', 'u'], 8.9, 'hola']
+                    </pre>
+            </code>
+                
+            <p>Las listas también se pueden crear usando el constructor de la clase, <kbd>list(iterable)</kbd>. En este caso, el constructor crea una lista cuyos elementos son los mismos y están en el mismo orden que los ítems del iterable. El objeto iterable puede ser o una secuencia, un contenedor que soporte la iteración o un objeto iterador.<br><br>Por ejemplo, el tipo str también es un tipo secuencia. Si pasamos un string al constructor <kbd>list()</kbd> creará una lista cuyos elementos son cada uno de los caracteres de la cadena:</p>
+
+            <code>
+                <pre class="lime lighten-5">
+            >>> vocales = list('aeiou')
+            >>> vocales
+            ['a', 'e', 'i', 'o', 'u']
+                </pre>
+            </code>
+            <p>Termino esta sección mostrando dos alternativas de crear una lista vacía:</p>
+            <code>
+                <pre class="lime lighten-5">
+            >>> lista_1 = []  # Opción 1
+            >>> lista_2 = list()  # Opción 2
+                </pre>
+            </code>
+                <h4 id="elist">¿Cómo acceder a los elementos de una lista en Python?</h4>
+                <p>Para acceder a un elemento de una lista se utilizan los índices. Un índice es un número entero que indica la posición de un elemento en una lista. El primer elemento de una lista siempre comienza en el índice 0.
+                <br><br>
+                Por ejemplo, en una lista con 4 elementos, los índices de cada uno de los ítems serían 0, 1, 2 y 3.</p>
+                <code>
+                    <pre class="lime lighten-5">
+                >>> lista = ['a', 'b', 'd', 'i', 'j']
+                >>> lista[0]  # Primer elemento de la lista. Índice 0
+                'a'
+                >>> lista[3]  # Cuarto elemento de la lista. Índice 3
+                'i'
+                    </pre>
+                </code>
+                <p>Si se intenta acceder a un índice que está fuera del rango de la lista, el intérprete lanzará la excepción <kbd>IndexError</kbd>. De igual modo, si se utiliza un índice que no es un número entero, se lanzará la excepción <kbd>TypeError</kbd>:</p>
+                <code>
+                    <pre class="lime lighten-5">
+                >>> lista = [1, 2, 3]  # Los índices válidos son 0, 1 y 2
+                >>> lista[8]
+                Traceback (most recent call last):
+                    File "< input >", line 1, in < module >
+                IndexError: list index out of range
+                
+                >>> lista[1.0]
+                Traceback (most recent call last):
+                    File "< input >", line 1, in < module >
+                TypeError: list indices must be integers or slices, not float
+                    </pre>
+                </code>
+                <p>Como hemos visto, las listas pueden contener otros elementos de tipo secuencia de forma anidada. Por ejemplo, una lista que uno de sus ítems es otra lista. Del mismo modo, se puede acceder a los elementos de estos tipos usando índices compuestos o anidados:</p>
+                <code>
+                    <pre class="lime lighten-5">
+                >>> lista = ['a', ['d', 'b'], 'z']
+                >>> lista[1][1]  # lista[1] hace referencia a la lista anidada
+                'b'
+                    </pre>
+                </code>
+                <h6>Acceso a los elementos usando un índice negativo</h6>
+                <p>En Python está permitido usar índices negativos para acceder a los elementos de una secuencia. En este caso, el índice -1 hace referencia al último elemento de la secuencia, el -2 al penúltimo y así, sucesivamente:</p>
+                <code>
+                    <pre class="lime lighten-5">
+                >>> vocales = ['a', 'e', 'i', 'o', 'u']
+                >>> vocales[-1]
+                'u'
+                >>> vocales[-4]
+                'e'
+                    </pre>
+                </code>
+
+                <h6>Acceso a un subconjunto de elementos</h6>
+                <p>También es posible acceder a un subconjunto de elementos de una lista utilizando rangos en los índices. Esto es usando el operador <kbd>[:]</kbd>:</p>
+                <code>
+                    <pre class="lime lighten-5">
+                >>> vocales = ['a', 'e', 'i', 'o', 'u']
+                >>> vocales[2:3]  # Elementos desde el índice 2 hasta el índice 3-1
+                ['i']
+                >>> vocales[2:4]  # Elementos desde el 2 hasta el índice 4-1
+                ['i', 'o']
+                >>> vocales[:]  # Todos los elementos
+                ['a', 'e', 'i', 'o', 'u']
+                >>> vocales[1:]  # Elementos desde el índice 1
+                ['e', 'i', 'o', 'u']
+                >>> vocales[:3]  # Elementos hasta el índice 3-1
+                ['a', 'e', 'i']
+                    </pre>
+                </code>
+
+                <p>También es posible acceder a los elementos de una lista indicando un paso con el operador <kbd>[::]</kbd>:</p>
+                <code>
+                    <pre class="lime lighten-5">
+                >>> letras = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k']
+                >>> letras[::2]  # Acceso a los elementos de 2 en 2
+                ['a', 'c', 'e', 'g', 'i', 'k']
+                >>> letras[1:5:2]  # Elementos del índice 1 al 4 de 2 en 2
+                ['b', 'd']
+                >>> letras[1:6:3]  # Elementos del índice 1 al 5 de 3 en 3
+                ['b', 'e']
+                    </pre>
+                </code>
+
+
+
+                <h4 id="folis">for list Python – Recorrer una lista</h4>
+                <p>Ya hemos visto que se puede usar el bucle for en Python para recorrer los elementos de una secuencia. En nuestro caso, para recorrer una lista en Python utilizaríamos la siguiente estructura:</p>
+                <code>
+                    <pre class="lime lighten-5">
+                >>> colores = ['azul', 'blanco', 'negro']
+                >>> for color in colores:
+                        print(color)
+                
+                azul
+                blanco
+                negro
+                    </pre>
+                </code>
+
+                <h4 id="addli">Añadir elementos a una lista en Python</h4>
+                <p>Tal y como te he adelantado, las listas son secuencias mutables, es decir, sus elementos pueden ser modificados (se pueden añadir nuevos ítems, actualizar o eliminar).
+                    <br><br>
+                    Para añadir un nuevo elemento a una lista se utiliza el método <kbd>append()</kbd> y para añadir varios elementos, el método <kbd>extend()</kbd>:
+                </p>
+                <code>
+                    <pre class="lime lighten-5">
+                >>> vocales = ['a']
+                >>> vocales.append('e')  # Añade un elemento
+                >>> vocales
+                ['a', 'e']
+                
+                >>> vocales.extend(['i', 'o', 'u'])  # Añade un grupo de elementos
+                >>> vocales
+                ['a', 'e', 'i', 'o', 'u']
+                    </pre>
+                </code>
+
+                <p>También es posible utilizar el operador de concatenación + para unir dos listas en una sola. El resultado es una nueva lista con los elementos de ambas:</p>
+                <code>
+                    <pre class="lime lighten-5">
+                >>> lista_1 = [1, 2, 3]
+                >>> lista_2 = [4, 5, 6]
+                >>> nueva_lista = lista_1 + lista_2
+                >>> nueva_lista
+                [1, 2, 3, 4, 5, 6]
+                    </pre>
+                </code>
+
+                <p>Por otro lado, el operador <kbd>*</kbd> repite el contenido de una lista <kbd>n</kbd> veces:</p>
+                <code>
+                    <pre class="lime lighten-5">
+                >>> numeros = [1, 2, 3]
+                >>> numeros *= 3
+                >>> numeros
+                [1, 2, 3, 1, 2, 3, 1, 2, 3]
+                    </pre>
+                </code>
+
+                <p>Y para terminar esta sección, indicarte que también es posible añadir un elemento en una posición concreta de una lista con el método <kbd>insert(índice, elemento)</kbd>. Los elementos cuyo índice sea mayor a <kbd>índice</kbd> se desplazan una posición a la derecha:</p>
+                <code>
+                    <pre class="lime lighten-5">
+                >>> vocales = ['a', 'e', 'u']
+                >>> vocales.insert(2, 'i')
+                >>> vocales
+                ['a', 'e', 'i', 'u']
+                    </pre>
+                </code>
+
+                <h4 id="modli">Modificar elementos de una lista</h4>
+                <p>Es posible modificar un elemento de una lista en Python con el operador de asignación <kbd>=</kbd>. Para ello, lo único que necesitas conocer es el índice del elemento que quieres modificar o el rango de índices:</p>
+                <code>
+                    <pre class="lime lighten-5">
+                >>> vocales = ['o', 'o', 'o', 'o', 'u'
+                # Actualiza el elemento del índice 0
+                >>> vocales[0] = 'a'
+                >>> vocales
+                ['a', 'o', 'o', 'o', 'u']
+                
+                # Actualiza los elementos entre las posiciones 1 y 2
+                >>> vocales[1:3] = ['e', 'i']
+                >>> vocales
+                ['a', 'e', 'i', 'o', 'u']
+                    </pre>
+                </code>
+
+                    <h4 id="delli">Eliminar un elemento de una lista en Python</h4>
+                    <p>En Python se puede eliminar un elemento de una lista de varias formas.
+                    <br><br>Con la sentencia del se puede eliminar un elemento a partir de su índice:</p>
+                    <code>
+                        <pre class="lime lighten-5">
+                # Elimina el elemento del índice 1
+                >>> vocales = ['a', 'e', 'i', 'o', 'u']
+                >>> del vocales[1]
+                >>> vocales
+                ['a', 'i', 'o', 'u']
+                
+                # Elimina los elementos con índices 2 y 3
+                >>> vocales = ['a', 'e', 'i', 'o', 'u']
+                >>> del vocales[2:4]
+                >>> vocales
+                ['a', 'e', 'u']
+                
+                # Elimina todos los elementos
+                >>> del vocales[:]
+                >>> vocales
+                []
+                        </pre>
+                    </code>
+                    <p>Además de la sentencia <kbd>del</kbd>, podemos usar los métodos <kbd>remove()</kbd> y <kbd>pop([i])</kbd>. <kbd>remove()</kbd> elimina la primera ocurrencia que se encuentre del elemento en una lista. Por su parte, <kbd>pop([i])</kbd> obtiene el elemento cuyo índice sea igual a <kbd>i</kbd> y lo elimina de la lista. Si no se especifica ningún índice, recupera y elimina el último elemento.</p>
+                    <code>
+                        <pre class="lime lighten-5">
+                >>> letras = ['a', 'b', 'k', 'a', 'v']
+                
+                # Elimina la primera ocurrencia del carácter a
+                >>> letras.remove('a')
+                >>> letras
+                ['b', 'k', 'a', 'v']
+                
+                # Obtiene y elimina el último elemento
+                >>> letras.pop()
+                'v'
+                >>> letras
+                ['b', 'k', 'a']
+                        </pre>
+                    </code>
+                    <p>Finalmente, es posible eliminar todos los elementos de una lista a través del método <kbd>clear()</kbd>:</p>
+                    <code>
+                        <pre class="lime lighten-5">
+                >>> letras = ['a', 'b', 'c']
+                >>> letras.clear()
+                >>> letras
+                [] 
+                        </pre>
+                    </code>
+                <p>El código anterior sería equivalente a del <kbd>letras[:]</kbd>.</p>
+
+                <h4 id="lenli">Longitud (len) de una lista en Python</h4>
+                <p>Como cualquier tipo secuencia, para conocer la longitud de una lista en Python se hace uso de la función <kbd>len()</kbd>. Esta función devuelve el número de elementos de una lista:</p>
+                <code>
+                    <pre class="lime lighten-5">
+                >>> vocales = ['a', 'e', 'i', 'o', 'u']
+                >>> len(vocales)
+                5
+                    </pre>
+                </code>
+
+                <h4 id="perli">¿Cómo saber si un elemento está en una lista en Python?</h4>
+                <p>Ya adelanté en el tutorial sobre operadores en Python, que para saber si un elemento está contenido en una lista, se utiliza el operador de pertenencia <kbd>in</kbd>:</p>
+                <code>
+                    <pre class="lime lighten-5">
+                >>> vocales = ['a', 'e', 'i', 'o', 'u']
+                >>> if 'a' in vocales:
+                ...     print('Sí')
+                ...     
+                Sí
+                >>> if 'b' not in vocales:
+                ...     print('No')
+                ...     
+                No
+                    </pre>
+                </code>
+
+                <h4 id="sortl">sort list Python – Ordenar una lista en Python</h4>
+                <p>Las listas son secuencias ordenadas. Esto quiere decir que sus elementos siempre se devuelven en el mismo orden en que fueron añadidos.
+                <br><br>
+                No obstante, es posible ordenar los elementos de una lista con el método <kbd>sort()</kbd>. El método <kbd>sort()</kbd> ordena los elementos de la lista utilizando únicamente el operador <kbd><</kbd> y modifica la lista actual (no se obtiene una nueva lista):</p>
+                <code>
+                    <pre class="lime lighten-5">
+                # Lista desordenada de números enteros
+                >>> numeros = [3, 2, 6, 1, 7, 4]
+                
+                # Identidad del objeto numeros
+                >>> id(numeros)
+                4475439216
+                
+                # Se llama al método sort() para ordenar los elementos de la lista
+                >>> numeros.sort()
+                >>> numeros
+                [1, 2, 3, 4, 6, 7]
+                
+                # Se comprueba que la identidad del objeto numeros es la misma
+                >>> id(numeros)
+                4475439216
+                    </pre>
+                </code>
+
+                <h4 id="metli">Listado de métodos de la clase list</h4>
+                <p>Termino este tutorial mostrando la lista completa de métodos de la clase list. Algunos de ellos ya se han mencionado en las secciones anteriores.</p>
+
+                <table class="bordered highlight responsive-table">
+                    <thead class="blue darken-4 white-text">
+                        <tr>
+                            <th>Método</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+    
+                    <tbody>
+                        <tr>
+                            <td><kbd>append()</kbd></td>
+                            <td>Añade un nuevo elemento al final de la lista.</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>extend()</kbd></td>
+                            <td>Añade un grupo de elementos (iterables) al final de la lista.</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>insert(indice, elemento)</kbd></td>
+                            <td>Inserta un elemento en una posición concreta de la lista.</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>remove(elemento)</kbd></td>
+                            <td>Elimina la primera ocurrencia del elemento en la lista.</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>pop([i])</kbd></td>
+                            <td>Obtiene y elimina el elemento de la lista en la posición i. Si no se especifica, obtiene y elimina el último elemento.</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>clear()</kbd></td>
+                            <td>Borra todos los elementos de la lista.</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>index(elemento)</kbd></td>
+                            <td>Obtiene el índice de la primera ocurrencia del elemento en la lista. Si el elemento no se encuentra, se lanza la excepción <kbd>ValueError</kbd>.</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>count(elemento)</kbd></td>
+                            <td>Devuelve el número de ocurrencias del elemento en la lista.</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>sort()</kbd></td>
+                            <td>Ordena los elementos de la lista utilizando el operador <kbd><</kbd>.</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>reverse()</kbd></td>
+                            <td>Obtiene los elementos de la lista en orden inverso.</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>copy()</kbd></td>
+                            <td>Devuelve una copia poco profunda de la lista.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </div>
+</div>
+        {% endblock %}

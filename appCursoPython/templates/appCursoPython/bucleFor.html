@@ -1,0 +1,233 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+<!--Titulo de la pagina-->
+{% block title %}
+Bucle For
+{% endblock %}
+
+<!--Contenido de la pagina-->
+{% block content %}
+<div class="principal">
+    <div class="row">
+        <div class="col s3">
+            <div class="row">
+                <div class="col s12">
+                    <br/><br/><br><br>
+                    <h5><center>Contenido</center></h5>
+                    <div class="card-panel yellow lighten-2">
+                        <ul class="browser-default">
+                            <li><a href="#intro" class="grey-text text-darken-4">El bucle for en python</a></li>
+                            <li><a href="#itera" class="grey-text text-darken-4">¿Qué es un iterable?</a></li>
+                            <li><a href="#fordi" class="grey-text text-darken-4">Bucle for en diccionarios</a></li>
+                            <li><a href="#forra" class="grey-text text-darken-4">Python for y la clase range</a></li>
+                            <li><a href="#forin" class="grey-text text-darken-4">for _ in</a></li>
+                            <li><a href="#fbrec" class="grey-text text-darken-4">Bucle for, break y continue</a></li>
+                            <li><a href="#foels" class="grey-text text-darken-4">For ... else</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s9">
+            <h2><center>Bucle For</center></h2>
+            <p>Una de las principales tareas a la hora de aprender un nuevo lenguaje de programación es conocer las estructuras de control que ofrece el propio lenguaje. El bucle for en Python es una de las estructuras que más utilizarás en tus programas.</p>
+            <p>A continuación veremos por qué el bucle for en Python es importante, cuándo usarlo y cómo.</p>
+            
+            <h4 id="intro">El bucle for en python</h4>
+            <p>El bucle for se utiliza para recorrer los elementos de un objeto iterable (lista, tupla, conjunto, diccionario, …) y ejecutar un bloque de código. En cada paso de la iteración se tiene en cuenta a un único elemento del objeto iterable, sobre el cuál se pueden aplicar una serie de operaciones.</p>
+            <p>Su sintaxis es la siguiente:</p>  
+            <code>
+                <pre class="lime lighten-5">
+                for 'elem' in 'iterable':
+                    //tu código</pre>
+                </code>
+                <p>Aquí, <kdb>elem</kdb> es la variable que toma el valor del elemento dentro del iterador en cada paso del bucle. Este finaliza su ejecución cuando se recorren todos los elementos.</p>
+                <p>Como te indicaba, es muy frecuente usar el bucle for para iterar sobre los elementos de listas, tuplas o diccionarios.</p>
+                <code>
+                    <pre class="lime lighten-5">
+                nums = [4, 78, 9, 84]
+                for n in nums:
+                print(n)
+                
+                4
+                78
+                9
+                84
+                    </pre>
+                </code>
+                
+                <h4 id="itera">¿Qué es un interable?</h4>
+                <p>Veamos con más detalle el concepto de iterable mencionado en el apartado anterior. Un iterable es un objeto que se puede iterar sobre él, es decir, que permite recorrer sus elementos uno a uno. Para ser más técnico, un objeto iterable es aquél que puede pasarse como parámetro de la función <kbd>iter()</kbd>.</p>
+                <p>Esta función devuelve un iterador basado en el objeto iterable que se pasa como parámetro.</p>
+                <p>Finalmente, un iterador es un objeto que define un mecanismo para recorrer los elementos del iterable asociado. Te lo enseño mejor con un ejemplo:</p>
+                <code>
+                    <pre class="lime lighten-5">
+                >>> nums = [4, 78, 9, 84]
+                >>> it = iter(nums)
+                >>> next(it)
+                4
+                >>> next(it)
+                78
+                >>> next(it)
+                9
+                >>> next(it)
+                84
+                >>> next(it)
+                Traceback (most recent call last):
+                File "< input>", line 1, in < module>
+                    StopIteration
+                    </pre>
+                </code>
+                <p>Como puedes observar, un iterador recorre los elementos de un iterable solo hacia delante. Cada vez que se llama a la función <kbd>next()</kbd> se recupera el siguiente valor del iterador.</p>
+                <p>En Python, los tipos principales <kbd>list</kbd>, <kbd>tuple</kbd>, <kbd>dict</kbd>, <kbd>set</kbd> o <kbd>string</kbd> entre otros, son iterables, por lo que podrán ser usados en el bucle for.</p>
+                <h4 id="fordi">Bucle for en diccionarios</h4>
+                <p>Un caso es especial de bucle for se da al recorrer los elementos de un diccionario. Dado que un diccionario está compuesto por pares clave/valor, hay distintas formas de iterar sobre ellas.</p>
+                <p>1 – Recorrer las claves del diccionario.</p>
+                <code>
+                    <pre class="lime lighten-5">
+                valores = {'A': 4, 'E': 3, 'I': 1, 'O': 0}
+                for k in valores:
+                    print(k)
+                A
+                E
+                I
+                O
+                    </pre>
+                </code>
+                <p>2 – Iterar sobre los valores del diccionario.</p>
+                <code>
+                    <pre class="lime lighten-5">
+                valores = {'A': 4, 'E': 3, 'I': 1, 'O': 0}
+                for v in valores.values():
+                    print(v)
+                4
+                3
+                1
+                0
+                    </pre>
+                </code>
+                <p>3 – Iterar a la vez sobre la clave y el valor de cada uno de los elementos del diccionario.</p>
+                <code>
+                    <pre class="lime lighten-5">
+                valores = {'A': 4, 'E': 3, 'I': 1, 'O': 0}
+                for k, v in valores.items():
+                    print('k=', k, ', v=', v)
+                
+                k=A, v=4
+                k=E, v=3
+                k=I, v=1
+                k=O, v=0
+                    </pre>
+                </code>
+
+                <h4 id="forra">Python for y la clase range</h4>
+                <p>¿Cómo implementamos y/o simulamos en Python el bucle for basado en una secuencia numérica? Para estos casos, Python pone a nuestra disposición la clase <kbd>range</kbd> (en Python 2 era una función). El constructor de esta clase, <kbd>range(max)</kbd>, devuelve un iterable cuyos valores van desde <kbd>0</kbd> hasta <kbd>max - 1</kbd>.</p>
+                <code>
+                    <pre class="lime lighten-5">
+                for i in range(11):
+                    print(i)
+                
+                0
+                1
+                2
+                3
+                ...
+                10
+                    </pre>
+                </code>
+
+                <p>El tipo de datos <kbd>range</kbd> se puede invocar con uno, dos e incluso tres parámetros:</p>
+                <ul type="disc">
+                    <li><kbd>range(max)</kbd>: Un iterable de números enteros consecutivos que empieza en <kbd>0</kbd> y acaba en <kbd>max - 1</kbd></li>
+                    <li><kbd>range(min, max)</kbd>: Un iterable de números enteros consecutivos que empieza en <kbd>min</kbd> y acaba en <kbd>max - 1</kbd></li>
+                    <li><kbd>range(min, max, step)</kbd>: Un iterable de números enteros consecutivos que empieza en <kbd>min</kbd> acaba en <kbd>max - 1</kbd> y los valores se van incrementando de <kbd>step</kbd> en <kbd>step</kbd>. Este último caso simula el bucle for con variable de control.</li>
+                </ul>
+                <p>Por ejemplo, para mostrar por pantalla los números pares del 0 al 10 podríamos usar la función <kbd>range</kbd> del siguiente modo:</p>
+                <code>
+                    <pre class="lime lighten-5">
+                for num in range(0, 11, 2):
+                    print(num)
+                
+                0
+                2
+                4
+                6
+                8
+                10
+                    </pre>
+                </code>
+
+                <h4 id="forin">For _ in < iterable > </h4>
+                <p>En ocasiones, es posible que el elemento actual del iterable que se está recorriendo sea irrelevante. En estos casos puedes usar la variable _ para indicar esta situación. No obstante, yo no te lo recomiendo ya que también se suele usar en librerías de traducciones de texto. Aún así, te muestro un caso de uso. Imagínate que queremos implementar una función que devuelva la longitud de una lista. El código podría ser como el que te muestro a continuación:</p>
+                <code>
+                    <pre class="lime lighten-5">
+                def longitud(mi_lista):
+                    cont = 0
+                    for _ in mi_lista:
+                        cont += 1
+                    return cont
+                    </pre>
+                </code>
+
+                <h4 id="fbrec">Bucle for, break y continue</h4>
+                <p>Por último, vamos a ver que es posible alterar la iteración de un bucle for en Python. Para ello, nos valdremos de las sentencias <kbd>break</kbd> y <kbd>continue</kbd>. Pero, ¿qué hacen estas sentencias?</p>
+                <ul type="disc">
+                    <li><kbd>break</kbd> se utiliza para finalizar y salir el bucle, por ejemplo, si se cumple alguna condición.</li>
+                    <li>Por su parte, <kbd>continue</kbd> salta al siguiente paso de la iteración, ignorando todas las sentencias que le siguen y que forman parte del bucle.</li>
+                </ul>
+                <P>Un ejemplo es la mejor manera de entenderlo.</P>
+                <code>
+                    <pre class="lime lighten-5">
+                coleccion = [2, 4, 5, 7, 8, 9, 3, 4]
+                for e in coleccion:
+                    if e == 7:
+                        break
+                    print(e)
+                    </pre>
+                </code>
+                <P>El código anterior mostrará los números 2, 4 y 5.</P>
+                <code>
+                    <pre class="lime lighten-5">
+                coleccion = [2, 4, 5, 7, 8, 9, 3, 4]
+                for e in coleccion:
+                    if e % 2 != 0:
+                        continue
+                    print(e)
+                    </pre>
+                </code>
+                <P>En este caso, el código anterior mostrará los números 2, 4, 8 y 4.</P>
+
+                
+                
+                    <h4 id="foels">For ... else</h4>
+                    <p>En relación al apartado anterior, Python ofrece una estructura adicional de bucle for cuya estructura es la siguiente:</p>
+                    <code>
+                        <pre class="lime lighten-5">
+                for e in iterable:
+                    # Tu código aquí
+                else:
+                    # Este código siempre se ejecuta si no
+                    # se ejecutó la sentencia break en el bloque for
+                        </pre>
+                    </code>
+                    <p>Es decir, el código del bloque <kbd>else</kbd> se ejecutará siempre y cuando no se haya ejecutado la sentencia <kbd>break</kbd> dentro del bloque del for.
+                        Veamos un ejemplo:</p>
+                    <code>
+                        <pre class="lime lighten-5">
+                numeros = [1, 2, 4, 3, 5, 8, 6]
+                
+                for n in numeros:
+                    if n == 3:
+                        break
+                else:
+                    print('No se encontró el número 3')
+                        </pre>
+                    </code>
+                    <p>Como en el ejemplo anterior la secuencia <kbd>numeros</kbd> contiene al número <kbd>3</kbd>, la instrucción <kbd>print</kbd> nunca se ejecutará.</p>
+                
+                    
+            </div>
+    </div>
+</div>
+        {% endblock %}
