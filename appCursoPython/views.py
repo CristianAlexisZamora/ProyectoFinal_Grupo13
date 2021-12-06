@@ -17,7 +17,6 @@ def tiposDatos(request):
 # Vista creada para el tutorial de Operadores
 def operadores(request):
     return render(request, "appcursoPython/operadores.html")
-   
 
 #------------------- Modulo 2 ------------------------#
 # Vista creada para el tutorial de sentencia if
@@ -109,6 +108,5 @@ def practicapage(request, modulo):
         "res1":resultado.respuesta1,
         "res2":resultado.respuesta2,
         "res3":resultado.respuesta3,
-        "usuario": request.user.premium,
     }
     return render(request, "appcursoPython/practica.html", contexto)
