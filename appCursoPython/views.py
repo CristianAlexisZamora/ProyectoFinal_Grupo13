@@ -35,6 +35,9 @@ def bucleFor(request):
 #vista creada para el tutorial de tipo List
 def tipoList(request):
     return render(request, "appcursoPython/tipoList.html")
+#vista creada para el tutorial de tipo Tuple
+def tipoTuple(request):
+    return render(request, "appcursoPython/tipoTuple.html")
 # Vista creada para el tutorial de tipoRange
 def tipoRange(request):
     return render(request, "appCursoPython/tipoRange.html")
@@ -97,4 +100,15 @@ def comunidad (request):
 #Vista creada para la práctica
 def practicapage(request, modulo):
     resultado = practica.objects.get(idpractica=modulo)
-    return render(request, "appcursoPython/practica.html", {"modulo":resultado.idpractica,"tema":resultado.tema, "pregunta1":resultado.pregunta1, "pregunta2":resultado.pregunta2, "pregunta3":resultado.pregunta3, "res1":resultado.respuesta1, "res2":resultado.respuesta2, "res3":resultado.respuesta3})
+    contexto = {
+        "modulo":resultado.idpractica,
+        "tema":resultado.tema,
+        "pregunta1":resultado.pregunta1,
+        "pregunta2":resultado.pregunta2,
+        "pregunta3":resultado.pregunta3,
+        "res1":resultado.respuesta1,
+        "res2":resultado.respuesta2,
+        "res3":resultado.respuesta3,
+        "usuario": request.user.premium,
+    }
+    return render(request, "appcursoPython/practica.html", contexto)

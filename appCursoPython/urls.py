@@ -19,6 +19,7 @@ urlpatterns = [
     path('bucleFor/', views.bucleFor, name="BucleFor"),
     path('practica/<int:modulo>', views.practicapage),
     path('tipoList/', views.tipoList, name="TipoList"),
+    path('tipoTuple/', views.tipoTuple, name="TipoTuple"),
     path('tipoRange/', views.tipoRange, name="TipoRange"),
     path('tipoSet/', views.tipoSet, name="TipoSet"),
     path('tipoDict/', views.tipoDict, name="TipoDict"),
