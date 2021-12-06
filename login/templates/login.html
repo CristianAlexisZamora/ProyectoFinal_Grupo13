@@ -1,49 +1,28 @@
+{% extends "main/base.html" %}
 {% load static %}
-<!doctype html>
 {% load widget_tweaks %}
+
+
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% block title %}
+   Iniciar Sesión
+{% endblock %}
+
+{% block content %}
+  <div class="content">
+    <link rel="stylesheet" href="{% static 'static/fonts/icomoon/style.css' %}">
+    <link rel="stylesheet" href="{% static 'static/css/owl.carousel.min.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
-    <link href="{% static 'css/materialize.min.css' %}" rel="stylesheet"/>
-
-    <link rel="stylesheet" href="../static/fonts/icomoon/style.css">
-
-    <link rel="stylesheet" href="../static/css/owl.carousel.min.css">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="{% static 'static/css/bootstrap.min.css' %}">
     <!-- Style -->
-    <link rel="stylesheet" href="../static/css/style1.css">
-
-    <title>Inicio de Sesión</title>
-        <link rel="icon" type="image/x-icon" href="{% static 'media/favicon.ico' %}">
-
-  </head>
-  <body>
-      <nav class="indigo darken-4">
-        <div class="nav-wrapper">
-              <a href="{% url 'Inicio' %}" class="brand-logo"><img  width="62" src="{% static 'media/PYTHONICO.png' %}"></a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="/registrar">Crear una cuenta</a></li>
-                <li><a href="#">Tutorial</a></li>
-                <li><a href="#">Premium</a></li>
-                <li><a href="/comunidad">Comunidad</a></li>
-                <li><a href="#">Acerca de</a></li>
-            </ul>
-        </div>
-    </nav>
-
-
-
-  <div class="content">
+    <link rel="stylesheet" href="{% static 'static/css/style1.css' %}">
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <img src="../static/images/pyLogin.svg" alt="Image" class="img-fluid">
+          <img src="../../static/static/images/pyLogin.svg" alt="Image" class="img-fluid">
         </div>
         <div class="col-md-6 contents">
           <div class="row justify-content-center">
@@ -101,32 +80,6 @@
     </div>
   </div>
 
-
-    <script src="../static/js/jquery-3.3.1.min.js"></script>
-    <script src="../static/js/popper.min.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
-    <script src="../static/js/main.js"></script>
-  </body>
-    <footer class="page-footer indigo darken-4">
-        <div class="container">
-          <div class="row">
-            <div class="col l6 s12">
-              <h5 class="white-text">Pythonico</h5>
-              <p class="grey-text text-lighten-4">Curso de python desarrollado por el Grupo #13 con fines educativos para la materia T&eacute;cnicas de Programaci&oacute;n para Internet de la Universidad de El Salvador.</p>
-            </div>
-            <div class="col l4 offset-l2 s12 center">
-              <br><br><br>
-              <a class="grey-text text-lighten-3" href="https://discord.gg/zQ2vpJRUUa"><img class="circle" style="width: 55px;" src="https://play-lh.googleusercontent.com/s7SUyvveKqEgpwVz74VDeQWGGhob_Vyj9_ubJGwUPvAXpPe4xAJeZ0l3pF2F7njB_NYM" alt=""></a>
-              <a class="grey-text text-lighten-3" href="https://www.facebook.com/profile.php?id=100075521319974"><img class="circle" style="width: 55px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Facebook_icon.svg/1200px-Facebook_icon.svg.png" alt=""></a>
-              <a class="grey-text text-lighten-3" href="https://twitter.com/PythonicoU"><img class="circle" style="width: 55px;" src="https://play-lh.googleusercontent.com/J8k5q78xv4R8Smi4vOE6iUphLvOz0efC-0lzoyGfd0KRUlAv4ekuCtlss6KBN-tMvEw" alt=""></a>
-            </div>
-          </div>
-        </div>
-        <div class="footer-copyright">
-          <div class="container center">
-            <a class="grey-text text-lighten-4 " href="#!">© 2021 Copyright</a>
-          </div>
-        </div>
-      </footer>
+{% endblock %}
 
 </html>
