@@ -1,52 +1,21 @@
+{% extends "main/base.html" %}
 {% load static %}
 {% load widget_tweaks %}
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
-    <link href="{% static 'css/materialize.min.css' %}" rel="stylesheet"/>
-    <link rel="stylesheet" href="../static/fonts/icomoon/style.css">
+{% block content%}
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+      <link href="{% static 'css/materialize.min.css' %}" rel="stylesheet"/>
+      <link rel="stylesheet" href="../static/fonts/icomoon/style.css">
+  
+      <link rel="stylesheet" href="../static/css/owl.carousel.min.css">
+  
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="../static/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="../static/css/owl.carousel.min.css">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
-
-    <!-- Style -->
-    <link rel="stylesheet" href="../static/css/style1.css">
-
-    <title>Acerca de nosotros</title>
-  </head>
-<body>
-    <nav class=" blue darken-4">
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo"><img  width="62" src="{% static 'media/PYTHONICO.png' %}"></a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#">Tutorial</a></li>
-                <li><a href="#">Premium</a></li>
-                <li><a href="/comunidad">Comunidad</a></li>
-                <li><a href="/nosotros">Acerca de</a></li>
-                <li>                    
-                    <div class="col-md-6">                
-                          <div class="dropdown usuario">
-                            <button class="btn btn-secondary dropdown-toggle blue" type="button" id="dropdownuser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Usuario
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="/cuenta">Mi cuenta</a>
-                              <a class="dropdown-item" href="#">Cerrar sesion</a>                              
-                            </div>
-                          </div>                      
-                    </div>
-                </li>          
-            </ul>
-        </div>
-    </nav>
-
+    </head>
     <br>
     <div class="container">
       <h1 style="text-align: center;">Acerca de nosotros</h1>
@@ -84,11 +53,6 @@
                           </div>
                         </div>
                       </div>
-                      
-                        
-                      
-                      
-                      
                     </div>
                   </div>
                 </form>
@@ -96,16 +60,13 @@
             </div>
           </div>
         </div>
-        </div>
       </div>
+    </div>
 
      
-        
-       
-      <br>
+    <br>
     <div class="container">      
       <div class="col s12 m7">
-        
         <div class="card horizontal" style="background-color:rgb(38, 115, 182);">
           <div class="card-stacked">
             <div class="card-content">
@@ -119,20 +80,16 @@
                       <div class="container">
                         <div class="row">
                           <div class="col-sm">   
-                            
                             <FONT SIZE=3>
                               <p style="color: black;">Este blog tiene un doble propósito: Por un lado, ayudarte a ser un mejor programador, principalmente usando el lenguaje Python. Por otro lado, a nosotros nos sirve para documentar lo que vamos aprendiendo cada día y poder replicarlo en otros proyectos.</p>
                               <p style="color: black;">Queremos que Pythonico sea un blog diferente. Abordando problemas importantes, problemas reales, que se entienda la causa que planteamos en cada publicación y cómo afrontarla de manera óptima.</p>
                               <p style="color: black;">En cuanto a por qué Python, es porque es uno de los mejores lenguajes para desarrollar aplicaciones web y queriamos aportar sobre la informacion que hay para aprender sobre este lenguaje.</p>
                             </FONT>                       
-                            
                           </div>
                           
                           <div class="col-sm">
                             <br><center><img src="../static/images/user.png" alt="Image" class="img-fluid" width="250" height="250"></center>
                           </div>
-
-                          
                         </div>
                         <br>
                         <div class="card horizontal" style="background-color:rgb(242, 202, 128);">
@@ -172,21 +129,8 @@
         </div>
       </div>
 
-      
-
-    
-
-
-
-
-
-    
-
-
     <script src="../static/js/jquery-3.3.1.min.js"></script>
     <script src="../static/js/popper.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
     <script src="../static/js/main.js"></script>
-
-</body>
-</html>
+    {% endblock %}
