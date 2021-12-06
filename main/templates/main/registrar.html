@@ -20,17 +20,19 @@
     <link rel="stylesheet" href="../static/css/style1.css">
 
     <title>Registrar usuario</title>
+        <link rel="icon" type="image/x-icon" href="{% static 'media/favicon.ico' %}">
+
   </head>
 <body>
-    <nav class=" blue darken-4">
+      <nav class="indigo darken-4">
         <div class="nav-wrapper">
-            <a href="#" class="brand-logo"><img  width="62" src="{% static 'media/PYTHONICO.png' %}"></a>
+              <a href="{% url 'Inicio' %}" class="brand-logo"><img  width="62" src="{% static 'media/PYTHONICO.png' %}"></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="#">Tutorial</a></li>
                 <li><a href="#">Premium</a></li>
                 <li><a href="/comunidad">Comunidad</a></li>
                 <li><a href="#">Acerca de</a></li>
-                <li><a href="#">Iniciar sesi&oacute;n</a></li>
+                <li><a href="/login">Iniciar sesi&oacute;n</a></li>
             </ul>
         </div>
     </nav>
@@ -43,20 +45,36 @@
                         <h1>Crear cuenta</h1>
                     </div>
                     <div class="row">
-                        <form method="post">
+                        <form method="post" action=".">
                                     {% csrf_token %}
+                            {% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+
+{% endif %}
 
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input class="form-control" type="text" name="first-name" placeholder="Nombre">
+                                                <input class="form-control" type="text" name="first-name" placeholder="Nombre" autocomplete="off">
                                             </div>
                                         </div>
 
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input class="form-control text-sm-left" type="text" name="last-name" placeholder="Apellido">
+                                                <input class="form-control text-sm-left" type="text" name="last-name" placeholder="Apellido" autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
@@ -74,7 +92,7 @@
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input class="form-control text-sm-left" type="text" name="edad" placeholder="Edad">
+                                                <input class="form-control text-sm-left" type="number" name="edad" placeholder="Edad" maxlength="2" autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
@@ -82,7 +100,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group">
-                                            <input class="form-control" type="text" name="username" placeholder="Nombre de usuario">
+                                            <input class="form-control" type="text" name="username" placeholder="Nombre de usuario" autocomplete="off">
                                             </div>
                                         </div>
 
@@ -114,10 +132,10 @@
 
                             <div class="row">
                                 <div class="col-md-6">
-                                    <button class="btn btn-warning" type="submit">Cancelar</button>
+                                    <button class="btn btn-warning"  type="reset">Cancelar</button>
                                 </div>
                                 <div class="col-md-6">
-                                    <button class="btn btn-info" type="submit">Guardar</button>
+                                    <button class="btn indigo darken-4 white-text" type="submit">Guardar</button>
                                 </div>
 
                             </div>
@@ -132,25 +150,6 @@
       </div>
     </div>
 
-    <script type='application/javascript'>
-            {% if form.errors %}
-            var errors = '';
-            {% for field in form %}
-                {% for error in field.errors %}
-                    errors += '{{ error }}\n';
-                {% endfor %}
-            {% endfor %}
-            {% for error in form.non_field_errors %}
-                errors += '{{ error }}\n';
-            {% endfor %}
-            Swal.fire({
-                title: 'Error!',
-                text: errors,
-                icon: 'error'
-            });
-        {% endif %}
-                </script>
-
 
     <script src="../static/js/jquery-3.3.1.min.js"></script>
     <script src="../static/js/popper.min.js"></script>
@@ -159,5 +158,27 @@
 
 
 </body>
+    <footer class="page-footer indigo darken-4">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">Pythonico</h5>
+              <p class="grey-text text-lighten-4">Curso de python desarrollado por el Grupo #13 con fines educativos para la materia T&eacute;cnicas de Programaci&oacute;n para Internet de la Universidad de El Salvador.</p>
+            </div>
+            <div class="col l4 offset-l2 s12 center">
+              <br><br><br>
+              <a class="grey-text text-lighten-3" href="https://discord.gg/zQ2vpJRUUa"><img class="circle" style="width: 55px;" src="https://play-lh.googleusercontent.com/s7SUyvveKqEgpwVz74VDeQWGGhob_Vyj9_ubJGwUPvAXpPe4xAJeZ0l3pF2F7njB_NYM" alt=""></a>
+              <a class="grey-text text-lighten-3" href="https://www.facebook.com/profile.php?id=100075521319974"><img class="circle" style="width: 55px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Facebook_icon.svg/1200px-Facebook_icon.svg.png" alt=""></a>
+              <a class="grey-text text-lighten-3" href="https://twitter.com/PythonicoU"><img class="circle" style="width: 55px;" src="https://play-lh.googleusercontent.com/J8k5q78xv4R8Smi4vOE6iUphLvOz0efC-0lzoyGfd0KRUlAv4ekuCtlss6KBN-tMvEw" alt=""></a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container center">
+            <a class="grey-text text-lighten-4 " href="#!">© 2021 Copyright</a>
+          </div>
+        </div>
+      </footer>
+
 
 </html>

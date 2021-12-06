@@ -23,6 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
     path('', include('appCursoPython.urls')),
-    path('login/', LoginFormView.as_view()),
+    path('login/', include('login.urls')),
     path('registrar/', RegistroUsuario.as_view()),
 ]
