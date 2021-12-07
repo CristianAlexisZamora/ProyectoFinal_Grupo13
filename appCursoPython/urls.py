@@ -1,7 +1,17 @@
-from django.urls import path
-
+from django.urls import path, register_converter, re_path
 # Importando views de la aplicacion main
 from appCursoPython import views
+
+"""class FloatConverter:
+    regex = '[\d\.\d]+'
+    
+    def to_python(self, value):
+        return float(value)
+    def to_url(self, value):
+        return '{}'.format(value)
+    
+register_converter(FloatConverter, 'float')
+"""
 
 urlpatterns = [
     path('', views.inicio, name="Inicio"),
@@ -29,4 +39,5 @@ urlpatterns = [
     path('introduccion/', views.introduccion, name="Introduccion"),
     path('variables/', views.variables, name="Variables"),
     path('tiposDatos/', views.tiposDatos, name="TiposDatos"),
+    re_path(r'^practica/guardar/(\d{1,2})/(\d\.{0,1}\d{0,2})/$', views.practicaGuardar, name="practicaGuardar")
 ]

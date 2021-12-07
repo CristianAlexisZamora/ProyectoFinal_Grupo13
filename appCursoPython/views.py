@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect
-from appCursoPython.models import practica
+from appCursoPython.models import practica, nota
+from main.user.models import User
+
 
 #--------------------Modulo 1 ------------------------#
 #Vista para el tutorial de introduccion
@@ -66,17 +68,25 @@ def pythonPOO(request):
 #----------------Django---------------------------------#
 # Vistas creadas para el curso del framework Django
 def cursoDjango01(request):
-    return render(request, "django/cursoDjango01.html")
+    return render(request, "django/cursoDjango01.html", {'premium': request.user.premium})
 
 def cursoDjango02(request):
-    return render(request, "django/cursoDjango02.html")
+    if request.user.is_authenticated() and request.user.premium:
+        return render(request, "django/cursoDjango02.html")
+    else:
+        return redirect('/academia/')
 
 def cursoDjango03(request):
-    return render(request, "django/cursoDjango03.html")
+    if request.user.is_authenticated() and request.user.premium:
+        return render(request, "django/cursoDjango03.html")
+    else:
+        return redirect('/academia/')
 
 def cursoDjango04(request):
-    return render(request, "django/cursoDjango04.html")
-
+    if request.user.is_authenticated() and request.user.premium:
+        return render(request, "django/cursoDjango04.html")
+    else:
+        return redirect('/academia/')
 
 
 #------------------ Otras vistas ------------------------#
@@ -108,5 +118,22 @@ def practicapage(request, modulo):
         "res1":resultado.respuesta1,
         "res2":resultado.respuesta2,
         "res3":resultado.respuesta3,
+        "logueado":request.user.is_authenticated,
+        "premium": request.user.premium,
     }
     return render(request, "appcursoPython/practica.html", contexto)
+
+#metodo para realizar el guardar la nota de la practica
+def practicaGuardar(request, practicaf, notaf):
+    #conversion a tipo de dato en base de datos
+    nota_float = float(notaf)
+    #obteniendo objetos de las bases usuario y practica
+    usuario = User.objects.get(id = request.user.id)
+    practicaReg = practica.objects.get(idpractica =practicaf)
+    
+    if nota.objects.filter(id_usuario=usuario, id_practica=practicaReg).exists():
+        nota.objects.filter(id_usuario=usuario, id_practica=practicaReg).update(nota_practica=nota_float)
+    else:
+        registro = nota(id_usuario=usuario, id_practica=practicaReg, nota_practica=nota_float)
+        registro.save()
+    return redirect('/academia/')
