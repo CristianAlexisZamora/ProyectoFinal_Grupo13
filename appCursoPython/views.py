@@ -112,31 +112,49 @@ def comunidad (request):
 #Vista creada para la práctica
 def practicapage(request, modulo):
     resultado = practica.objects.get(idpractica=modulo)
-    contexto = {
-        "modulo":resultado.idpractica,
-        "tema":resultado.tema,
-        "pregunta1":resultado.pregunta1,
-        "pregunta2":resultado.pregunta2,
-        "pregunta3":resultado.pregunta3,
-        "res1":resultado.respuesta1,
-        "res2":resultado.respuesta2,
-        "res3":resultado.respuesta3,
-        "logueado":request.user.is_authenticated,
-        "premium": request.user.premium,
-    }
+    if request.user.is_authenticated:
+        contexto = {
+            "modulo":resultado.idpractica,
+            "tema":resultado.tema,
+            "pregunta1":resultado.pregunta1,
+            "pregunta2":resultado.pregunta2,
+            "pregunta3":resultado.pregunta3,
+            "res1":resultado.respuesta1,
+            "res2":resultado.respuesta2,
+            "res3":resultado.respuesta3,
+            "logueado":request.user.is_authenticated,
+            "premium": request.user.premium,
+        }
+        
+    else:
+        contexto = {
+            "modulo":resultado.idpractica,
+            "tema":resultado.tema,
+            "pregunta1":resultado.pregunta1,
+            "pregunta2":resultado.pregunta2,
+            "pregunta3":resultado.pregunta3,
+            "res1":resultado.respuesta1,
+            "res2":resultado.respuesta2,
+            "res3":resultado.respuesta3,
+            "logueado":request.user.is_authenticated,
+            "premium": False,
+        }
+    
     return render(request, "appcursoPython/practica.html", contexto)
 
 #metodo para realizar el guardar la nota de la practica
 def practicaGuardar(request, practicaf, notaf):
-    #conversion a tipo de dato en base de datos
-    nota_float = float(notaf)
-    #obteniendo objetos de las bases usuario y practica
-    usuario = User.objects.get(id = request.user.id)
-    practicaReg = practica.objects.get(idpractica =practicaf)
+    if request.user.is_authenticated and request.user.premium:
+        #conversion a tipo de dato en base de datos
+        nota_float = float(notaf)
+        #obteniendo objetos de las bases usuario y practica
+        usuario = User.objects.get(id = request.user.id)
+        practicaReg = practica.objects.get(idpractica =practicaf)
+
+        if nota.objects.filter(id_usuario=usuario, id_practica=practicaReg).exists():
+            nota.objects.filter(id_usuario=usuario, id_practica=practicaReg).update(nota_practica=nota_float)
+        else:
+            registro = nota(id_usuario=usuario, id_practica=practicaReg, nota_practica=nota_float)
+            registro.save()
     
-    if nota.objects.filter(id_usuario=usuario, id_practica=practicaReg).exists():
-        nota.objects.filter(id_usuario=usuario, id_practica=practicaReg).update(nota_practica=nota_float)
-    else:
-        registro = nota(id_usuario=usuario, id_practica=practicaReg, nota_practica=nota_float)
-        registro.save()
     return redirect('/academia/')
