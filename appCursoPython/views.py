@@ -68,17 +68,25 @@ def pythonPOO(request):
 #----------------Django---------------------------------#
 # Vistas creadas para el curso del framework Django
 def cursoDjango01(request):
-    return render(request, "django/cursoDjango01.html")
+    return render(request, "django/cursoDjango01.html", {'premium': request.user.premium})
 
 def cursoDjango02(request):
-    return render(request, "django/cursoDjango02.html")
+    if request.user.is_authenticated() and request.user.premium:
+        return render(request, "django/cursoDjango02.html")
+    else:
+        return redirect('/academia/')
 
 def cursoDjango03(request):
-    return render(request, "django/cursoDjango03.html")
+    if request.user.is_authenticated() and request.user.premium:
+        return render(request, "django/cursoDjango03.html")
+    else:
+        return redirect('/academia/')
 
 def cursoDjango04(request):
-    return render(request, "django/cursoDjango04.html")
-
+    if request.user.is_authenticated() and request.user.premium:
+        return render(request, "django/cursoDjango04.html")
+    else:
+        return redirect('/academia/')
 
 
 #------------------ Otras vistas ------------------------#
@@ -110,7 +118,8 @@ def practicapage(request, modulo):
         "res1":resultado.respuesta1,
         "res2":resultado.respuesta2,
         "res3":resultado.respuesta3,
-        "logueado":request.user.is_authenticated
+        "logueado":request.user.is_authenticated,
+        "premium": request.user.premium,
     }
     return render(request, "appcursoPython/practica.html", contexto)
 

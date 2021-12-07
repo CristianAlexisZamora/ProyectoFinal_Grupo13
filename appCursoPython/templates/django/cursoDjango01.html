@@ -228,6 +228,10 @@
                 python manage.py migrar
             </pre>
             <p>El <a href="https://docs.djangoproject.com/en/3.2/ref/django-admin/#django-admin-migrate" target="_blank" rel="noopener noreferrer">migrate</a> comando observa la <a href="https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-INSTALLED_APPS" target="_blank" rel="noopener noreferrer">INSTALLED_APPS</a> configuración y crea las tablas de base de datos necesarias de acuerdo con la configuración de la base de datos en su mysite/settings.pyarchivo y las migraciones de la base de datos enviadas con la aplicación (las cubriremos más adelante). Verá un mensaje para cada migración que aplique. Si está interesado, ejecute el cliente de línea de comandos para su base de datos y escriba \dt(PostgreSQL), (MariaDB, MySQL), (SQLite) u (Oracle) para mostrar las tablas que creó Django.SHOW TABLES;.schemaSELECT TABLE_NAME FROM USER_TABLES;</p>
+            
+            
+            {% if  premium %}
+                
             <h4 id="creando-modelos">Creando modelos</h4>
             <p>Ahora definiremos sus modelos, esencialmente, el diseño de su base de datos, con metadatos adicionales.</p>
             <div class="row">
@@ -348,7 +352,75 @@
             <p>
                 <b><a class="right" href="/tutorial02/"><u>Tutorial 2: Configurar base de datos ></u></a></b>
             </p>
+
+            {% else %}
+            <h4 id="creando-modelos">Creando modelos</h4>
+            <p>Ahora definiremos sus modelos, esencialmente, el diseño de su base de datos, con metadatos adicionales.</p>
+            <div class="row">
+                <div class="col s12 m6">
+                  <div class="card indigo darken-4">
+                    <div class="card-content white-text">
+                      <span class="card-title">Filosofía</span>
+                      <p>Un modelo es la fuente única y definitiva de información sobre sus datos. Contiene los campos y comportamientos esenciales de los datos que está almacenando. Django sigue el principio DRY . El objetivo es definir su modelo de datos en un solo lugar y derivar automáticamente cosas de él.
+                        Esto incluye las migraciones; a diferencia de Ruby On Rails, por ejemplo, las migraciones se derivan completamente de su archivo de modelos y son esencialmente un historial que Django puede pasar para actualizar el esquema de su base de datos para que coincida con sus modelos actuales.</p>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div id="bloqueo" class="indigo darken-1">
+                
+                    <h3 class="yellow-text center-align"><i>Desbloquea este contenido y muchos más beneficios con nuestro plan premium.</i></h3>
+                
+            </div>
+            <p>En nuestra aplicación <b><kbd><span class="red-text">Contenido premium</span></kbd></b>. A <b><kbd><span class="red-text">Contenido premium</span></kbd></b> tiene una pregunta y una fecha de <b><kbd><span class="red-text">Contenido premium</span></kbd></b> el texto de la elección y un recuento de votos. Cada Choice está asociado con un Question.</p>
+            <p>Estos conceptos están representados por <b><kbd><span class="red-text">Contenido premium</span></kbd></b> para que se vea así:</p>
+            <pre class="lime lighten-5">
+                from django.db import models
+
+                classQuestion(models.Model):
+                    question_text = models.CharField(max_length=200)
+                    pub_date = models.Da...   
+            </pre>
+            <p>Aquí, cada modelo está representado por una clase que subclasifica <b><kbd><span class="red-text">Contenido premium</span></kbd></b>. Cada modelo tiene una serie de <b><kbd><span class="red-text">Contenido premium</span></kbd></b> un campo de base de datos en el modelo.</p>
+            <p>Cada campo está representado por una instancia de una <b><kbd><span class="red-text">Contenido premium</span></kbd></b> clase, por ejemplo, <b><kbd><span class="red-text">Contenido premium</span></kbd></b> para campos de caracteres y <b><kbd><span class="red-text">Contenido premium</span></kbd></b> para fechas y horas. Esto le dice a Django qué tipo de datos contiene cada campo.</p>
+            <p>El nombre de cada <b><kbd><span class="red-text">Contenido premium</span></kbd></b>. Usarás este valor en tu código Python y tu base de datos lo usará como el nombre de la columna.</p>
+            <p>Puede utilizar un <b><kbd><span class="red-text">Contenido premium</span></kbd></b>. Eso se usa en un par de partes introspectivas de Django y también funciona como documentación. <b><kbd><span class="red-text">Contenido premium</span></kbd></b>. En este ejemplo, solo hemos definido un nombre <b><kbd><span class="red-text">Contenido premium</span></kbd></b>. Para todos los demás campos de este modelo, <b><kbd><span class="red-text">Contenido premium</span></kbd></b>.</p>
+            <p>Algunas Fieldclases tienen <b><kbd><span class="red-text">Contenido premium</span></kbd></b>. Eso se usa no solo en el esquema de la base de datos, sino también en <b><kbd><span class="red-text">Contenido premium</span></kbd></b>.
+                A Fieldtambién puede tener varios argumentos opcionales; en este caso, <b><kbd><span class="red-text">Contenido premium</span></kbd></b>.</p>
+            <p>Finalmente, tenga en cuenta que se define una relación, utilizando <b><kbd><span class="red-text">Contenido premium</span></kbd></b>. Eso le dice a Django que cada uno <b><kbd><span class="red-text">Contenido premium</span></kbd></b>. Django admite todas las <b><kbd><span class="red-text">Contenido premium</span></kbd></b>.</p>
+            <h4 id="modelos">Activando modelos</h4>
+            <p>Ese pequeño código de modelo le da a Django mucha información. Con él, Django puede:</p>
+            <ul>
+                <li><b><kbd><span class="red-text">Contenido premium</span></kbd></b> para esta aplicación. <b><b><kbd><span class="red-text">Contenido premium</span></kbd></b></b></li>
+                <li>Cree una <b><kbd><span class="red-text">Contenido premium</span></kbd></b> de Python para acceder a los objetos <b><kbd><span class="red-text">Contenido premium</span></kbd></b></li>
+            </ul>
+            <p>Pero primero debemos decirle a nuestro proyecto que <b><kbd><span class="red-text">Contenido premium</span></kbd></b>.</p>
+            <p>Para incluir la aplicación en nuestro proyecto, necesitamos agregar una <b><kbd><span class="red-text">Contenido premium</span></kbd></b>. La clase<b>PollsConfig</b><b><kbd><span class="red-text">Contenido premium</span></kbd></b>, por lo que su ruta de puntos es <b><kbd><span class="red-text">Contenido premium</span></kbd></b>. Edite el archivo <b>mysite/settings.py</b> y agregue esa ruta de puntos a la configuración <b><kbd><span class="red-text">Contenido premium</span></kbd></b>. Se verá asi:</p>
+            <pre class="lime lighten-5">
+                <b>INSTALLED_APPS</b> = [
+                    <b><kbd><span class="red-text">Contenido premium</span></kbd></b>
+                    'django.contrib.admin',
+                    'django.contrib.auth',
+                    'django.contrib.contenttypes',
+                    'django.contrib.sessions',
+                    'django.contrib.messages',
+                    'django.contrib.staticfiles',
+                ]
+            </pre>
+            {% endif %}
         </div>
     </div>
+
+    
 </div>
+
+<style>
+    #bloqueo{
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        padding: 50px;
+        font-size: 20px;
+    }
+</style>
 {% endblock %}
