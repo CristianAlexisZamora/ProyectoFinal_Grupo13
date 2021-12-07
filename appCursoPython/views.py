@@ -68,8 +68,11 @@ def pythonPOO(request):
 #----------------Django---------------------------------#
 # Vistas creadas para el curso del framework Django
 def cursoDjango01(request):
-    return render(request, "django/cursoDjango01.html", {'premium': request.user.premium})
-
+    if request.user.is_authenticated:
+        return render(request, "django/cursoDjango01.html", {'premium': request.user.premium})
+    else:
+        return render(request, "django/cursoDjango01.html", {'premium': False})
+    
 def cursoDjango02(request):
     if request.user.is_authenticated() and request.user.premium:
         return render(request, "django/cursoDjango02.html")
