@@ -23,18 +23,19 @@ def cuenta(request):
     modulo4=0
 
     for registro in notasUser:
-        if (registro.id_practica.idpractica > 0 and registro.id_practica.idpractica < 5):
-            modulo1 += registro.id_practica.idpractica
-        elif(registro.id_practica.idpractica > 4 and registro.id_practica.idpractica < 8):
-            modulo2 += registro.id_practica.idpractica
-        elif(registro.id_practica.idpractica > 7 and registro.id_practica.idpractica < 14):
-            modulo3 += registro.id_practica.idpractica
+        if (registro.nota_practica > 0 and registro.nota_practica < 5):
+            modulo1 += registro.nota_practica
+        elif(registro.nota_practica > 4 and registro.nota_practica < 8):
+            modulo2 += registro.nota_practica
+        elif(registro.nota_practica > 7 and registro.nota_practica < 14):
+            modulo3 += registro.nota_practica
         else:
-            modulo4 += registro.id_practica.idpractica
-    #modulo1/= 4
-    #modulo2/= 3
-    #modulo3/= 6
-    #modulo4/= 6
+            modulo4 += registro.nota_practica
+
+    modulo1/= 4
+    modulo2/= 3
+    modulo3/= 6
+    modulo4/= 6
 
     contexto = { 
     "Nombre": request.user.first_name,
@@ -42,6 +43,7 @@ def cuenta(request):
     "Edad": request.user.edad,
     "Sexo": request.user.sexo,
     "Usuario":request.user.username,
+    "Email":request.user.email,
     "Modulo1":modulo1,
     "Modulo2":modulo2,
     "Modulo3":modulo3,
