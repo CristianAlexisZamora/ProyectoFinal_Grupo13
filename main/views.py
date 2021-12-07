@@ -60,4 +60,5 @@ def nosotros(request):
 #Premium
 def activarPremium(request):
     if request.user.is_authenticated:
-        User.objects.get(id = request.user.id).update(nombre = nombre_parametro, apellido = apellido_parametro)
+        User.objects.get(id = request.user.id).update(premium = True)
+    
