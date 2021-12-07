@@ -10,7 +10,7 @@ Bucle For
 {% block content %}
 <div class="principal">
     <div class="row">
-        <div class="col s3">
+        <div class="col s3" id='movil'>
             <div class="row">
                 <div class="col s12">
                     <br/><br/><br><br>
@@ -27,6 +27,9 @@ Bucle For
                         </ul>
                     </div>
                 </div>
+            </div>
+            <div>
+                <a class="btn-large indigo darken-4 waves-effect waves-light" type="button" href="/practica/7">Ir a prácticas</a>
             </div>
         </div>
         <div class="col s9">
@@ -230,4 +233,13 @@ Bucle For
             </div>
     </div>
 </div>
+
+<style>
+    #movil{
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        padding: 50px;
+    }
+</style>
         {% endblock %}
