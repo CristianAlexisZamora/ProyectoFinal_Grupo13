@@ -10,8 +10,10 @@ def home(request):
 
 #Vista de la pagina principal de academia
 def academiaCurso(request):
-    return render(request, "main/academiaCurso.html")
-
+    if request.user.is_authenticated and request.user.premium:
+        return render(request, "main/academiaCurso.html", {"premium":True})
+    else:
+        return render(request, "main/academiaCurso.html", {"premium":False})
 #Vista de mi cuenta
 def cuenta(request):
 
