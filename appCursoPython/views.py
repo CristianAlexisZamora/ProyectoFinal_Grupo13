@@ -18,27 +18,27 @@ def tiposDatos(request):
 
 # Vista creada para el tutorial de Operadores
 def operadores(request):
-    return render(request, "appcursoPython/operadores.html")
+    return render(request, "appCursoPython/operadores.html")
 
 #------------------- Modulo 2 ------------------------#
 # Vista creada para el tutorial de sentencia if
 def sentenciaIf(request):
-    return render(request, "appcursoPython/sentenciaIf.html")
+    return render(request, "appCursoPython/sentenciaIf.html")
 
 # Vista creada para el tutorial de sentencia if
 def bucleWhile(request):
-    return render(request, "appcursoPython/bucleWhile.html")
+    return render(request, "appCursoPython/bucleWhile.html")
 
 def bucleFor(request):
-    return render(request, "appcursoPython/bucleFor.html")
+    return render(request, "appCursoPython/bucleFor.html")
 
 #------------------ Modulo 3 -------------------------#
 #vista creada para el tutorial de tipo List
 def tipoList(request):
-    return render(request, "appcursoPython/tipoList.html")
+    return render(request, "appCursoPython/tipoList.html")
 #vista creada para el tutorial de tipo Tuple
 def tipoTuple(request):
-    return render(request, "appcursoPython/tipoTuple.html")
+    return render(request, "appCursoPython/tipoTuple.html")
 # Vista creada para el tutorial de tipoRange
 def tipoRange(request):
     return render(request, "appCursoPython/tipoRange.html")
@@ -140,7 +140,7 @@ def practicapage(request, modulo):
             "premium": False,
         }
     
-    return render(request, "appcursoPython/practica.html", contexto)
+    return render(request, "appCursoPython/practica.html", contexto)
 
 #metodo para realizar el guardar la nota de la practica
 def practicaGuardar(request, practicaf, notaf):
