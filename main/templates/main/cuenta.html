@@ -1,8 +1,11 @@
+{% extends "main/base.html" %}
 {% load static %}
 {% load widget_tweaks %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block title %}
+Mi cuenta
+{% endblock %}
+{% block content %}
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -18,139 +21,166 @@
 
     <!-- Style -->
     <link rel="stylesheet" href="../static/css/style1.css">
-
-    <title>Mi cuenta</title>
   </head>
-<body>
-    <nav class=" blue darken-4">
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo"><img  width="62" src="{% static 'media/PYTHONICO.png' %}"></a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#">Tutorial</a></li>
-                <li><a href="#">Premium</a></li>
-                <li><a href="/comunidad">Comunidad</a></li>
-                <li><a href="/nosotros">Acerca de</a></li>
-                <li>                    
-                    <div class="col-md-6">                
-                          <div class="dropdown usuario">
-                            <button class="btn btn-secondary dropdown-toggle blue" type="button" id="dropdownuser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Usuario
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <a class="dropdown-item" href="/cuenta">Mi cuenta</a>
-                              <a class="dropdown-item" href="#">Cerrar sesion</a>                              
-                            </div>
-                          </div>
+  <div class="container">
+                
+      <div class="row">          
+        <div class="section">
+          <h2 style="text-align: center;">Mi cuenta</h2>
+          <br><center><img src="../static/static/images/user.png" alt="Image" class="img-fluid" width="175" height="175"></center>  
+        </div>
+        <div class="section">
+          <div class="row">
+            <form class="col s12" method="POST">{% csrf_token %}
+              <div class="row">
+                <div class="input-field col s6">
+                  <input placeholder="Nombre" id="first_name" name="" type="text" value="{{Nombre}}" class="validate" disabled>        
+                </div>
+                <div class="input-field col s6">
+                  <input placeholder="Apellido" id="last_name" type="text" value="{{Apellido}}" class="validate" disabled>            
+                </div>
+                <div class="input-field col s12">               
+                  <input placeholder="Nombre de usuario" id="username" name="username" value="{{Usuario}}" disabled>      
+                </div>  
+              </div>         
+              <div class="row">
+                <div class="input-field col s6">     
+                  <input placeholder="Sexo" id="sexo" name="sexo" value="{{Sexo}}" disabled>        
+                </div>
+                <div class="input-field col s6">               
+                  <input placeholder="Edad" id="edad" name="edad" value="{{Edad}}" disabled>      
+                </div>   
+                <div class="input-field col s12">
+                  <input placeholder="Email" id="email" type="text" value="{{Email}}" class="validate" disabled>            
+                </div> 
+                <div class="input-field col s12">
+                  <input placeholder="Tarjeta de credito" id="creditcar" type="text" value="" class="validate">
+                  <a class="btn-large indigo darken-4 waves-effect waves-ligh" onclick="validarTarjeta()">Activar cuenta premium</a>                    
+                </div> 
+              </div>
+              <div class="row">      
+                <h5><strong>NOTAS</strong></h5>
+                <form class="col s12">
+                  <div class="row">
+                    <div class="input-field col s3">
+                      <p>Modulo 1</p>
+                      <input placeholder="Nota 1" name="notamod1" type="text" value="{{Modulo1}}" class="validate" disabled>                
                     </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
+                    <div class="input-field col s3">
+                      <p>Modulo 2</p>
+                      <input placeholder="Nota 2" name="notamod2" type="text" value="{{Modulo2}}" class="validate" disabled> 
+                    </div>
+                    <div class="input-field col s3">
+                      <p>Modulo 3</p>
+                      <input placeholder="Nota 3" name="notamod3" type="text" value="{{Modulo3}}" class="validate" disabled>
+                    </div>
+                    <div class="input-field col s3">
+                      <p>Modulo 4</p>
+                      <input placeholder="Nota 4" name="notamod4" type="text" value="{{Modulo4}}" class="validate" disabled>       
+                    </div>
+                  </div>
 
+                  <div class="container">            
+                    <div class="center">  
+                      <div class="row">   
+                        <div class="col s6">
+                          <button id="btnEdit" class="btn btn-warningr" type="button" onclick="editar();">Editar</button></p>
+                          <!--<button class="btn btn-warning" onclick="editar()">Editar</button>-->
+                        </div>
+                        <div class="col s6">
+                          <button type='submit' class='btn btn-info'>Actualizar</button>
+                          <!--<button class="btn btn-info" type="submit">Actualizar</button>-->
+                        </div>
+                      </div>
+                    </div>              
+                  </div>
+                </form>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     
-    <br><h1 style="text-align: center;">Mi cuenta</h1>
-    <br><center><img src="../static/images/user.png" alt="Image" class="img-fluid" width="175" height="175"></center>
-    <br>
-    <br>
-
-    <div class="container">
-        <form method="put">
-            
-        <div class="row">
-          <div class="col-md">
-            <input class="form-control disabled" type="text" name="first_name" placeholder="Nombre" value="{{Nombre}}" disabled> </input>            
-          </div>
-          <div class="col-sm">
-            <input class="form-control text-sm-left" type="text" name="last_name" placeholder="Apellido" value="{{Apellido}}" disabled>
-          </div>   
-        </div>
-
-        <div>
-            <input class="form-control" type="text" name="username" placeholder="Nombre de usuario" value="{{Usuario}}" disabled>
-        </div>
-
-        <br>
-        <div class="row">
-            <div class="col-md-6">
-                <select class="form-control " name="sexo" id="exampleFormControlSelect1">
-                    <option>Masculino</option>
-                    <option>Femenino</option>
-                  </select>
-            </div>
-
-            <div class="col-sm">
-                <input class="form-control text-sm-left" type="text" name="edad" placeholder="Edad" value="{{Edad}}" disabled>
-            </div>   
-            
-          </div>
-          <div>
-            <input class="form-control" type="text" name="creditcard" placeholder="Tarjeta de credito" disabled>
-        </div>  
-        <br><br>
-
-        <div class="container">
-            <div ><strong style="font-size: 150%;">NOTAS</strong></center></div>
-            <br>
-            <div class="row">                                
-              <div class="col-sm" style="font-size: 125%;">
-                Modulo 1
-                <input class="form-control" type="text" name="notamod1" placeholder="Nota" value="{{Modulo1}}" disabled>
-              </div>
-              <br>
-              <div class="col-sm" style="font-size: 125%;">
-                Modulo 2
-                <input class="form-control" type="text" name="notamod2" placeholder="Nota" value="{{Modulo2}}" disabled>
-              </div>
-              <br>
-              <div class="col-sm" style="font-size: 125%;">
-                Modulo 3
-                <input class="form-control" type="text" name="notamod3" placeholder="Nota" value="{{Modulo3}}" disabled>
-              </div>
-              <br>
-              <div class="col-sm" style="font-size: 125%;">
-                Modulo 4
-                <input class="form-control" type="text" name="notamod4" placeholder="Nota" value="{{Modulo4}}" disabled>
-              </div>
-            </div>
-          </div>  
-          <br><br>
+  </div>
+  <script>
+    function validarTarjeta(){
+        let tarjeta = document.getElementById('creditcar').value;
+        if(tarjeta == ""){
+          alert("Debe ingresar una tarjeta de crédito correcta");
+        }else{
           
-        <div class="container">
-            
-            <div class="center">
+          alert("Esta correcta")
+        }
+      }
 
-                <div class="row"> 
+      document.addEventListener('DOMContentLoaded', function() {
+        applyInputMask('creditcar', '0000-0000-0000-0000');
+      });
 
-                <div class="col-md-6">
-                  <button class="btn btn-warning" type="submit">Editar</button>
-              </div>
+      //Mascara para la tarjeta
+      function applyInputMask(elementId, mask) {
+        let inputElement = document.getElementById(elementId);
+        let content = '';
+        let maxChars = numberCharactersPattern(mask);
+        
+        inputElement.addEventListener('keydown', function(e) {
+          e.preventDefault();
+          if (isNumeric(e.key) && content.length < maxChars) {
+            content += e.key;
+          }
+          if(e.keyCode == 8) {
+            if(content.length > 0) {
+              content = content.substr(0, content.length - 1);
+            }
+          }
+          inputElement.value = maskIt('0000-0000-0000-0000', content);
+        })
+      }
+        function numberCharactersPattern(pattern) {
+          let numberChars = 0;
+          for(let i = 0; i < pattern.length; i++) {
+            if(pattern[i] === '0') {
+              numberChars ++;
+            }
+          }
+          return numberChars;
+        }
+      function maskIt(pattern, value) {
+        let position = 0;
+        let currentChar = 0;
+        let masked = '';
+        while(position < pattern.length && currentChar < value.length) {
+          if(pattern[position] === '0') {
+            masked += value[currentChar];
+            currentChar++;
+          } else {
+            masked += pattern[position];
+          }
+          position++;
+        }
+        return masked;
+      }
+      function isNumeric(char) {
+        return !isNaN(char - parseInt(char));
+      }
+      function editar(){
+        //Activar todos los input de la pagina
+        document.getElementById('first_name').disabled = false;
+        document.getElementById('last_name').disabled = false;
+        document.getElementById('username').disabled = false;
+        document.getElementById('sexo').disabled = false;
+        document.getElementById('edad').disabled = false;
+        document.getElementById('email').disabled = false;
+        document.getElementById('creditcar').disabled = false;
 
-              <div class="col-md-6">
-                  <button class="btn btn-info" type="submit">Actualizar</button>
-              </div>
+        $nombre = document.querySelector("#first_name");
+        $nombre.focus();
 
-              </div>
-            </div>
-            
-          </div>
-
-        </form>
-        </div>    
-        <br><br><br><br>
-                               
-
-
-
-
-    
-
-
-    <script src="../static/js/jquery-3.3.1.min.js"></script>
-    <script src="../static/js/popper.min.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
-    <script src="../static/js/main.js"></script>
-
-
-</body>
-
-</html>
+        document.getElementById('btnEdit').disabled = true;
+      }
+  </script>
+  <script src="../static/js/selectmaterialize.js"></script>
+  <script src="../static/js/jquery-3.3.1.min.js"></script>
+  <script src="../static/js/popper.min.js"></script>
+  <script src="../static/js/main.js"></script>
+{% endblock %}

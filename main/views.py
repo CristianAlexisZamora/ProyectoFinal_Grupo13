@@ -57,3 +57,8 @@ def cuenta(request):
 def nosotros(request): 
     return render(request, "main/nosotros.html")
 
+#Premium
+def activarPremium(request):
+    if request.user.is_authenticated:
+        User.objects.get(id = request.user.id).update(premium = True)
+    
