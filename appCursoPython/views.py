@@ -74,19 +74,19 @@ def cursoDjango01(request):
         return render(request, "django/cursoDjango01.html", {'premium': False})
     
 def cursoDjango02(request):
-    if request.user.is_authenticated() and request.user.premium:
+    if request.user.is_authenticated and request.user.premium:
         return render(request, "django/cursoDjango02.html")
     else:
         return redirect('/academia/')
 
 def cursoDjango03(request):
-    if request.user.is_authenticated() and request.user.premium:
+    if request.user.is_authenticated and request.user.premium:
         return render(request, "django/cursoDjango03.html")
     else:
         return redirect('/academia/')
 
 def cursoDjango04(request):
-    if request.user.is_authenticated() and request.user.premium:
+    if request.user.is_authenticated and request.user.premium:
         return render(request, "django/cursoDjango04.html")
     else:
         return redirect('/academia/')
