@@ -11,9 +11,9 @@ def home(request):
 #Vista de la pagina principal de academia
 def academiaCurso(request):
     if request.user.is_authenticated and request.user.premium:
-        return render(request, "main/academiaCurso.html", {"premium":True})
+        return render(request, "main/academiaCurso.html", {"logueado":True, "premium":True})
     else:
-        return render(request, "main/academiaCurso.html", {"premium":False})
+        return render(request, "main/academiaCurso.html", {"logueado":False, "premium":False})
 #Vista de mi cuenta
 def cuenta(request):
 
